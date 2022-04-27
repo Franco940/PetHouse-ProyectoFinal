@@ -3,6 +3,7 @@ package com.proyectoFinal.PetHouse.entidades;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -18,6 +19,19 @@ public class Usuario {
     private String email;
     private String contrasenia;
     private String telefonoDeContacto;
+    
+    /*
+        Al hacer una tabla por cada entidad, necesitamos tenerlas relacionadas
+    para poder acceder a los atributos de usuario siendo un cliente o cuidador.
+    
+    Esto también permite que un cliente sea cuidador o un cuidador sea cliente
+    al mismo tiempo
+    */
+    @OneToOne
+    private Cuidador cuidador;
+    
+    @OneToOne 
+    private Cliente cliente;
 
     public Usuario() {
     }
