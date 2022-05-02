@@ -18,8 +18,8 @@ public class Usuario {
     private String apellido;
     private String email;
     private String contrasenia;
-    private String telefonoDeContacto;
-    
+    private Integer telefonoDeContacto;
+    private String ubicacion;
     /*
         Al hacer una tabla por cada entidad, necesitamos tenerlas relacionadas
     para poder acceder a los atributos de usuario siendo un cliente o cuidador.
@@ -36,7 +36,19 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellido, String email, String contrasenia, String telefonoDeContacto) {
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public Usuario(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public Usuario(String nombre, String apellido, String email, String contrasenia, Integer telefonoDeContacto) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -80,11 +92,11 @@ public class Usuario {
         this.contrasenia = contrasenia;
     }
 
-    public String getTelefonoDeContacto() {
+    public Integer getTelefonoDeContacto() {
         return telefonoDeContacto;
     }
 
-    public void setTelefonoDeContacto(String telefonoDeContacto) {
+    public void setTelefonoDeContacto(Integer telefonoDeContacto) {
         this.telefonoDeContacto = telefonoDeContacto;
     }
 
