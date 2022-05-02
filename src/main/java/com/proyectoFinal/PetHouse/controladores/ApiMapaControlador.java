@@ -10,10 +10,10 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class ApiMapaControlador {
     
-    @RequestMapping(value = "api/lugar", method = RequestMethod.POST)
+    @RequestMapping(value = "mapa/api/lugar", method = RequestMethod.POST)
     public Coordenadas mostrarMapa(@RequestBody String lugar){
         
-        Coordenadas ubicacion = new Coordenadas();
+        Coordenadas coordenadas = new Coordenadas();
         String key = "AIzaSyDNpEo_XpZMVD6IXr3yKTg_QnMscCAyjTg";
         String lugarABuscar = lugar;
         
@@ -21,10 +21,10 @@ public class ApiMapaControlador {
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(url, String.class);
         
-        ubicacion.setLat(buscarCoordenadas(result, "lat"));
-        ubicacion.setLng(buscarCoordenadas(result, "lng"));
+        coordenadas.setLat(buscarCoordenadas(result, "lat"));
+        coordenadas.setLng(buscarCoordenadas(result, "lng"));
 
-        return ubicacion;
+        return coordenadas;
     }
     
     
