@@ -16,9 +16,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SeguridadConfiguracion extends WebSecurityConfigurerAdapter{
     
-    // Este método desactiva la pantalla de login del spring security
     @Override
     protected void configure(HttpSecurity security) throws Exception{
+        // Esto desactiva la pantalla de login del spring security
         security.httpBasic().disable();
         
         // Esto me permite hacer peticiones a la API MAPA
