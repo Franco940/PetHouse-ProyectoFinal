@@ -10,6 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "usuario")
 public class Usuario {
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -26,40 +27,29 @@ public class Usuario {
     
     Esto también permite que un cliente sea cuidador o un cuidador sea cliente
     al mismo tiempo
-    */
+     */
     @OneToOne
     private Cuidador cuidador;
-    
-    @OneToOne 
+
+    @OneToOne
     private Cliente cliente;
 
     public Usuario() {
     }
 
-    public String getUbicacion() {
-        return ubicacion;
-    }
-
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
-    }
-
-    public Usuario(String ubicacion) {
-        this.ubicacion = ubicacion;
-    }
-
-    public Usuario(String nombre, String apellido, String email, String contrasenia, Integer telefonoDeContacto) {
+    public Usuario(String nombre, String apellido, String email, String contrasenia, Integer telefonoDeContacto, String ubicacion) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.contrasenia = contrasenia;
         this.telefonoDeContacto = telefonoDeContacto;
+        this.ubicacion = ubicacion;
     }
 
     public String getIdUsuario() {
         return idUsuario;
     }
-    
+
     public String getNombre() {
         return nombre;
     }
@@ -98,6 +88,14 @@ public class Usuario {
 
     public void setTelefonoDeContacto(Integer telefonoDeContacto) {
         this.telefonoDeContacto = telefonoDeContacto;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
     public Cuidador getCuidador() {
