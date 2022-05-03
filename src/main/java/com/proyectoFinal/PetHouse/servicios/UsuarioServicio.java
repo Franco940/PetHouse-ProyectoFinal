@@ -37,4 +37,30 @@ public class UsuarioServicio {
         usuario.setCliente(cliente);
         ur.save(usuario);
     }
+     public void validaciones(String nombre, String apellido, String email, String contrasenia, Integer telefonoDeContacto, String ubicacion)throws Exception{
+        if(nombre == null || nombre.trim().isEmpty()){
+            throw new Exception("El nombre no puede estar vacío");
+        }
+        if(apellido == null || apellido.trim().isEmpty()){
+            throw new Exception("El apellido no puede estar vacío");
+        }
+        if(email == null || email.trim().isEmpty()){
+            throw new Exception("El email no puede estar vacío");
+        }
+         if(contrasenia == null || contrasenia.trim().isEmpty()){
+            throw new Exception("La contraseña no puede estar vacía");
+        }
+        /*
+         ubicacion
+         cuidador
+         cliente
+         */
+        if (telefonoDeContacto == null){
+            throw new Exception("El teléfono no puede ser nulo");
+        }
+        if(ubicacion == null || ubicacion.trim().isEmpty()){
+            throw new Exception("La ubicación no puede estar vacía");
+        }
+     }
 }
+
