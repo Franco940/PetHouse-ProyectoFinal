@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link th:href="@{/static/css/estilos.css}" rel="stylesheet"/>
-    <link rel="icon" type="HTML/ico" href="huella (1).ico">
+    <link href="../static/css/estilos.css" th:href="@{../static/css/estilos.css}" rel="stylesheet" />
+    <link rel="icon" type="HTML/ico" href="../static/img/huella.ico" th:href="@{../static/img/huella.ico}">
     <title>Pet House</title>
 </head>
 <body>
@@ -20,13 +20,13 @@
           <li> <a href="a">Login</a></li>
           <li> <a href="form-contacto.html">Contacto</a></li>
         </ul>
-    </div> 
+    </div> persona
       <div class="fondo">
         <div class="log">
-            <img th:src="@{../static/img/pethouse.png}/" alt="logo-pethouse">
+            <img th:src="@{../static/img/pethouse.png}" alt="logo-pethouse">
         </div>
         <div class="color">
-          <img src="portada.png" width="100%" height="100%" alt="fondo">
+          <img th:src="@{../static/img/portada.png}" width="100%" height="100%" alt="fondo">
         </div>
       </div>
 
@@ -45,10 +45,10 @@
                      cuidadores altamente calificados y respaldados por nuestra empresa.</p>
            </div>
            <figure class="about-img">
-               <img src="ilustracion1.jpg" class="about-picture">
+               <img th:src="@{../static/img/ilustracion1.jpg}" class="about-picture">
            </figure>
            <figure class="about-img">
-               <img src="ilustracion4.jpg" class="about-picture">
+               <img th:src="@{../static/img/ilustracion4.jpg}" class="about-picture">
            </figure>
            <div class="about text">
               <h2>A un precio accesible para todos</h2>
@@ -59,27 +59,27 @@
                <h2 class="subtitle">Galeria</h2>
                <div class="galeria-grid">
                    <article class="galeria-items">
-                       <img src="persona5.jpg" class="galeria-img">
+                       <img th:src="@{../static/img/persona5.jpg}" class="galeria-img">
                    </article>
 
                    <article class="galeria-items">
-                    <img src="persona6.jpg" class="galeria-img">
+                    <img th:src="@{../static/img/persona6.jpg}" class="galeria-img">
                    </article>
 
                    <article class="galeria-items">
-                    <img src="persona3.jpg" class="galeria-img">
+                    <img th:src="@{../static/img/persona3.jpg}" class="galeria-img">
                    </article>
 
                    <article class="galeria-items">
-                    <img src="persona1.webp" class="galeria-img">
+                    <img th:src="@{../static/img/persona1.webp}" class="galeria-img">
                    </article>
 
                    <article class="galeria-items">
-                    <img src="persona4.jpg" class="galeria-img">
+                    <img th:src="@{../static/img/persona4.jpg}" class="galeria-img">
                    </article>
 
                    <article class="galeria-items">
-                    <img src="personas7.jpg" class="galeria-img">
+                    <img th:src="@{../static/img/personas7.jpg}" class="galeria-img">
                    </article>
                </div>
            </div>
@@ -95,7 +95,7 @@
                <div class="box">
                    <figure>
                        <a href="index.html">
-                           <img src="pethouse.png" alt="logo de pet house">
+                           <img th:src="@{../static/img/pethouse.png}" alt="logo de pet house">
                            
                        </a>
                    </figure>
@@ -109,10 +109,10 @@
                <div class="box">
                    <h2>SIGUENOS</h2>
                    <div class="red-social">
-                      <a href="#"><img src="facebook.png" alt=""></a>
-                      <a href="#"><img src="instagram.png" alt=""></a>
-                      <a href="#"><img src="linkedin.png" alt=""></a>
-                      <a href="#"><img src="wasap.png" alt=""></a>
+                      <a href="#"><img th:src="@{../static/img/facebook.png}" alt=""></a>
+                      <a href="#"><img th:src="@{../static/img/instagram.png}" alt=""></a>
+                      <a href="#"><img th:src="@{../static/img/linkedin.png}" alt=""></a>
+                      <a href="#"><img th:src="@{../static/img/wasap.png}" alt=""></a>
                    </div>
                </div>
            </div>
