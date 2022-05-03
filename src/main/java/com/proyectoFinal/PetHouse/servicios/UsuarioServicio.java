@@ -24,7 +24,7 @@ public class UsuarioServicio {
     private UsuarioRepositorio ur;
 
     @Transactional
-    public void registrarUsuario(String nombre, String apellido, String email, String contrasenia, Integer telefonoDeContacto, String ubicacion, Cuidador cuidador, Cliente cliente) throws Exception {
+    public void registrarUsuario(String nombre, String apellido, String email, String contrasenia, Integer telefonoDeContacto, String ubicacion) throws Exception {
         Usuario usuario = new Usuario();
         validaciones(nombre, apellido, email, contrasenia, telefonoDeContacto, ubicacion);
         usuario.setNombre(nombre);
@@ -33,8 +33,6 @@ public class UsuarioServicio {
         usuario.setContrasenia(contrasenia);
         usuario.setTelefonoDeContacto(telefonoDeContacto);
         usuario.setUbicacion(ubicacion);
-        usuario.setCuidador(cuidador);
-        usuario.setCliente(cliente);
         ur.save(usuario);
     }
      public void validaciones(String nombre, String apellido, String email, String contrasenia, Integer telefonoDeContacto, String ubicacion)throws Exception{
