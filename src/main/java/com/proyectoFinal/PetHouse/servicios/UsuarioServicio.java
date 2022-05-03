@@ -50,11 +50,6 @@ public class UsuarioServicio {
          if(contrasenia == null || contrasenia.trim().isEmpty()){
             throw new Exception("La contraseña no puede estar vacía");
         }
-        /*
-         ubicacion
-         cuidador
-         cliente
-         */
         if (telefonoDeContacto == null){
             throw new Exception("El teléfono no puede ser nulo");
         }
