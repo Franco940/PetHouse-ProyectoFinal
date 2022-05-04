@@ -1,22 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.proyectoFinal.PetHouse.servicios;
 
-import com.proyectoFinal.PetHouse.entidades.Cliente;
-import com.proyectoFinal.PetHouse.entidades.Cuidador;
 import com.proyectoFinal.PetHouse.entidades.Usuario;
+import com.proyectoFinal.PetHouse.enums.Rol;
 import com.proyectoFinal.PetHouse.repositorios.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- *
- * @author VIC
- */
 @Service
 public class UsuarioServicio {
 
@@ -32,7 +22,8 @@ public class UsuarioServicio {
         usuario.setEmail(email);
         usuario.setContrasenia(contrasenia);
         usuario.setTelefonoDeContacto(telefonoDeContacto);
-        usuario.setUbicacion(ubicacion);
+        usuario.setUbicacion(ubicacion + "Buenos Aires, Argentina");
+        usuario.setRol(Rol.USER);
         ur.save(usuario);
     }
      public void validaciones(String nombre, String apellido, String email, String contrasenia, Integer telefonoDeContacto, String ubicacion)throws Exception{
@@ -56,4 +47,3 @@ public class UsuarioServicio {
         }
      }
 }
-

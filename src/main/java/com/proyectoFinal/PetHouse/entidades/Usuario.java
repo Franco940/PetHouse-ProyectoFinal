@@ -1,6 +1,9 @@
 package com.proyectoFinal.PetHouse.entidades;
 
+import com.proyectoFinal.PetHouse.enums.Rol;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -21,6 +24,10 @@ public class Usuario {
     private String contrasenia;
     private Integer telefonoDeContacto;
     private String ubicacion;
+    
+    @Enumerated(EnumType.STRING)
+    private Rol rol;
+    
     /*
         Al hacer una tabla por cada entidad, necesitamos tenerlas relacionadas
     para poder acceder a los atributos de usuario siendo un cliente o cuidador.
@@ -35,15 +42,6 @@ public class Usuario {
     private Cliente cliente;
 
     public Usuario() {
-    }
-
-    public Usuario(String nombre, String apellido, String email, String contrasenia, Integer telefonoDeContacto, String ubicacion) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.contrasenia = contrasenia;
-        this.telefonoDeContacto = telefonoDeContacto;
-        this.ubicacion = ubicacion;
     }
 
     public String getIdUsuario() {
@@ -112,5 +110,13 @@ public class Usuario {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 }
