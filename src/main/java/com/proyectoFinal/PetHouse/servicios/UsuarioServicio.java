@@ -1,22 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.proyectoFinal.PetHouse.servicios;
 
-import com.proyectoFinal.PetHouse.entidades.Cliente;
-import com.proyectoFinal.PetHouse.entidades.Cuidador;
 import com.proyectoFinal.PetHouse.entidades.Usuario;
+import com.proyectoFinal.PetHouse.enums.Rol;
 import com.proyectoFinal.PetHouse.repositorios.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- *
- * @author VIC
- */
 @Service
 public class UsuarioServicio {
 
@@ -24,18 +14,20 @@ public class UsuarioServicio {
     private UsuarioRepositorio ur;
 
     @Transactional
-    public void registrarUsuario(String nombre, String apellido, String email, String contrasenia, Integer telefonoDeContacto, String ubicacion) throws Exception {
+    public void registrarUsuario(String nombre, String apellido, String email, String contrasenia, Integer telefonoDeContacto, String localidad, String calleNumero) throws Exception {
         Usuario usuario = new Usuario();
-        validaciones(nombre, apellido, email, contrasenia, telefonoDeContacto, ubicacion);
+        validaciones(nombre, apellido, email, contrasenia, telefonoDeContacto, calleNumero);
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setEmail(email);
         usuario.setContrasenia(contrasenia);
         usuario.setTelefonoDeContacto(telefonoDeContacto);
-        usuario.setUbicacion(ubicacion);
+        usuario.setUbicacion(calleNumero + ", " + localidad + ", Buenos Aires, Argentina");
+        usuario.setRol(Rol.USER);
         ur.save(usuario);
     }
-     public void validaciones(String nombre, String apellido, String email, String contrasenia, Integer telefonoDeContacto, String ubicacion)throws Exception{
+    
+    private void validaciones(String nombre, String apellido, String email, String contrasenia, Integer telefonoDeContacto, String calleNumero)throws Exception{
         if(nombre == null || nombre.trim().isEmpty()){
             throw new Exception("El nombre no puede estar vacío");
         }
@@ -51,9 +43,8 @@ public class UsuarioServicio {
         if (telefonoDeContacto == null){
             throw new Exception("El teléfono no puede ser nulo");
         }
-        if(ubicacion == null || ubicacion.trim().isEmpty()){
-            throw new Exception("La ubicación no puede estar vacía");
+        if(calleNumero == null || calleNumero.trim().isEmpty()){
+            throw new Exception("La calle no puede estar vacía");
         }
      }
 }
-
