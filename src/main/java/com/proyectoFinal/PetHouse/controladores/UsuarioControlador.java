@@ -17,13 +17,17 @@ public class UsuarioControlador {
     private UsuarioServicio us;
 
     @PostMapping("/registrar")
-    public String guardar(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String email, @RequestParam String contrasenia, @RequestParam Integer telefonoDeContacto, @RequestParam String ubicacion) {
+    public String guardar(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String email, 
+            @RequestParam String contrasenia, @RequestParam Integer telefonoDeContacto, @RequestParam String localidad, @RequestParam String calleNumero) {
         try {
-            us.registrarUsuario(nombre, apellido, email, contrasenia, telefonoDeContacto, ubicacion);
-            modelo.put("exito", "Registro exitoso");
-            return "form-registro";
+            us.registrarUsuario(nombre, apellido, email, contrasenia, telefonoDeContacto, localidad, calleNumero);
+            
+            // Falta agregar un lugar en el html para mostrar este mensaje
+            //modelo.put("exito", "Registro exitoso");
         } catch (Exception e) {
-            modelo.put("error", "Falta algún dato");
+            // Falta agregar un lugar en el html para mostrar este mensaje
+            //modelo.put("error", "Falta algún dato");
+        }finally{
             return "form-registro";
         }
     }
