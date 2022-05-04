@@ -36,8 +36,9 @@ public class UsuarioControlador {
             return "form-registro";
         }
     }
+
     @GetMapping("/registrar")
-    public String mostrarFormulario(){
+    public String mostrarFormulario() {
         return "form-registro";
     }
 
