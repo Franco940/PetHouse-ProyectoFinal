@@ -21,6 +21,7 @@ public class Usuario {
     private String contrasenia;
     private Integer telefonoDeContacto;
     private String ubicacion;
+    //private String contactoComentario;
     /*
         Al hacer una tabla por cada entidad, necesitamos tenerlas relacionadas
     para poder acceder a los atributos de usuario siendo un cliente o cuidador.
@@ -113,4 +114,13 @@ public class Usuario {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+/*
+    public String getContactoComentario() {
+        return contactoComentario;
+    }
+
+    public void setContactoComentario(String contactoComentario) {
+        this.contactoComentario = contactoComentario;
+    }
+    */
 }

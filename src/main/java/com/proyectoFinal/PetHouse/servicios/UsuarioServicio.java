@@ -35,6 +35,16 @@ public class UsuarioServicio {
         usuario.setUbicacion(ubicacion);
         ur.save(usuario);
     }
+    /*
+    @Transactional
+    public void comentario(String nombre, String contactoComentario){
+        Usuario usuario = new Usuario();
+        usuario.setNombre(nombre);
+        usuario.setContactoComentario(contactoComentario);
+        ur.save(usuario);
+    }
+*/
+    
      public void validaciones(String nombre, String apellido, String email, String contrasenia, Integer telefonoDeContacto, String ubicacion)throws Exception{
         if(nombre == null || nombre.trim().isEmpty()){
             throw new Exception("El nombre no puede estar vacío");

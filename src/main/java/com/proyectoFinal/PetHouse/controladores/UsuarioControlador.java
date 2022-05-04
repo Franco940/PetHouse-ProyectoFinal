@@ -41,5 +41,22 @@ public class UsuarioControlador {
     public String mostrarFormulario() {
         return "form-registro";
     }
+/*
+    @PostMapping("/contacto")
+    public String comentario(ModelMap modelo, @RequestParam String nombre, @RequestParam String email, @RequestParam String contactoComentario) {
+        try {
+            us.comentario(nombre, contactoComentario);
+            modelo.put("exito", "Comentario enviado exitosamente");
+            return "form-contacto";
+        } catch (Exception e) {
+            modelo.put("error", "Falta algún dato");
+            return "form-contacto";
+        }
+    }
 
+    @GetMapping("/contacto")
+    public String mostrarComentario() {
+        return "form-contacto";
+    }
+*/
 }
