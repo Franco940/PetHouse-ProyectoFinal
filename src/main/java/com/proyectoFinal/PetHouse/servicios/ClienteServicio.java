@@ -10,5 +10,12 @@ package com.proyectoFinal.PetHouse.servicios;
  * @author VIC
  */
 public class ClienteServicio {
-    
+     /*BUSCAR POR ID
+    LISTAR
+    MODIFICAR
+    ELIMINAR
+    */
+    /*
+   VALIDACIONES
+     */
 }

@@ -30,7 +30,11 @@ public class CuidadorServicio {
     public List<Cuidador> listarCuidadores() {
         return cuidadorRepo.findAll();
     }
-
+    /*BUSCAR POR ID
+    LISTAR
+    MODIFICAR
+    ELIMINAR
+    */
     /*
    VALIDACIONES
      */

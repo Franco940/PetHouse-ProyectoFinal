@@ -45,6 +45,11 @@ public class UsuarioServicio {
     }
 
     @Transactional
+    public Usuario buscarUsuarioPorId(String id) {
+        return ur.buscarPorId(id);
+    }
+
+    @Transactional
     public void eliminarUsuario(String id) throws Exception {
         ur.buscarPorId(id);
         ur.deleteById(id);
