@@ -9,9 +9,11 @@ package com.proyectoFinal.PetHouse.servicios;
  *
  * @author VIC
  */
-public class ClienteServicio {
-     /*BUSCAR POR ID
-    LISTAR
+public class ClienteServicio { 
+    /*
+    CREAR
+    BUSCAR POR ID
+    listarClientes() (vease usuario controlador)
     MODIFICAR
     ELIMINAR
     */
