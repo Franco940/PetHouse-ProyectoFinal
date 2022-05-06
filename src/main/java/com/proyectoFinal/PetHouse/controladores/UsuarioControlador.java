@@ -1,9 +1,6 @@
 package com.proyectoFinal.PetHouse.controladores;
 
-import com.proyectoFinal.PetHouse.entidades.Cliente;
-import com.proyectoFinal.PetHouse.entidades.Cuidador;
-import com.proyectoFinal.PetHouse.servicios.ClienteServicio;
-import com.proyectoFinal.PetHouse.servicios.CuidadorServicio;
+import com.proyectoFinal.PetHouse.entidades.Usuario;
 import com.proyectoFinal.PetHouse.servicios.UsuarioServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UsuarioControlador {
 
     @Autowired
-    private UsuarioServicio us;
-
-    @Autowired
-    private CuidadorServicio cuidadorServicio;
-
-    @Autowired
-    private ClienteServicio clienteServicio;
+    private UsuarioServicio userServ;
 
     @PostMapping("/registrar")
     public String guardar(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, 
@@ -34,7 +25,7 @@ public class UsuarioControlador {
             @RequestParam String contrasenia, @RequestParam Integer telefonoDeContacto, 
             @RequestParam String localidad, @RequestParam String calleNumero) {
         try {
-            us.registrarUsuario(nombre, apellido, email, contrasenia, telefonoDeContacto, localidad, calleNumero);
+            userServ.registrarUsuario(nombre, apellido, email, contrasenia, telefonoDeContacto, localidad, calleNumero);
 
             // Falta agregar un lugar en el html para mostrar este mensaje
             //modelo.put("exito", "Registro exitoso");
@@ -50,15 +41,22 @@ public class UsuarioControlador {
     public String mostrarFormulario() {
         return "form-registro";
     }
-/*falta metodo de listar*/
+    
+    /*falta metodo de listar*/
     @GetMapping("/modificar/{id}")
     public String modificar(@PathVariable String id, ModelMap modelo) {
-        List<Cuidador> cuidadores = cuidadorServicio.listarCuidadores();
-        List<Cliente> clientes = clienteServicio.listarClientes();/*metodo listar cliente aun no creado*/
+        List<Usuario> cuidadores = userServ.filtrarUsuariosCuidadores();
+        
+        // Falta crear el método para obtener la lista de clientes
+        //List<Usuario> clientes = userServ.listarClientes();/*metodo listar cliente aun no creado*/
+        
+        // Falta crear el front para esto
+        /*
         modelo.addAttribute("cuidador", cuidadores);
         modelo.addAttribute("cliente", clientes);
-
-        modelo.put("usuario", us.buscarUsuarioPorId(id));
+        
+        modelo.put("usuario", userServ.buscarUsuarioPorId(id));
+        */
         return "modificar-usuario";/*modificar-usuario aun no creado*/
     }
 
@@ -68,9 +66,11 @@ public class UsuarioControlador {
             @RequestParam String contrasenia, @RequestParam Integer telefonoDeContacto, 
             @RequestParam String localidad, @RequestParam String calleNumero){
         try{
-            us.modificarUsuario(id, nombre, apellido, email, contrasenia, telefonoDeContacto, localidad, calleNumero);
-        return "redirect:/usuario/listar";
+            userServ.modificarUsuario(id, nombre, apellido, email, contrasenia, telefonoDeContacto, localidad, calleNumero);
+            
         }catch (Exception e){
+            // Hacer la lógica cuando manejemos errores
+        }finally{
             return "modificar-usuario";
         }
     }
