@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class ApiMapaControlador {
     
-    @RequestMapping(value = "mapa/api/lugar", method = RequestMethod.POST)
+    @RequestMapping(value = "cuidador/mapa/api/coordenadas", method = RequestMethod.POST)
     public Coordenadas mostrarMapa(@RequestBody String lugar){
         
         Coordenadas coordenadas = new Coordenadas();
