@@ -1,12 +1,22 @@
 let objetoCoordenadas = {
-    lat: 0,
-    lng: 0
+    // Coordenadas para mostrar la ciudad de Buenos Aires
+    lng: -58.4468073,
+    lat: -34.6042725
 };
 
-async function buscarCoordenadasUbicacion(){
-    let lugarParaBuscar = document.getElementById("lugar").value;
+async function buscarCoordenadasUbicacion(lugar){
+    let lugarParaBuscar = lugar;
 
-    const request = await fetch("api/lugar",{
+    if(lugar == "no"){
+        objetoCoordenadas["lat"] = -34.6042725;
+        objetoCoordenadas["lng"] = -58.4468073;
+
+        initMap()
+
+        return;
+    }
+
+    const request = await fetch("mapa/api/coordenadas",{
         method: 'POST',
         headers: {
         'Accept': 'application/json',
@@ -20,8 +30,8 @@ async function buscarCoordenadasUbicacion(){
     objetoCoordenadas["lat"] = parseFloat(response.lat);
     objetoCoordenadas["lng"] = parseFloat(response.lng);
 
-    console.log(response.lat)
-    console.log(response.lng)
+    console.log("Lat: " + response.lat)
+    console.log("Lng: " + response.lng)
 
     initMap()
 }

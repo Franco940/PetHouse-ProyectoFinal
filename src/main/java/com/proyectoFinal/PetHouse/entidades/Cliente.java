@@ -21,14 +21,12 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, 
             cascade = CascadeType.ALL)
     private List<Mascota> mascotas;
-    private String dirección;
 
     public Cliente() {
     }
 
-    public Cliente(List<Mascota> mascotas, String dirección) {
+    public Cliente(List<Mascota> mascotas) {
         this.mascotas = mascotas;
-        this.dirección = dirección;
     }
 
     public String getIdCliente() {
@@ -41,13 +39,5 @@ public class Cliente {
 
     public void setMascotas(List<Mascota> mascotas) {
         this.mascotas = mascotas;
-    }
-
-    public String getDirección() {
-        return dirección;
-    }
-
-    public void setDirección(String dirección) {
-        this.dirección = dirección;
     }
 }

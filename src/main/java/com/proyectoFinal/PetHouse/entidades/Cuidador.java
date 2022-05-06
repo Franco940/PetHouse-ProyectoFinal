@@ -19,31 +19,30 @@ public class Cuidador {
     private String idCuidador;
     private String descripcion;
     private Integer trabajosRealizados;
-    private boolean disponible;
     private Integer puntajeTotal;
+    private boolean disponible;
+    private boolean alta;
     
     @OneToMany(mappedBy = "cuidador", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<Comentario> comentarios;
-    private String aniamlesAptoParaCuidar; // Con el .split acomodamos los animales que puede cuidar
+    
+    private String aniamlesAptoParaCuidar; // Con el .split podríamos acomodar los animales que puede cuidar
     private Integer tarifa;
     
     @OneToMany(mappedBy = "cuidador", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<Mascota> mascotasCuidando;
-    private boolean puedeIrAlHogar;
 
     public Cuidador() {
-    }
-
-    public Cuidador(String descripcion, boolean disponible, String aniamlesAptoParaCuidar, Integer tarifa, boolean puedeIrAlHogar) {
-        this.descripcion = descripcion;
-        this.trabajosRealizados = 0;
-        this.disponible = disponible;
-        this.puntajeTotal = 0;
-        this.aniamlesAptoParaCuidar = aniamlesAptoParaCuidar;
-        this.tarifa = tarifa;
-        this.puedeIrAlHogar = puedeIrAlHogar;
+        // Cambiar las cosas. Son todos valores de prueba
+        
+        this.descripcion = "Me gusta cuidar mascotas";
+        this.trabajosRealizados = 100;
+        this.disponible = false;
+        this.puntajeTotal = 500;
+        this.alta = true; // Luego cambiarlo a false. Lo dejo en true para hacer las pruebas
+        this.tarifa = 0;
     }
 
     public String getIdCuidador() {
@@ -82,6 +81,14 @@ public class Cuidador {
         this.puntajeTotal = puntajeTotal;
     }
 
+    public boolean isAlta() {
+        return alta;
+    }
+
+    public void setAlta(boolean alta) {
+        this.alta = alta;
+    }
+
     public List<Comentario> getComentarios() {
         return comentarios;
     }
@@ -112,13 +119,5 @@ public class Cuidador {
 
     public void setMascotasCuidando(List<Mascota> mascotasCuidando) {
         this.mascotasCuidando = mascotasCuidando;
-    }
-
-    public boolean isPuedeIrAlHogar() {
-        return puedeIrAlHogar;
-    }
-
-    public void setPuedeIrAlHogar(boolean puedeIrAlHogar) {
-        this.puedeIrAlHogar = puedeIrAlHogar;
     }
 }
