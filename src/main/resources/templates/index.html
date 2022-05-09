@@ -10,7 +10,7 @@
     <title>Pet House</title>
 </head>
 <body>
-    <header>
+    
      <!-- MENU -->
      <div class="derecha">
         <ul class="menu">
@@ -21,6 +21,7 @@
           <li> <a href="form-contacto.html">Contacto</a></li>
         </ul>
     </div>
+    
       <div class="fondo">
         <div class="log">
             <img th:src="@{../static/img/pethouse.png}" alt="logo-pethouse">
@@ -31,16 +32,17 @@
       </div>
 
      
-    </header>
+   
     <!-- info de la pagina -->
+    <header class="container">
    <main>
-       <section class="about container">
+       <section class="about">
 
-           <div class="about text">
-                <h2>¿Te vas de viaje y no sabes con quién dejar a tú mascota?</h2>
-                             <h3>Nosotros tenemos la solucion!</h3>
-                <p class="about parrafo">Muchos dueños de mascotas quisieran tener personas confiables a
-                     quienes dejarles sus mascotas, cuando surge un viaje de trabajo o un problema familiar.
+           <div class="about-text">
+                <h2>¿Te vas de viaje y no sabes con<br> quién dejar a tú mascota?</h2>
+                             
+                <p class="about-parrafo"><strong>¡Nosotros tenemos la solución!</strong><br>Muchos dueños de mascotas quisieran tener personas confiables a
+                     quienes dejarles sus mascotas cuando surge un viaje de trabajo o un problema familiar.
                      Es aquí donde entra en juego Pet house, conectando a los clientes con una amplia red de
                      cuidadores altamente calificados y respaldados por nuestra empresa.</p>
            </div>
@@ -50,10 +52,12 @@
            <figure class="about-img">
                <img th:src="@{../static/img/ilustracion4.jpg}" class="about-picture">
            </figure>
-           <div class="about text">
-              <h2>A un precio accesible para todos</h2>
+           <div class="about-text">
+              <h2>¡A un precio accesible para todos!</h2>
+              <p class="about-parrafo">Pactamos con cada uno de nuestros cuidadores un monto máximo por noche.</p>
            </div>
        </section>
+       
        <section class="galeria">
            <div class="contain">
                <h2 class="subtitle">Galeria</h2>
@@ -69,11 +73,7 @@
                    <article class="galeria-items">
                     <img th:src="@{../static/img/persona3.jpg}" class="galeria-img">
                    </article>
-
-                   <article class="galeria-items">
-                    <img th:src="@{../static/img/persona1.webp}" class="galeria-img">
-                   </article>
-
+                   
                    <article class="galeria-items">
                     <img th:src="@{../static/img/persona4.jpg}" class="galeria-img">
                    </article>
@@ -87,7 +87,7 @@
 
        
    </main>
-
+ </header>
 
     <!-- pie de pagina -->
        <footer class="pie-pagina">
