@@ -1,12 +1,13 @@
 package com.proyectoFinal.PetHouse.entidades;
 
-import com.proyectoFinal.PetHouse.enums.Rol;
+
+
+import com.proyectoFinal.PetHouse.enums.Role;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -22,24 +23,11 @@ public class Usuario {
     private String apellido;
     private String email;
     private String contrasenia;
-    private Integer telefonoDeContacto;
-    private String ubicacion;
+    private String telefonoDeContacto;
     
     @Enumerated(EnumType.STRING)
-    private Rol rol;
-    
-    /*
-        Al hacer una tabla por cada entidad, necesitamos tenerlas relacionadas
-    para poder acceder a los atributos de usuario siendo un cliente o cuidador.
-    
-    Esto también permite que un cliente sea cuidador o un cuidador sea cliente
-    al mismo tiempo
-     */
-    @OneToOne
-    private Cuidador cuidador;
-
-    @OneToOne
-    private Cliente cliente;
+    private Role role;
+       
 
     public Usuario() {
     }
@@ -80,43 +68,20 @@ public class Usuario {
         this.contrasenia = contrasenia;
     }
 
-    public Integer getTelefonoDeContacto() {
+    public String getTelefonoDeContacto() {
         return telefonoDeContacto;
     }
 
-    public void setTelefonoDeContacto(Integer telefonoDeContacto) {
+    public void setTelefonoDeContacto(String telefonoDeContacto) {
         this.telefonoDeContacto = telefonoDeContacto;
     }
-
-    public String getUbicacion() {
-        return ubicacion;
+    
+    public Role getRole(){
+        return role;
     }
 
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
-    }
+    public void setRole(Role role) {
+        this.role = role;
 
-    public Cuidador getCuidador() {
-        return cuidador;
-    }
-
-    public void setCuidador(Cuidador cuidador) {
-        this.cuidador = cuidador;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
     }
 }
