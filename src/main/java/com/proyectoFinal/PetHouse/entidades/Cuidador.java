@@ -38,8 +38,8 @@ public class Cuidador {
         // Cambiar las cosas. Son todos valores de prueba
         
         this.descripcion = "Me gusta cuidar mascotas";
-        this.trabajosRealizados = 100;
-        this.disponible = false;
+        this.trabajosRealizados = 170;
+        this.disponible = true;
         this.puntajeTotal = 500;
         this.alta = true; // Luego cambiarlo a false. Lo dejo en true para hacer las pruebas
         this.tarifa = 0;
