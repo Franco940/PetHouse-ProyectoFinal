@@ -67,7 +67,8 @@ public class UsuarioControlador {
             @RequestParam String contrasenia, @RequestParam String contrasenia2, @RequestParam Integer telefonoDeContacto, 
             @RequestParam String localidad, @RequestParam String calleNumero){
         try{
-            userServ.modificarUsuario(id, nombre, apellido, email, contrasenia, contrasenia2, telefonoDeContacto, localidad, calleNumero);
+            userServ.modificarUsuario(id, nombre, apellido, email, contrasenia, contrasenia2, 
+                    telefonoDeContacto, localidad, calleNumero);
             
         }catch (Exception e){
             // Hacer la lógica cuando manejemos errores
@@ -75,4 +76,5 @@ public class UsuarioControlador {
             return "modificar-usuario";
         }
     }
+    
 }

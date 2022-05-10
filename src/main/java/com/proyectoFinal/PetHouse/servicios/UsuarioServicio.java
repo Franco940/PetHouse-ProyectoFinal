@@ -42,10 +42,10 @@ public class UsuarioServicio implements UserDetailsService{
         Cliente cliente = new Cliente();
         Cuidador cuidador = new Cuidador();
         
-        clienteServ.crearCliente(cliente);
-        cuidadorServ.crearCuidador(cuidador);
+//        clienteServ.crearCliente(cliente);
+//        cuidadorServ.crearCuidador(cuidador);
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        validaciones(nombre, apellido, email,contrasenia, contrasenia2, telefonoDeContacto, calleNumero);
+       validaciones(nombre, apellido, email,contrasenia, contrasenia2, telefonoDeContacto, calleNumero);
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setEmail(email);
@@ -54,9 +54,9 @@ public class UsuarioServicio implements UserDetailsService{
         usuario.setUbicacion(calleNumero + ", " + localidad + ", Buenos Aires, Argentina");
         usuario.setRol(Rol.USER);
         
-        usuario.setCliente(cliente);
-        usuario.setCuidador(cuidador);
-        ur.save(usuario);
+//        usuario.setCliente(cliente);
+//        usuario.setCuidador(cuidador);
+        
         return ur.save(usuario);
     }
   
