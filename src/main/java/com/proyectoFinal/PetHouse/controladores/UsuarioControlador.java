@@ -22,10 +22,11 @@ public class UsuarioControlador {
     @PostMapping("/registrar")
     public String guardar(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, 
             @RequestParam String email,
-            @RequestParam String contrasenia, @RequestParam Integer telefonoDeContacto, 
+            @RequestParam String contrasenia,@RequestParam String contrasenia2, @RequestParam Integer telefonoDeContacto, 
             @RequestParam String localidad, @RequestParam String calleNumero) {
         try {
-            userServ.registrarUsuario(nombre, apellido, email, contrasenia, telefonoDeContacto, localidad, calleNumero);
+            userServ.registrarUsuario(nombre, apellido, email, contrasenia,
+             telefonoDeContacto,  localidad,  calleNumero, contrasenia2);
 
             // Falta agregar un lugar en el html para mostrar este mensaje
             //modelo.put("exito", "Registro exitoso");
@@ -63,10 +64,10 @@ public class UsuarioControlador {
     @PostMapping("/modificar/{id}")
     public String modificar(@PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, 
             @RequestParam String email,
-            @RequestParam String contrasenia, @RequestParam Integer telefonoDeContacto, 
+            @RequestParam String contrasenia, @RequestParam String contrasenia2, @RequestParam Integer telefonoDeContacto, 
             @RequestParam String localidad, @RequestParam String calleNumero){
         try{
-            userServ.modificarUsuario(id, nombre, apellido, email, contrasenia, telefonoDeContacto, localidad, calleNumero);
+            userServ.modificarUsuario(id, nombre, apellido, email, contrasenia, contrasenia2, telefonoDeContacto, localidad, calleNumero);
             
         }catch (Exception e){
             // Hacer la lógica cuando manejemos errores
