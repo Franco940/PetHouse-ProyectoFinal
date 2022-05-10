@@ -21,9 +21,9 @@ public class UsuarioControlador {
     private UsuarioServicio userServ;
 
     @PostMapping("/registrar")
-    public String guardar(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, 
+    public String guardar(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email,
-            @RequestParam String contrasenia, @RequestParam Integer telefonoDeContacto, 
+            @RequestParam String contrasenia, @RequestParam Integer telefonoDeContacto,
             @RequestParam String localidad, @RequestParam String calleNumero, List<Mascota> mascota) {
         try {
             userServ.registrarUsuario(nombre, apellido, email, contrasenia, telefonoDeContacto, localidad, calleNumero, mascota);
@@ -42,36 +42,32 @@ public class UsuarioControlador {
     public String mostrarFormulario() {
         return "form-registro";
     }
-    
-    /*falta metodo de listar*/
+
     @GetMapping("/modificar/{id}")
     public String modificar(@PathVariable String id, ModelMap modelo) {
         List<Usuario> cuidadores = userServ.filtrarUsuariosCuidadores();
-        
-        // Falta crear el método para obtener la lista de clientes
-        //List<Usuario> clientes = userServ.listarClientes();/*metodo listar cliente aun no creado*/
-        
+        List<Usuario> clientes = userServ.filtrarUsuariosClientes();
+
         // Falta crear el front para esto
-        /*
         modelo.addAttribute("cuidador", cuidadores);
         modelo.addAttribute("cliente", clientes);
-        
+
         modelo.put("usuario", userServ.buscarUsuarioPorId(id));
-        */
-        return "modificar-usuario";/*modificar-usuario aun no creado*/
+
+        return "modificar-usuario";
     }
 
     @PostMapping("/modificar/{id}")
-    public String modificar(@PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, 
+    public String modificar(@PathVariable String id, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email,
-            @RequestParam String contrasenia, @RequestParam Integer telefonoDeContacto, 
-            @RequestParam String localidad, @RequestParam String calleNumero){
-        try{
+            @RequestParam String contrasenia, @RequestParam Integer telefonoDeContacto,
+            @RequestParam String localidad, @RequestParam String calleNumero) {
+        try {
             userServ.modificarUsuario(id, nombre, apellido, email, contrasenia, telefonoDeContacto, localidad, calleNumero);
-            
-        }catch (Exception e){
+
+        } catch (Exception e) {
             // Hacer la lógica cuando manejemos errores
-        }finally{
+        } finally {
             return "modificar-usuario";
         }
     }

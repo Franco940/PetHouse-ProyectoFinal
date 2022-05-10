@@ -13,6 +13,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "cuidador")
 public class Cuidador {
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -22,21 +23,21 @@ public class Cuidador {
     private Integer puntajeTotal;
     private boolean disponible;
     private boolean alta;
-    
+
     @OneToMany(mappedBy = "cuidador", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<Comentario> comentarios;
-    
+
     private String aniamlesAptoParaCuidar; // Con el .split podríamos acomodar los animales que puede cuidar
     private Integer tarifa;
-    
+
     @OneToMany(mappedBy = "cuidador", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<Mascota> mascotasCuidando;
 
     public Cuidador() {
         // Cambiar las cosas. Son todos valores de prueba
-        
+
         this.descripcion = "Me gusta cuidar mascotas";
         this.trabajosRealizados = 100;
         this.disponible = false;
@@ -48,7 +49,7 @@ public class Cuidador {
     public String getIdCuidador() {
         return idCuidador;
     }
-    
+
     public String getDescripcion() {
         return descripcion;
     }

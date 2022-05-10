@@ -3,7 +3,6 @@ package com.proyectoFinal.PetHouse.servicios;
 import com.proyectoFinal.PetHouse.entidades.Cliente;
 import com.proyectoFinal.PetHouse.entidades.Mascota;
 import com.proyectoFinal.PetHouse.repositorios.ClienteRepositorio;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +13,6 @@ public class ClienteServicio {
     
     @Autowired
     private ClienteRepositorio clienteRepo;
-    @Autowired
-    private MascotaServicio ms;
-   
     
     @Transactional
     public void crearCliente(Cliente cliente, List<Mascota> mascotas){
@@ -27,14 +23,15 @@ public class ClienteServicio {
     }
     
     @Transactional
-    public void modificarCliente(){
-        
+    public void modificarCliente(Cliente cliente, List<Mascota> mascotas) throws Exception{
+        validaciones(mascotas);
+        cliente.setMascotas(mascotas);
     }
-    @Transactional
+    @Transactional(readOnly = true)
     public Cliente buscarClientePorId(String id){
         return clienteRepo.buscarPorId(id);
     }
-    @Transactional
+         
     public void validaciones(List<Mascota> mascotas) throws Exception{
         if (mascotas == null || mascotas.isEmpty()){
             throw new Exception("El cliente debe tener al menos una mascota");

@@ -21,15 +21,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class MascotaServicio {
 
     @Autowired
-    private ClienteServicio cs;
-
-    @Autowired
     private MascotaRepositorio mr;
 
     @Transactional
     public Mascota crearMascota(String nombre, String tipoAnimal, String raza, Cliente cliente) throws Exception {
         validaciones(nombre, tipoAnimal, raza, cliente);
-        mr.buscarMascotaPorCliente(nombre);
+        /* mr.buscarMascotaPorCliente(nombre);*/
         Mascota mascota = new Mascota();
         mascota.setNombre(nombre);
         mascota.setTipoAnimal(tipoAnimal);
@@ -42,7 +39,6 @@ public class MascotaServicio {
     public Mascota modificarMascota(String id, String nombre, String tipoAnimal, String raza, Cliente cliente) throws Exception {
         validaciones(nombre, tipoAnimal, raza, cliente);
         Mascota mascota = mr.buscarMascotaPoId(id);
-        cs.buscarClientePorId(id);
         if (mascota != null) {
             mascota.setNombre(nombre);
             mascota.setTipoAnimal(tipoAnimal);
@@ -66,6 +62,12 @@ public class MascotaServicio {
             throw new Exception("No existe una mascota con el valor solicitado");
         }
     }
+
+    /*@Transactional(readOnly = true)
+    public List<Mascota> buscarMascotaPorCliente(String idMascota, String nombre, String tipoAnimal, String raza, Cliente cliente) throws Exception {
+        validaciones(nombre, tipoAnimal, raza, cliente);
+        return mr.buscarMascotaPorCliente(idMascota);
+    }*/
 
     @Transactional(readOnly = true)
     public List<Mascota> listarMascotas() {
