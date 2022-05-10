@@ -2,6 +2,7 @@ package com.proyectoFinal.PetHouse.servicios;
 
 import com.proyectoFinal.PetHouse.entidades.Cliente;
 import com.proyectoFinal.PetHouse.entidades.Cuidador;
+import com.proyectoFinal.PetHouse.entidades.Mascota;
 import com.proyectoFinal.PetHouse.entidades.Usuario;
 import com.proyectoFinal.PetHouse.enums.Rol;
 import com.proyectoFinal.PetHouse.repositorios.UsuarioRepositorio;
@@ -25,14 +26,14 @@ public class UsuarioServicio {
 
     @Transactional
     public void registrarUsuario(String nombre, String apellido, String email, String contrasenia,
-            Integer telefonoDeContacto, String localidad, String calleNumero) throws Exception {
+            Integer telefonoDeContacto, String localidad, String calleNumero, List<Mascota> mascotas) throws Exception {
       
         Usuario usuario = new Usuario();
         
         Cliente cliente = new Cliente();
         Cuidador cuidador = new Cuidador();
         
-        clienteServ.crearCliente(cliente);
+        clienteServ.crearCliente(cliente, mascotas);
         cuidadorServ.crearCuidador(cuidador);
         
         validaciones(nombre, apellido, email, contrasenia, telefonoDeContacto, calleNumero);

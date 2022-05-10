@@ -1,5 +1,6 @@
 package com.proyectoFinal.PetHouse.controladores;
 
+import com.proyectoFinal.PetHouse.entidades.Mascota;
 import com.proyectoFinal.PetHouse.entidades.Usuario;
 import com.proyectoFinal.PetHouse.servicios.UsuarioServicio;
 import java.util.List;
@@ -23,9 +24,9 @@ public class UsuarioControlador {
     public String guardar(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, 
             @RequestParam String email,
             @RequestParam String contrasenia, @RequestParam Integer telefonoDeContacto, 
-            @RequestParam String localidad, @RequestParam String calleNumero) {
+            @RequestParam String localidad, @RequestParam String calleNumero, List<Mascota> mascota) {
         try {
-            userServ.registrarUsuario(nombre, apellido, email, contrasenia, telefonoDeContacto, localidad, calleNumero);
+            userServ.registrarUsuario(nombre, apellido, email, contrasenia, telefonoDeContacto, localidad, calleNumero, mascota);
 
             // Falta agregar un lugar en el html para mostrar este mensaje
             //modelo.put("exito", "Registro exitoso");
