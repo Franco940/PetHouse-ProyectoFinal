@@ -28,13 +28,69 @@
                 <li> <a href="/">Home</a></li>
                 <li> <a href="/usuario/registrar">Registro</a></li>
                 <li> <a href="a">Login</a></li>
+                <li> <a href="/cuidador/lista">Cuidadores</a></li>
                 <li> <a href="form-contacto.html">Contacto</a></li>
                 </ul>
             </div>
         </header>
-          
+           <!-- menu lateral para el perfil -->
+           <div id="sidemenu" class="menu-collapsed">
 
-        <main>
+            <div id="header">
+               <div id="menu-btn">
+                 <div class="btn-hamburger"></div>
+                 <div class="btn-hamburger"></div>
+                 <div class="btn-hamburger"></div>
+               </div>
+            </div>
+            <div id="profile">
+              <div id="photo"><img src="/static/img/nn.jpg" alt=""></div>
+              <div id="name"><span><h4>Nombre Usuario</h4></span></div>
+
+            </div>
+
+            <div id="menu-items">
+              <div class="item">
+                <a href="#">
+                  <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
+                  <div class="title"><span>Editar perfil</span></div>
+               </a>
+               </div>
+               <div class="separador">
+
+               </div>
+               <div class="item">
+                 <a href="#">
+                   <div class="icon"><img src="/static/img/agregar.png" alt=""></div>
+                   <div class="title"><span>Agregar mascota</span></div>
+                </a>
+                </div>
+                <div class="item">
+                 <a href="#">
+                   <div class="icon"><img src="/static/img/editar.png" alt=""></div>
+                   <div class="title"><span>Editar mascotas</span></div>
+                </a>
+                </div>
+                <div class="item">
+                 <a href="#">
+                   <div class="icon"><img src="/static/img/lista (1).png" alt=""></div>
+                   <div class="title"><span>Ver mascota</span></div>
+                </a>
+                </div>
+               <div class="separador">
+                 
+               </div>
+               <div class="item">
+                 <a href="#">
+                   <div class="icon"><img src="/static/img/cerrar.png" alt=""></div>
+                   <div class="title"><span>Cerrar sesión</span></div>
+                </a>
+                </div>
+              
+            </div>
+       </div>
+
+        <main class="contenido">
             <table class="table bg-white">
                 <thead>
                   <tr>
@@ -64,10 +120,13 @@
                   </tr>
                 </tbody>
             </table>
-
-            <div id="mapa"></div>
+            <div id="mapa">
             <a href="#top" th:attr="onclick='buscarCoordenadasUbicacion(\'' +no+ '\');'">Volver al inicio de la pagina</a>
-        </main>
+             </div>
+
+           
+
+                  </main>
 
  <!-- pie de pagina -->
  <footer class="pie-pagina">
@@ -109,5 +168,15 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
+    <script>
+      const btn = document.querySelector('#menu-btn');
+      const menu = document.querySelector('#sidemenu');
+      btn.addEventListener('click', e => {
+        menu.classList.toggle("menu-expanded");
+        menu.classList.toggle("menu-collapsed");
+
+        document.querySelector('body').classList.toggle('body-expanded');
+      });
+    </script>
   </body>
 </html>

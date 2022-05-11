@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <!--Scripts y css obligatorio para el funcionamiento del mapa------------->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" href="../static/css/mapa.css">
+    <script src="../static/js/obtenerCoordenadas.js"></script>
+    <script src="../static/js/mapa.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNpEo_XpZMVD6IXr3yKTg_QnMscCAyjTg&callback=initMap" async defer></script>
+    <!------------------------------------------------------------------->
+    <title>IMPLEMENTACION MAPA</title>
+</head>
+<body>
+    <div id="mapa"></div>
+
+    <h2>Ingrese un lugar y lo marcaré en el mapa</h2>
+
+    <form>
+        <input type="text" id="lugar">
+
+        <a onclick="buscarCoordenadasUbicacion()" href="#">BUSCAR</a>
+    </form>
+    
+</body>
+</html>
