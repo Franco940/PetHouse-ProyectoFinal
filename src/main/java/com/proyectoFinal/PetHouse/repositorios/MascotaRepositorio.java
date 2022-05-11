@@ -5,7 +5,8 @@
  */
 package com.proyectoFinal.PetHouse.repositorios;
 
-import com.proyectoFinal.PetHouse.entidades.Usuario;
+import com.proyectoFinal.PetHouse.entidades.Mascota;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,10 +17,12 @@ import org.springframework.stereotype.Repository;
  * @author VIC
  */
 @Repository
-public interface UsuarioRepositorio extends JpaRepository<Usuario, String>{
-    @Query("SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario")
-    public Usuario buscarPorId(@Param("idUsuario") String idUsuario);
-    
-    @Query("SELECT u FROM Usuario u WHERE u.email = :email")
-    public Usuario findByEmail(@Param("email") String email);
+public interface MascotaRepositorio extends JpaRepository<Mascota, List> {
+    /*
+    @Query("SELECT x FROM Mascota x WHERE x.cliente.mascota = :cliente")
+    public List<Mascota> buscarMascotaPorCliente(@Param("cliente") String cliente);
+    */
+
+    @Query("SELECT x FROM Mascota x WHERE x.idMascota = :idMascota")
+    public Mascota buscarMascotaPoId(@Param("idMascota") String idMascota);
 }

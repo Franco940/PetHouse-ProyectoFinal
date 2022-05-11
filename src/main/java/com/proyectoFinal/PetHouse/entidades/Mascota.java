@@ -81,4 +81,10 @@ public class Mascota {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+    @Override
+    public String toString() {
+        return "Mascota{" + "idMascota=" + idMascota + ", nombre=" + nombre + ", tipoAnimal=" + tipoAnimal + ", raza=" + raza + ", cuidador=" + cuidador + ", cliente=" + cliente + '}';
+    }
+    
 }

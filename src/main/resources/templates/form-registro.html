@@ -14,7 +14,7 @@
             <div class="derecha">
                 <ul class="menu">
                     <li> <a href="/">Home</a></li>
-                    <li> <a href="a">Login</a></li>
+                    <li> <a th:href="@{/login}">Login</a></li>
                     <li> <a href="form-contacto.HTML">Contacto</a></li>
                 </ul>
             </div>
@@ -35,16 +35,21 @@
 
             </br><label for="contrasenia">Ingrese su contraseña</label>
             <input type="password" name="contrasenia" placeholder="Contraseña" id="contrasenia"></br>
+            
+            </br><label for="contrasenia">Confirme su contraseña</label>
+            <input type="password" name="contrasenia2" placeholder="Contraseña" id="contrasenia"></br>
 
             </br><label for="telefonoDeContacto">Ingrese su telefono</label>
             <input type="number" name="telefonoDeContacto" placeholder="Telefono" id="telefonoDeContacto" required></br>
 
             </br>
+            <!--
             <button type="button"><label for="avatar">Adjunta tu foto de perfil</label></button>
             <input type="file" accept="jpg,.png" id="avatar" style="display:none">
             </br>
+            -->
 
-            </br><label for="localidad">Ingrese su ubicación (solo Buenos Aires, Argentina)</label>
+            <label for="localidad">Ingrese su ubicación con su localidad (solo Buenos Aires, Argentina)</label>
             <select name="localidad" id="">
                 <option value="Adolfo Alsina">Adolfo Alsina</option>
                 <option value="Adolfo Gonzales Chaves">Adolfo Gonzales Chaves</option>

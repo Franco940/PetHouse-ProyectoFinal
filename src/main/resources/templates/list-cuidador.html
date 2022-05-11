@@ -116,6 +116,7 @@
                       <div th:if="${usuario.cuidador.disponible}" class="bg-success" style="width: 25px; height: 25px; border-radius: 100%;"></div>
                       <div th:unless="${usuario.cuidador.disponible}" class="bg-danger" style="width: 25px; height: 25px; border-radius: 100%;"></div>
                     </td>
+                    <td><a th:href="@{/cuidador/informacion/__${usuario.idUsuario}__}" class="btn btn-primary">Más información</a></td>
                     <td><a href="#mapa" th:attr="onclick='buscarCoordenadasUbicacion(\'' + ${usuario.ubicacion} + '\');'" class="btn btn-success">Ver ubicacion</a></td>
                   </tr>
                 </tbody>
@@ -133,7 +134,7 @@
     <div class="grupo-1">
         <div class="box">
             <figure>
-                <a href="index.html">
+                <a href="/">
                     <img th:src="@{../static/img/pethouse.png}" alt="logo de pet house">
                     
                 </a>
