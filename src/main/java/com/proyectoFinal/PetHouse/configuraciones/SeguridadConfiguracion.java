@@ -41,23 +41,5 @@ public class SeguridadConfiguracion extends WebSecurityConfigurerAdapter{
                         .logoutUrl("/logout")//sprin security desloguea desde esta url
                         .logoutSuccessUrl("/login?logout").permitAll()//y nos redirige aca
                 .and().csrf().disable();
-        
-        // Esto me permite hacer peticiones a la API MAPA
-        http.cors().and().csrf().disable();
-        
-    }
-
-    
-    // SIN ESTO TIRA ERROR 403 (acceso denegado) cuando hago la peticion a la API MAPA
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("*"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
-        configuration.setAllowCredentials(true);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
     }
 }

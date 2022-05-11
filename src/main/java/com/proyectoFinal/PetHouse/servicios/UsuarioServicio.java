@@ -42,11 +42,14 @@ public class UsuarioServicio implements UserDetailsService{
         Cliente cliente = new Cliente();
         Cuidador cuidador = new Cuidador();
         
-//  Tuve que sacar esto por que no me funcionaba el login.
-//clienteServ.crearCliente(cliente);
-//        cuidadorServ.crearCuidador(cuidador);
+        //  Tuve que sacar esto por que no me funcionaba el login.
+        // Anda misteriosamente
+        clienteServ.crearCliente(cliente);
+        cuidadorServ.crearCuidador(cuidador);
+        
+        
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-       validaciones(nombre, apellido, email,contrasenia, contrasenia2, telefonoDeContacto, calleNumero);
+        validaciones(nombre, apellido, email,contrasenia, contrasenia2, telefonoDeContacto, calleNumero);
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setEmail(email);
@@ -55,9 +58,10 @@ public class UsuarioServicio implements UserDetailsService{
         usuario.setUbicacion(calleNumero + ", " + localidad + ", Buenos Aires, Argentina");
         usuario.setRol(Rol.USER);
      
-////  Tuve que sacar esto por que no me funcionaba el login.       
-//        usuario.setCliente(cliente);
-//        usuario.setCuidador(cuidador);
+        //  Tuve que sacar esto por que no me funcionaba el login.   
+        // Anda misteriosamente
+        usuario.setCliente(cliente);
+        usuario.setCuidador(cuidador);
         
         return ur.save(usuario);
     }
