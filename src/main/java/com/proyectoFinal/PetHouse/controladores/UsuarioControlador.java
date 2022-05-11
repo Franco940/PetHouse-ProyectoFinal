@@ -1,5 +1,6 @@
 package com.proyectoFinal.PetHouse.controladores;
 
+import com.proyectoFinal.PetHouse.entidades.Mascota;
 import com.proyectoFinal.PetHouse.entidades.Usuario;
 import com.proyectoFinal.PetHouse.servicios.UsuarioServicio;
 import java.util.List;
@@ -20,14 +21,17 @@ public class UsuarioControlador {
     private UsuarioServicio userServ;
 
     @PostMapping("/registrar")
-    public String guardar(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, 
+    public String guardar(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email,
             @RequestParam String contrasenia,@RequestParam String contrasenia2, @RequestParam Integer telefonoDeContacto, 
             @RequestParam String localidad, @RequestParam String calleNumero) {
+      
         try {
             userServ.registrarUsuario(nombre, apellido, email, contrasenia,
              telefonoDeContacto,  localidad,  calleNumero, contrasenia2);
 
+            // Hacer un  if que compare las 2 contraseñas, en caso de ser incorrectas notificar en el front
+          
             // Falta agregar un lugar en el html para mostrar este mensaje
             //modelo.put("exito", "Registro exitoso");
         } catch (Exception e) {
@@ -42,39 +46,34 @@ public class UsuarioControlador {
     public String mostrarFormulario() {
         return "form-registro";
     }
-    
-    /*falta metodo de listar*/
+
     @GetMapping("/modificar/{id}")
     public String modificar(@PathVariable String id, ModelMap modelo) {
         List<Usuario> cuidadores = userServ.filtrarUsuariosCuidadores();
-        
-        // Falta crear el método para obtener la lista de clientes
-        //List<Usuario> clientes = userServ.listarClientes();/*metodo listar cliente aun no creado*/
-        
+        List<Usuario> clientes = userServ.filtrarUsuariosClientes();
+
         // Falta crear el front para esto
-        /*
         modelo.addAttribute("cuidador", cuidadores);
         modelo.addAttribute("cliente", clientes);
-        
+
         modelo.put("usuario", userServ.buscarUsuarioPorId(id));
-        */
-        return "modificar-usuario";/*modificar-usuario aun no creado*/
+
+        return "modificar-usuario";
     }
 
     @PostMapping("/modificar/{id}")
-    public String modificar(@PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, 
+    public String modificar(@PathVariable String id, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email,
-            @RequestParam String contrasenia, @RequestParam String contrasenia2, @RequestParam Integer telefonoDeContacto, 
-            @RequestParam String localidad, @RequestParam String calleNumero){
-        try{
-            userServ.modificarUsuario(id, nombre, apellido, email, contrasenia, contrasenia2, 
-                    telefonoDeContacto, localidad, calleNumero);
-            
-        }catch (Exception e){
+            @RequestParam String contrasenia, @RequestParam Integer telefonoDeContacto,
+            @RequestParam String localidad, @RequestParam String calleNumero) {
+      
+        try {
+            userServ.modificarUsuario(id, nombre, apellido, email, contrasenia, telefonoDeContacto, localidad, calleNumero);
+
+        } catch (Exception e) {
             // Hacer la lógica cuando manejemos errores
-        }finally{
+        } finally {
             return "modificar-usuario";
         }
     }
-    
 }

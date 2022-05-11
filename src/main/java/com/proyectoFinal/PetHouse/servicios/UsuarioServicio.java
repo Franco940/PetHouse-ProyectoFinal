@@ -1,7 +1,9 @@
 package com.proyectoFinal.PetHouse.servicios;
 
 import com.proyectoFinal.PetHouse.entidades.Cliente;
+import com.proyectoFinal.PetHouse.entidades.Comentario;
 import com.proyectoFinal.PetHouse.entidades.Cuidador;
+import com.proyectoFinal.PetHouse.entidades.Mascota;
 import com.proyectoFinal.PetHouse.entidades.Usuario;
 import com.proyectoFinal.PetHouse.enums.Rol;
 import com.proyectoFinal.PetHouse.repositorios.UsuarioRepositorio;
@@ -26,10 +28,10 @@ public class UsuarioServicio implements UserDetailsService{
 
     @Autowired
     private UsuarioRepositorio ur;
-    
+
     @Autowired
     private ClienteServicio clienteServ;
-    
+
     @Autowired
     private CuidadorServicio cuidadorServ;
 
@@ -38,7 +40,7 @@ public class UsuarioServicio implements UserDetailsService{
             Integer telefonoDeContacto, String localidad, String calleNumero, String contrasenia2) throws Exception {
       
         Usuario usuario = new Usuario();
-        
+
         Cliente cliente = new Cliente();
         Cuidador cuidador = new Cuidador();
         
@@ -65,7 +67,7 @@ public class UsuarioServicio implements UserDetailsService{
         
         return ur.save(usuario);
     }
-  
+
     @Transactional
     public Usuario modificarUsuario(String id, String nombre, String apellido, String email,String contrasenia, String contrasenia2,
             Integer telefonoDeContacto, String localidad, String calleNumero) throws Exception {
@@ -102,22 +104,35 @@ public class UsuarioServicio implements UserDetailsService{
         ur.buscarPorId(id);
         ur.deleteById(id);
     }
-    
-    @Transactional
-    public List<Usuario> filtrarUsuariosCuidadores(){
+
+    @Transactional(readOnly = true)
+    public List<Usuario> filtrarUsuariosCuidadores() {
         List<Usuario> usuarios = ur.findAll();
         List<Usuario> usuariosCuidadores = new ArrayList();
-        
+
         for (Usuario usuario : usuarios) {
-            if(usuario.getCuidador().isAlta()){
+            if (usuario.getCuidador().isAlta()) {
                 usuariosCuidadores.add(usuario);
             }
         }
-        
+
         return usuariosCuidadores;
     }
+
+    @Transactional(readOnly = true)
+    public List<Usuario> filtrarUsuariosClientes() {
+        List<Usuario> usuarios = ur.findAll();
+        List<Usuario> usuariosClientes = new ArrayList();
+
+        // Falta agregar un atributo para poder identificar clientes
+        // como se hizo con el atributo alta con el filtro de cuidadores
+        for (Usuario usuario : usuarios) {
+            usuariosClientes.add(usuario);
+        }
+        return usuariosClientes;
+    }
     
-    private void validaciones(String nombre, String apellido, String email,String contrasenia,String contrasenia2, Integer telefonoDeContacto, String calleNumero)throws Exception{
+    private void validaciones(String nombre, String apellido, String email,String contrasenia, String contrasenia2, Integer telefonoDeContacto, String calleNumero)throws Exception{
       
         if(nombre == null || nombre.trim().isEmpty()){
             throw new Exception("El nombre no puede estar vacío");
