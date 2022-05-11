@@ -23,11 +23,15 @@ public class UsuarioControlador {
     @PostMapping("/registrar")
     public String guardar(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email,
-            @RequestParam String contrasenia, @RequestParam Integer telefonoDeContacto,
-            @RequestParam String localidad, @RequestParam String calleNumero, List<Mascota> mascota) {
+            @RequestParam String contrasenia,@RequestParam String contrasenia2, @RequestParam Integer telefonoDeContacto, 
+            @RequestParam String localidad, @RequestParam String calleNumero) {
+      
         try {
-            userServ.registrarUsuario(nombre, apellido, email, contrasenia, telefonoDeContacto, localidad, calleNumero, mascota);
+            userServ.registrarUsuario(nombre, apellido, email, contrasenia,
+             telefonoDeContacto,  localidad,  calleNumero, contrasenia2);
 
+            // Hacer un  if que compare las 2 contraseñas, en caso de ser incorrectas notificar en el front
+          
             // Falta agregar un lugar en el html para mostrar este mensaje
             //modelo.put("exito", "Registro exitoso");
         } catch (Exception e) {
@@ -62,6 +66,7 @@ public class UsuarioControlador {
             @RequestParam String email,
             @RequestParam String contrasenia, @RequestParam Integer telefonoDeContacto,
             @RequestParam String localidad, @RequestParam String calleNumero) {
+      
         try {
             userServ.modificarUsuario(id, nombre, apellido, email, contrasenia, telefonoDeContacto, localidad, calleNumero);
 
