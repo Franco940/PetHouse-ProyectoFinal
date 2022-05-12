@@ -31,10 +31,6 @@ public class Cuidador {
     private String aniamlesAptoParaCuidar; // Con el .split podríamos acomodar los animales que puede cuidar
     private Integer tarifa;
 
-    @OneToMany(mappedBy = "cuidador", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private List<Mascota> mascotasCuidando;
-
     public Cuidador() {
         // Cambiar las cosas. Son todos valores de prueba
 
@@ -112,13 +108,5 @@ public class Cuidador {
 
     public void setTarifa(Integer tarifa) {
         this.tarifa = tarifa;
-    }
-
-    public List<Mascota> getMascotasCuidando() {
-        return mascotasCuidando;
-    }
-
-    public void setMascotasCuidando(List<Mascota> mascotasCuidando) {
-        this.mascotasCuidando = mascotasCuidando;
     }
 }

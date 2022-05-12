@@ -1,6 +1,5 @@
 package com.proyectoFinal.PetHouse.controladores;
 
-import com.proyectoFinal.PetHouse.entidades.Mascota;
 import com.proyectoFinal.PetHouse.entidades.Usuario;
 import com.proyectoFinal.PetHouse.servicios.UsuarioServicio;
 import java.util.List;
@@ -29,19 +28,20 @@ public class UsuarioControlador {
         try {
             userServ.registrarUsuario(nombre, apellido, email, contrasenia,
              telefonoDeContacto,  localidad,  calleNumero, contrasenia2);
-
-            // Hacer un  if que compare las 2 contraseñas, en caso de ser incorrectas notificar en el front
-          
-            // Falta agregar un lugar en el html para mostrar este mensaje
-            //modelo.put("exito", "Registro exitoso");
+            
+            return "redirect:/usuario/login";
         } catch (Exception e) {
-            // Falta agregar un lugar en el html para mostrar este mensaje
-            //modelo.put("error", "Falta algún dato");
-        } finally {
+            modelo.put("fallo", e.getMessage());
+            
             return "form-registro";
         }
     }
 
+    @GetMapping("/login")
+    public String login(){
+        return "login.html";
+    }
+    
     @GetMapping("/registrar")
     public String mostrarFormulario() {
         return "form-registro";
@@ -64,11 +64,11 @@ public class UsuarioControlador {
     @PostMapping("/modificar/{id}")
     public String modificar(@PathVariable String id, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email,
-            @RequestParam String contrasenia, @RequestParam Integer telefonoDeContacto,
+            @RequestParam String contrasenia, @RequestParam String contrasenia2, @RequestParam Integer telefonoDeContacto,
             @RequestParam String localidad, @RequestParam String calleNumero) {
       
         try {
-            userServ.modificarUsuario(id, nombre, apellido, email, contrasenia, telefonoDeContacto, localidad, calleNumero);
+            userServ.modificarUsuario(id, nombre, apellido, email, contrasenia, contrasenia2, telefonoDeContacto, localidad, calleNumero);
 
         } catch (Exception e) {
             // Hacer la lógica cuando manejemos errores

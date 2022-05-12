@@ -38,9 +38,6 @@ public class Usuario {
     @OneToOne
     private Cuidador cuidador;
 
-    @OneToOne
-    private Cliente cliente;
-
     public Usuario() {
     }
 
@@ -102,14 +99,6 @@ public class Usuario {
 
     public void setCuidador(Cuidador cuidador) {
         this.cuidador = cuidador;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     public Rol getRol() {

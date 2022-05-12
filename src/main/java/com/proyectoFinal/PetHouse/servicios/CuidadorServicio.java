@@ -2,7 +2,6 @@ package com.proyectoFinal.PetHouse.servicios;
 
 import com.proyectoFinal.PetHouse.entidades.Comentario;
 import com.proyectoFinal.PetHouse.entidades.Cuidador;
-import com.proyectoFinal.PetHouse.entidades.Mascota;
 import com.proyectoFinal.PetHouse.repositorios.CuidadorRepositorio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,13 @@ public class CuidadorServicio {
     @Autowired
     private CuidadorRepositorio cuidadorRepo;
 
+    @Transactional
+    public void crearCuidador(Cuidador cuidador){
+        cuidadorRepo.save(cuidador);
+    }
+    
+    /*
+    // Para mas adelante
     @Transactional
     public void crearCuidador(String descripcion, Integer trabajosRealizados, Integer puntajeTotal,
             boolean disponible, boolean alta, List<Comentario> comentarios, String aniamlesAptoParaCuidar,
@@ -31,10 +37,11 @@ public class CuidadorServicio {
         cuidador.setMascotasCuidando(mascotasCuidando);
         cuidadorRepo.save(cuidador);
     }
+*/
 
     public void validaciones(String descripcion, Integer trabajosRealizados, Integer puntajeTotal,
             boolean disponible, boolean alta, List<Comentario> comentarios, String aniamlesAptoParaCuidar,
-            Integer tarifa, List<Mascota> mascotasCuidando) throws Exception {
+            Integer tarifa) throws Exception {
 
     }
 }
