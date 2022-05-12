@@ -17,31 +17,22 @@ public class CuidadorServicio {
     @Transactional
     public void crearCuidador(Cuidador cuidador){
         cuidadorRepo.save(cuidador);
+        // Agregar la relación con los comentarios
     }
     
-    /*
-    // Para mas adelante
+    
     @Transactional
-    public void crearCuidador(String descripcion, Integer trabajosRealizados, Integer puntajeTotal,
-            boolean disponible, boolean alta, List<Comentario> comentarios, String aniamlesAptoParaCuidar,
-            Integer tarifa, List<Mascota> mascotasCuidando) throws Exception {
-        Cuidador cuidador = new Cuidador();
+    public void agregarDescripcionYTarifa(Cuidador cuidador, String descripcion, Integer tarifa) throws Exception {
+        validaciones(descripcion, tarifa);
+        
         cuidador.setDescripcion(descripcion);
-        cuidador.setTrabajosRealizados(trabajosRealizados);
-        cuidador.setPuntajeTotal(puntajeTotal);
-        cuidador.setDisponible(disponible);
-        cuidador.setAlta(alta);
-        cuidador.setComentarios(comentarios);
-        cuidador.setAniamlesAptoParaCuidar(aniamlesAptoParaCuidar);
         cuidador.setTarifa(tarifa);
-        cuidador.setMascotasCuidando(mascotasCuidando);
+        cuidador.setAlta(true);
+        
         cuidadorRepo.save(cuidador);
     }
-*/
 
-    public void validaciones(String descripcion, Integer trabajosRealizados, Integer puntajeTotal,
-            boolean disponible, boolean alta, List<Comentario> comentarios, String aniamlesAptoParaCuidar,
-            Integer tarifa) throws Exception {
-
+    private void validaciones(String descripcion, Integer tarifa) throws Exception {
+        
     }
 }
