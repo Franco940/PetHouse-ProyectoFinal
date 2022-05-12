@@ -106,18 +106,27 @@ public class UsuarioServicio implements UserDetailsService{
 
         return usuariosCuidadores;
     }
+    
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Usuario usuario = usuarioRepo.findByEmail(email);
+        if (usuario != null) {
+            List<GrantedAuthority> permisos = new ArrayList<>();
 
-    @Transactional(readOnly = true)
-    public List<Usuario> filtrarUsuariosClientes() {
-        List<Usuario> usuarios = usuarioRepo.findAll();
-        List<Usuario> usuariosClientes = new ArrayList();
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + usuario.getRol());//ROLE_ADMIN O ROLE_USER
+            permisos.add(p1); //Un permiso solo agregado, puede haber mas.
 
-        // Falta agregar un atributo para poder identificar clientes
-        // como se hizo con el atributo alta con el filtro de cuidadores
-        for (Usuario usuario : usuarios) {
-            usuariosClientes.add(usuario);
+            //Esto me permite guardar el OBJETO USUARIO LOG, para luego ser utilizado
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            HttpSession session = attr.getRequest().getSession(true);
+            session.setAttribute("usuariosession", usuario);
+
+            User user = new User(usuario.getEmail(), usuario.getContrasenia(), permisos);
+            return user;
+
+        } else {
+            return null;
         }
-        return usuariosClientes;
     }
     
     private void validaciones(String nombre, String apellido, String email,String contrasenia, String contrasenia2, Integer telefonoDeContacto, String calleNumero)throws Exception{
@@ -145,7 +154,7 @@ public class UsuarioServicio implements UserDetailsService{
         }       
     }
     
-    public void validarModificacion(String nombre, String apellido, String email,String contrasenia, String contrasenia2, Integer telefonoDeContacto, String calleNumero) throws Exception{
+    private void validarModificacion(String nombre, String apellido, String email,String contrasenia, String contrasenia2, Integer telefonoDeContacto, String calleNumero) throws Exception{
         if (nombre == null || nombre.isEmpty()) {
             throw new Exception("Nombre no puede estar vacio");
         }   
@@ -167,27 +176,5 @@ public class UsuarioServicio implements UserDetailsService{
         if (calleNumero == null || calleNumero.trim().isEmpty()) {
             throw new Exception("La calle no puede estar vacía");
         }   
-    }
-    
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepo.findByEmail(email);
-        if (usuario != null) {
-            List<GrantedAuthority> permisos = new ArrayList<>();
-
-            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + usuario.getRol());//ROLE_ADMIN O ROLE_USER
-            permisos.add(p1); //Un permiso solo agregado, puede haber mas.
-
-            //Esto me permite guardar el OBJETO USUARIO LOG, para luego ser utilizado
-            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-            HttpSession session = attr.getRequest().getSession(true);
-            session.setAttribute("usuariosession", usuario);
-
-            User user = new User(usuario.getEmail(), usuario.getContrasenia(), permisos);
-            return user;
-
-        } else {
-            return null;
-        }
     }
 }
