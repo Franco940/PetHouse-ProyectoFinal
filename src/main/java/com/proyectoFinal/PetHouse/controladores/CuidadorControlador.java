@@ -3,6 +3,7 @@ package com.proyectoFinal.PetHouse.controladores;
 import com.proyectoFinal.PetHouse.entidades.Usuario;
 import com.proyectoFinal.PetHouse.servicios.UsuarioServicio;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,13 +19,23 @@ public class CuidadorControlador {
     @Autowired
     private UsuarioServicio userServ;
 
-    @GetMapping("/lista")
-    public String listarCuidadores(ModelMap modelo) {
-        List<Usuario> usuariosCuidadores = userServ.filtrarUsuariosCuidadores();
+    @GetMapping("/lista" )
+    public String listarCuidadores(ModelMap modelo, HttpSession session) {
         
-        modelo.addAttribute("usuariosCuidadores", usuariosCuidadores);
+        // Si no está logeado lo redirijo al login
+        if(session.getAttribute("ROL") == null){
 
-        return "list-cuidador";
+            return "redirect:/login";
+        }
+        if(session.getAttribute("ROL").toString().equals("USER")){
+            List<Usuario> usuariosCuidadores = userServ.filtrarUsuariosCuidadores();
+
+            modelo.addAttribute("usuariosCuidadores", usuariosCuidadores);
+
+            return "list-cuidador";
+        }
+        
+        return null;
     }
     
     @GetMapping("/informacion/{id}")
