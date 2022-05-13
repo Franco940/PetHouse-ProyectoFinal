@@ -13,19 +13,22 @@
 <body>
 
      <!-- MENU -->
-     <div class="derecha">
+    <div class="derecha">
         <ul class="menu">
 
-          <li> <a href="#">Home</a></li>
-          <li> <a href="/usuario/registrar">Registro</a></li>
-          <li> <a href="/cuidador/lista">Cuidadores</a></li>
-          <li> <a th:href="@{/login}">Login</a></li>
-          <li> <a href="form-contacto.html">Contacto</a></li>
+            <li> <a th:href="@{/}">Home</a></li>
+            <li th:if="!${#strings.equals(session.ROL, 'USER')}"> <a href="/usuario/registrar">Registro</a></li>
+
+            <!-- Hacer un form para completar los datos de cuidador-->
+            <li th:if="!${session.cuidador} and ${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/}">Ser cuidador</a>
+            </li>
+
+            <li th:if="${session.cuidador}"> <a th:href="@{/cuidador/lista}">Cuidadores</a></li>
+            <li th:if="${session.ROL} == null"> <a th:href="@{/login}">Login</a></li>
+            <li> <a th:href="@{/}">Contacto</a></li>
+            <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/logout}">Logout</a></li>
         </ul>
     </div>
-
-    <p th:text="${session.nombre}"></p>
-    <a th:href="@{/logout}">LOGOUT</a>
 
       <div class="fondo">
         <div class="log">
