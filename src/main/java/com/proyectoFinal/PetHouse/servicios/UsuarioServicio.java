@@ -1,9 +1,6 @@
 package com.proyectoFinal.PetHouse.servicios;
 
-import com.proyectoFinal.PetHouse.entidades.Cliente;
-import com.proyectoFinal.PetHouse.entidades.Comentario;
 import com.proyectoFinal.PetHouse.entidades.Cuidador;
-import com.proyectoFinal.PetHouse.entidades.Mascota;
 import com.proyectoFinal.PetHouse.entidades.Usuario;
 import com.proyectoFinal.PetHouse.enums.Rol;
 import com.proyectoFinal.PetHouse.repositorios.UsuarioRepositorio;
@@ -27,10 +24,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 public class UsuarioServicio implements UserDetailsService{
 
     @Autowired
-    private UsuarioRepositorio ur;
-
-    @Autowired
-    private ClienteServicio clienteServ;
+    private UsuarioRepositorio usuarioRepo;
 
     @Autowired
     private CuidadorServicio cuidadorServ;
@@ -40,13 +34,9 @@ public class UsuarioServicio implements UserDetailsService{
             Integer telefonoDeContacto, String localidad, String calleNumero, String contrasenia2) throws Exception {
       
         Usuario usuario = new Usuario();
-
-        Cliente cliente = new Cliente();
+        
         Cuidador cuidador = new Cuidador();
         
-        //  Tuve que sacar esto por que no me funcionaba el login.
-        // Anda misteriosamente
-        clienteServ.crearCliente(cliente);
         cuidadorServ.crearCuidador(cuidador);
         
         
@@ -62,18 +52,17 @@ public class UsuarioServicio implements UserDetailsService{
      
         //  Tuve que sacar esto por que no me funcionaba el login.   
         // Anda misteriosamente
-        usuario.setCliente(cliente);
         usuario.setCuidador(cuidador);
         
-        return ur.save(usuario);
+        return usuarioRepo.save(usuario);
     }
 
     @Transactional
-    public Usuario modificarUsuario(String id, String nombre, String apellido, String email,String contrasenia, String contrasenia2,
+    public void modificarUsuario(String id, String nombre, String apellido, String email,String contrasenia, String contrasenia2,
             Integer telefonoDeContacto, String localidad, String calleNumero) throws Exception {
   
         validaciones(nombre, apellido, email,contrasenia, contrasenia2, telefonoDeContacto, calleNumero);
-        Usuario usuario = ur.buscarPorId(id);
+        Usuario usuario = usuarioRepo.buscarPorId(id);
          BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         if (usuario != null) {
             
@@ -84,30 +73,29 @@ public class UsuarioServicio implements UserDetailsService{
             usuario.setTelefonoDeContacto(telefonoDeContacto);
             usuario.setUbicacion(calleNumero + ", " + localidad + ", Buenos Aires, Argentina");
             usuario.setRol(usuario.getRol());
-            ur.save(usuario);
+            usuarioRepo.save(usuario);
         }
-        return ur.save(usuario);
     }
 
     @Transactional
     public Usuario buscarUsuarioPorId(String id) {
-        return ur.buscarPorId(id);
+        return usuarioRepo.buscarPorId(id);
     }
 
     @Transactional(readOnly=true)
     public Usuario findByEmail(String email){
-        return ur.findByEmail(email);
+        return usuarioRepo.findByEmail(email);
     }
     
     @Transactional
     public void eliminarUsuario(String id) throws Exception {
-        ur.buscarPorId(id);
-        ur.deleteById(id);
+        usuarioRepo.buscarPorId(id);
+        usuarioRepo.deleteById(id);
     }
 
     @Transactional(readOnly = true)
     public List<Usuario> filtrarUsuariosCuidadores() {
-        List<Usuario> usuarios = ur.findAll();
+        List<Usuario> usuarios = usuarioRepo.findAll();
         List<Usuario> usuariosCuidadores = new ArrayList();
 
         for (Usuario usuario : usuarios) {
@@ -118,18 +106,27 @@ public class UsuarioServicio implements UserDetailsService{
 
         return usuariosCuidadores;
     }
+    
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Usuario usuario = usuarioRepo.findByEmail(email);
+        if (usuario != null) {
+            List<GrantedAuthority> permisos = new ArrayList<>();
 
-    @Transactional(readOnly = true)
-    public List<Usuario> filtrarUsuariosClientes() {
-        List<Usuario> usuarios = ur.findAll();
-        List<Usuario> usuariosClientes = new ArrayList();
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + usuario.getRol());//ROLE_ADMIN O ROLE_USER
+            permisos.add(p1); //Un permiso solo agregado, puede haber mas.
 
-        // Falta agregar un atributo para poder identificar clientes
-        // como se hizo con el atributo alta con el filtro de cuidadores
-        for (Usuario usuario : usuarios) {
-            usuariosClientes.add(usuario);
+            //Esto me permite guardar el OBJETO USUARIO LOG, para luego ser utilizado
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            HttpSession session = attr.getRequest().getSession(true);
+            session.setAttribute("usuariosession", usuario);
+
+            User user = new User(usuario.getEmail(), usuario.getContrasenia(), permisos);
+            return user;
+
+        } else {
+            return null;
         }
-        return usuariosClientes;
     }
     
     private void validaciones(String nombre, String apellido, String email,String contrasenia, String contrasenia2, Integer telefonoDeContacto, String calleNumero)throws Exception{
@@ -157,7 +154,7 @@ public class UsuarioServicio implements UserDetailsService{
         }       
     }
     
-    public void validarModificacion(String nombre, String apellido, String email,String contrasenia, String contrasenia2, Integer telefonoDeContacto, String calleNumero) throws Exception{
+    private void validarModificacion(String nombre, String apellido, String email,String contrasenia, String contrasenia2, Integer telefonoDeContacto, String calleNumero) throws Exception{
         if (nombre == null || nombre.isEmpty()) {
             throw new Exception("Nombre no puede estar vacio");
         }   
@@ -179,27 +176,5 @@ public class UsuarioServicio implements UserDetailsService{
         if (calleNumero == null || calleNumero.trim().isEmpty()) {
             throw new Exception("La calle no puede estar vacía");
         }   
-    }
-    
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Usuario usuario = ur.findByEmail(email);
-        if (usuario != null) {
-            List<GrantedAuthority> permisos = new ArrayList<>();
-
-            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + usuario.getRol());//ROLE_ADMIN O ROLE_USER
-            permisos.add(p1); //Un permiso solo agregado, puede haber mas.
-
-            //Esto me permite guardar el OBJETO USUARIO LOG, para luego ser utilizado
-            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-            HttpSession session = attr.getRequest().getSession(true);
-            session.setAttribute("usuariosession", usuario);
-
-            User user = new User(usuario.getEmail(), usuario.getContrasenia(), permisos);
-            return user;
-
-        } else {
-            return null;
-        }
     }
 }

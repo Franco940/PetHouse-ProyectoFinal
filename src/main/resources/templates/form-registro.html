@@ -33,6 +33,12 @@
             </br><label for="email">Ingrese su email</label>
             <input type="email" name="email" placeholder="Email" id="email"></br>
 
+            <!-- Darle color :D -->
+            <div th:if="${fallo} != null">
+                <p>Las claves no coinciden</p>
+            </div>
+            <!--------------------->
+            
             </br><label for="contrasenia">Ingrese su contraseña</label>
             <input type="password" name="contrasenia" placeholder="Contraseña" id="contrasenia"></br>
             
