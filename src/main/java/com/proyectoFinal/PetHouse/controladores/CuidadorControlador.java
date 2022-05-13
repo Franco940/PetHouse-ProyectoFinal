@@ -25,7 +25,7 @@ public class CuidadorControlador {
         // Si no está logeado lo redirijo al login
         if(session.getAttribute("ROL") == null){
 
-            return "redirect:/login";
+            return "redirect:/usuario/login";
         }
         if(session.getAttribute("ROL").toString().equals("USER")){
             List<Usuario> usuariosCuidadores = userServ.filtrarUsuariosCuidadores();
