@@ -88,7 +88,7 @@
   
   .login-box a {
     text-decoration: none;
-    font-size: 12px;
+    font-size: 20px;
     line-height: 20px;
     color: rgb(7, 7, 7);
     
@@ -126,7 +126,6 @@
     }
     .button :hover{
         cursor: pointer;
-        background: #070707;
         color: #000;
         
     }
