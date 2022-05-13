@@ -2,44 +2,43 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta charset="ISO-8859-1">
-        <title>Registro de perro</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>Login</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+             <link rel="stylesheet" href="/static/css/login.css">
+              <link rel="stylesheet" href="/templates/index.html">
+              <link rel="stylesheet" href="/templates/form-registro.html">
+              <link rel="stylesheet" href="/templates/form-contacto.html">
+          
     </head>
     <body>
-       
 
-        <div class="container m-5">
-
-            <div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
-                <div class="card-body">
-                    <h5 class="card-title">Error</h5>
-                    <p class="card-text" th:text="${error}"></p>
-                </div>
-            </div>
-            <div th:if="${logout}!=null" class="card text-white bg-success mb-3" >
-                <div class="card-body">
-                    <p class="card-text" th:text="${logout}"></p>
-                </div>
-            </div>
+        <div class="fondo"></div>
+        
+        <div class="login-box">
+          <img src="/static/img/nn.jpg" class="avatar" alt="Avatar Image">
+          <h1>Bienvenido!</h1>
+          <form>
+            <!-- USERNAME INPUT -->
+            <label for="username">Nombre de usuario</label>
+            <input type="text" placeholder="Enter Username">
+            <!-- PASSWORD INPUT -->
+            <label for="password">Contraseña</label>
+            <input type="password" placeholder="Enter Password">
+            <div class="botoncito">
             
-
-            <form th:action="@{/logincheck}" method="POST">
-                <div class="form-group">
-                    <label>Email</label> <input type="email" class="form-control" name="email" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <label>Password</label> <input type="password" class="form-control" name="contrasenia" placeholder="Password">
-                </div>
-
-                <button type="submit" class="btn btn-primary">Login</button>
-            </form>
-
-            <div th:if="${param.error}">
-                Correo o contraseña incorrectos
-            </div>
-
+            
+              <a class="button" href="/templates/index.html"><span>Login</span></a>
+             
+              </div>
+         <br>
+    
+            <a href="/templates/recuperar-contraseña.html">Olvidaste tu contraseña?</a><br>
+            
+            <a href="/templates/form-registro.html">No tenes cuenta?</a>
+          </form>
         </div>
+    
+
 
 
 
