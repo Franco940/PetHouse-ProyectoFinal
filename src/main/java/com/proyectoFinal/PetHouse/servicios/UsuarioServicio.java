@@ -6,28 +6,22 @@ import com.proyectoFinal.PetHouse.enums.Rol;
 import com.proyectoFinal.PetHouse.repositorios.UsuarioRepositorio;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
-public class UsuarioServicio implements UserDetailsService{
+public class UsuarioServicio{
 
     @Autowired
     private UsuarioRepositorio usuarioRepo;
 
     @Autowired
     private CuidadorServicio cuidadorServ;
+    
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     @Transactional
     public Usuario registrarUsuario(String nombre, String apellido, String email, String contrasenia,
@@ -39,9 +33,7 @@ public class UsuarioServicio implements UserDetailsService{
         
         cuidadorServ.crearCuidador(cuidador);
         
-        
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        validaciones(nombre, apellido, email,contrasenia, contrasenia2, telefonoDeContacto, calleNumero);
+        validacionesRegistro(nombre, apellido, email,contrasenia, contrasenia2, telefonoDeContacto, calleNumero);
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setEmail(email);
@@ -49,23 +41,34 @@ public class UsuarioServicio implements UserDetailsService{
         usuario.setTelefonoDeContacto(telefonoDeContacto);
         usuario.setUbicacion(calleNumero + ", " + localidad + ", Buenos Aires, Argentina");
         usuario.setRol(Rol.USER);
-     
-        //  Tuve que sacar esto por que no me funcionaba el login.   
-        // Anda misteriosamente
+        
+        
         usuario.setCuidador(cuidador);
         
         return usuarioRepo.save(usuario);
+    }
+    
+    public Usuario comprobarLogin(String email, String contraseniaPlana) throws Exception{
+        validarCamposLogin(email, contraseniaPlana);
+        
+        Usuario usuario = buscarPorEmail(email);
+        
+        if(usuario != null && (encoder.matches(contraseniaPlana, usuario.getContrasenia()))){
+            return usuario;
+        }else{
+            throw new Exception("Correo o contraseña incorrectos");
+        }
     }
 
     @Transactional
     public void modificarUsuario(String id, String nombre, String apellido, String email,String contrasenia, String contrasenia2,
             Integer telefonoDeContacto, String localidad, String calleNumero) throws Exception {
+        
   
-        validaciones(nombre, apellido, email,contrasenia, contrasenia2, telefonoDeContacto, calleNumero);
+        //validaciones(nombre, apellido, email,contrasenia, contrasenia2, telefonoDeContacto, calleNumero);
         Usuario usuario = usuarioRepo.buscarPorId(id);
-         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+         
         if (usuario != null) {
-            
             usuario.setNombre(nombre);
             usuario.setApellido(apellido);
             usuario.setEmail(email);
@@ -83,7 +86,7 @@ public class UsuarioServicio implements UserDetailsService{
     }
 
     @Transactional(readOnly=true)
-    public Usuario findByEmail(String email){
+    private Usuario buscarPorEmail(String email){
         return usuarioRepo.findByEmail(email);
     }
     
@@ -107,29 +110,7 @@ public class UsuarioServicio implements UserDetailsService{
         return usuariosCuidadores;
     }
     
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepo.findByEmail(email);
-        if (usuario != null) {
-            List<GrantedAuthority> permisos = new ArrayList<>();
-
-            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + usuario.getRol());//ROLE_ADMIN O ROLE_USER
-            permisos.add(p1); //Un permiso solo agregado, puede haber mas.
-
-            //Esto me permite guardar el OBJETO USUARIO LOG, para luego ser utilizado
-            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-            HttpSession session = attr.getRequest().getSession(true);
-            session.setAttribute("usuariosession", usuario);
-
-            User user = new User(usuario.getEmail(), usuario.getContrasenia(), permisos);
-            return user;
-
-        } else {
-            return null;
-        }
-    }
-    
-    private void validaciones(String nombre, String apellido, String email,String contrasenia, String contrasenia2, Integer telefonoDeContacto, String calleNumero)throws Exception{
+    private void validacionesRegistro(String nombre, String apellido, String email,String contrasenia, String contrasenia2, Integer telefonoDeContacto, String calleNumero)throws Exception{
       
         if(nombre == null || nombre.trim().isEmpty()){
             throw new Exception("El nombre no puede estar vacío");
@@ -152,6 +133,15 @@ public class UsuarioServicio implements UserDetailsService{
         if (calleNumero == null || calleNumero.trim().isEmpty()) {
             throw new Exception("La calle no puede estar vacía");
         }       
+    }
+    
+    private void validarCamposLogin(String nombre, String contrasenia) throws Exception{
+        if(nombre == null || nombre.isEmpty()){
+            throw new Exception("El correo no puede estar en blanco");
+        }
+        if(contrasenia == null || contrasenia.isEmpty()){
+            throw new Exception("La contraseña no puede estar vacía");
+        }
     }
     
     private void validarModificacion(String nombre, String apellido, String email,String contrasenia, String contrasenia2, Integer telefonoDeContacto, String calleNumero) throws Exception{
