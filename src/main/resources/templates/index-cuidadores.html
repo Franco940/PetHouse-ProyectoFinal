@@ -20,15 +20,20 @@
 </head>
 <body>
     <nav>
-        <div id="#top" class="derecha">
+        <div class="derecha">
             <ul class="menu">
-        
-            <li> <a href="/">Home</a></li>
-            <li> <a href="/usuario/registrar">Registro</a></li>
-            <li> <a href="a">Login</a></li>
-            <li> <a href="/cuidador/lista">Cuidadores</a></li>
-            <li> <a href="form-contacto.html">Contacto</a></li>
-            </ul>
+
+          <li> <a th:href="@{/}">Home</a></li>
+
+          <!-- Hacer un form para completar los datos de cuidador-->
+          <li th:if="!${session.cuidador} and ${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/}">Ser cuidador</a>
+          </li>
+
+          <li th:if="${session.cuidador}"> <a th:href="@{/cuidador/lista}">Cuidadores</a></li>
+          <li th:if="${session.ROL} == null"> <a th:href="@{/login}">Login</a></li>
+          <li> <a th:href="@{/}">Contacto</a></li>
+          <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/logout}">Logout</a></li>
+      </ul>
     </nav>
 
 
@@ -101,7 +106,7 @@
                         <div class="foto">
                             <img src="/static/img/personas7.jpg" alt="">
                         </div>
-                        <div class="nombre-cuidador">
+                        <div class="nombre-cuidador"><span th:text="${usuario.nombre} + ' ' + ${usuario.apellido}"></span>
                             <h2>Nombre cuidador</h2>
                         </div>
                         <div class="card-descripcion"> <p>Me encatan los animales y prefiero pasar mas tiempo con ellos,
@@ -110,8 +115,9 @@
 
                               <a href="">Contactar</a>
                          <div class="boton">
-                                <a href="">Mas info</a>
-                                <a href="">Ver ubicacion</a>
+                                <a th:href="@{/cuidador/informacion/__${usuario.idUsuario}__}" class="btn btn-primary">Más información</a>
+                                <a href="#mapa" th:attr="onclick='buscarCoordenadasUbicacion(\'' + ${usuario.ubicacion} + '\');'"
+                                 class="btn btn-success">Ver ubicacion</a>
                          </div>
                     </div>
 

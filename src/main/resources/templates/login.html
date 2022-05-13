@@ -24,7 +24,6 @@
             <!-- Hacer un form para completar los datos de cuidador-->
             <li th:if="!${session.cuidador} and ${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/}">Ser cuidador</a>
             </li>
-
             <li th:if="${session.cuidador}"> <a th:href="@{/cuidador/lista}">Cuidadores</a></li>
             <li th:if="${session.ROL} == null"> <a th:href="@{/login}">Login</a></li>
             <li> <a th:href="@{/}">Contacto</a></li>
@@ -38,7 +37,7 @@
         <img src="/static/img/nn.jpg" class="avatar" alt="Avatar Image">
         <h1>Bienvenido!</h1>
 
-        <form th:action="@{/login}" method="POST">
+        <form th:action="@{/login}" method="POST"> 
             <!-- USERNAME INPUT -->
             <label for="username">Nombre de usuario</label>
             <input type="text" name="email" placeholder="Enter Username">
@@ -49,7 +48,7 @@
             <div class="botoncito">
 
                 <!-- Estilar este botón :) -->
-                <button type="submit">Registrarse</button>
+                <button type="submit">Login</button>
             </div>
             <br>
 

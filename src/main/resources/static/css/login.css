@@ -20,7 +20,30 @@
     height: 100vh;
 
   }
-  
+  .menu{
+    list-style: none;
+    padding: 0;
+    background-color:#5499C7;
+}
+.derecha{
+        text-align: right;
+}
+.menu li a{
+        text-decoration: none;
+        color: white;
+        padding: 20px;
+        display: block;
+        text-align: center;
+}
+.menu li {
+        display: inline-block;
+        text-align: right;
+}
+    
+.menu li a:hover{
+        background:#76D7C4;
+}
+
   .login-box {
     width: 320px;
     height: 420px;
@@ -86,46 +109,40 @@
   
   
   
-  .login-box a {
+  .login-box a{
     text-decoration: none;
     font-size: 20px;
     line-height: 20px;
-    color: rgb(7, 7, 7);
+    color:white;
     
   }
   
   .login-box a:hover {
-    color: #fff;
+    color:white;
     color: rgb(7, 7, 7);
     font-size: 20px;
     font-weight: bold;
   }
   
+   .botoncito {
+     text-align: center;
+ 
     
-   
+   } 
+   .botoncito button{
+     color: white;
+     background-color: slateblue;
+     font-size: 20px;
+     border-radius: 15px;
+     width: 200px;
+     height: 40px;
+     border:none;
+     text-align: center;
+   }
+   .botoncito button:hover{
+       cursor: pointer;
+       background-color:violet;
+   }
   
-  .button{
-      
-        
-            margin-left: auto;
-            margin-right: auto;
-            border:#000;
-            outline:#000;
-            height: 50px;
-            background: #eff8fa;
-            color: #fff;
-            font-size: 0px;
-            font-weight: 100;
-            text-align: center;
-            
-            
-            border-radius: 20px;
-           display: block;
-           
-            
-    }
-    .button :hover{
-        cursor: pointer;
-        color: #000;
-        
-    }
+ 
+ 
