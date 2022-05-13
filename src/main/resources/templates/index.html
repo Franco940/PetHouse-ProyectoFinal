@@ -20,11 +20,10 @@
             <li th:if="!${#strings.equals(session.ROL, 'USER')}"> <a href="/usuario/registrar">Registro</a></li>
 
             <!-- Hacer un form para completar los datos de cuidador-->
-            <li th:if="!${session.cuidador} and ${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/}">Ser cuidador</a>
-            </li>
+            <li th:if="!${session.cuidador} and ${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/}">Ser cuidador</a></li>
 
-            <li th:if="${session.cuidador}"> <a th:href="@{/cuidador/lista}">Cuidadores</a></li>
-            <li th:if="${session.ROL} == null"> <a th:href="@{/login}">Login</a></li>
+            <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/cuidador/lista}">Cuidadores</a></li>
+            <li th:if="${session.ROL} == null"> <a th:href="@{/usuario/login}">Login</a></li>
             <li> <a th:href="@{/}">Contacto</a></li>
             <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/logout}">Logout</a></li>
         </ul>

@@ -32,13 +32,11 @@
           <li> <a th:href="@{/}">Home</a></li>
 
           <!-- Hacer un form para completar los datos de cuidador-->
-          <li th:if="!${session.cuidador} and ${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/}">Ser cuidador</a>
-          </li>
+          <li th:if="!${session.cuidador} and ${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/}">Ser cuidador</a></li>
 
-          <li th:if="${session.cuidador}"> <a th:href="@{/cuidador/lista}">Cuidadores</a></li>
+          <li th:if="!${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/cuidador/lista}">Cuidadores</a></li>
           <li th:if="${session.ROL} == null"> <a th:href="@{/login}">Login</a></li>
           <li> <a th:href="@{/}">Contacto</a></li>
-          <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/logout}">Logout</a></li>
       </ul>
   </div>
 
@@ -70,7 +68,7 @@
         <div class="item">
                 <a href="#">
                   <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
-                  <div class="title"><span>Ingresar como cuidador</span></div>
+                  <div class="title" th:if="!${session.cuidador}"><span>Ser cuidador</span></div>
                </a>
                </div>
       <div class="separador">
@@ -98,7 +96,7 @@
 
       </div>
       <div class="item">
-        <a href="#">
+        <a th:href="@{/logout}">
           <div class="icon"><img src="/static/img/cerrar.png" alt=""></div>
           <div class="title"><span>Cerrar sesión</span></div>
         </a>

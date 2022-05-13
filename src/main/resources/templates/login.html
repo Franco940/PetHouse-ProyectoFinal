@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/templates/index.html">
     <link rel="stylesheet" href="/templates/form-registro.html">
     <link rel="stylesheet" href="/templates/form-contacto.html">
-    
+
 
 </head>
 
@@ -20,12 +20,8 @@
         <ul class="menu">
 
             <li> <a th:href="@{/}">Home</a></li>
-
-            <!-- Hacer un form para completar los datos de cuidador-->
-            <li th:if="!${session.cuidador} and ${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/}">Ser cuidador</a>
-            </li>
-            <li th:if="${session.cuidador}"> <a th:href="@{/cuidador/lista}">Cuidadores</a></li>
-            <li th:if="${session.ROL} == null"> <a th:href="@{/login}">Login</a></li>
+            <li th:if="!${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/usuario/registrar}">Registro</a></li>
+            <li th:if="${session.ROL} == null"> <a th:href="@{/usuario/login}">Login</a></li>
             <li> <a th:href="@{/}">Contacto</a></li>
             <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/logout}">Logout</a></li>
         </ul>
@@ -37,7 +33,7 @@
         <img src="/static/img/nn.jpg" class="avatar" alt="Avatar Image">
         <h1>Bienvenido!</h1>
 
-        <form th:action="@{/login}" method="POST"> 
+        <form th:action="@{/usuario/login}" method="POST">
             <!-- USERNAME INPUT -->
             <label for="username">Nombre de usuario</label>
             <input type="text" name="email" placeholder="Enter Username">
@@ -46,15 +42,14 @@
             <input type="password" name="contrasenia" placeholder="Enter Password">
 
             <div class="botoncito">
-
-                <!-- Estilar este botón :) -->
                 <button type="submit">Login</button>
             </div>
+
             <br>
 
             <!--
             <a href="/templates/recuperar-contraseña.html">Olvidaste tu contraseña?</a><br>
-        -->
+            -->
 
             <a th:href="@{/usuario/registrar}">No tenes cuenta?</a>
         </form>
