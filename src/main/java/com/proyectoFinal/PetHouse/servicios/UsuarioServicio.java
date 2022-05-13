@@ -28,6 +28,9 @@ public class UsuarioServicio implements UserDetailsService{
 
     @Autowired
     private CuidadorServicio cuidadorServ;
+    
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     @Transactional
     public Usuario registrarUsuario(String nombre, String apellido, String email, String contrasenia,
@@ -39,8 +42,6 @@ public class UsuarioServicio implements UserDetailsService{
         
         cuidadorServ.crearCuidador(cuidador);
         
-        
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         validaciones(nombre, apellido, email,contrasenia, contrasenia2, telefonoDeContacto, calleNumero);
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
@@ -49,23 +50,53 @@ public class UsuarioServicio implements UserDetailsService{
         usuario.setTelefonoDeContacto(telefonoDeContacto);
         usuario.setUbicacion(calleNumero + ", " + localidad + ", Buenos Aires, Argentina");
         usuario.setRol(Rol.USER);
-     
-        //  Tuve que sacar esto por que no me funcionaba el login.   
-        // Anda misteriosamente
+        
+        
         usuario.setCuidador(cuidador);
         
         return usuarioRepo.save(usuario);
     }
+    
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Usuario usuario = usuarioRepo.findByEmail(email);
+        
+        if (usuario != null) {
+            List<GrantedAuthority> permisos = new ArrayList<>();
+
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + usuario.getRol());//ROLE_ADMIN O ROLE_USER
+            permisos.add(p1); //Un permiso solo agregado, puede haber mas.
+
+            /*
+             //Esto me permite guardar el OBJETO USUARIO LOG, para luego ser utilizado
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            HttpSession session = attr.getRequest().getSession(true);
+            
+            // Atributos que va a guardar la sesión del usuario
+            session.setAttribute("nombre", usuario.getNombre());
+            session.setAttribute("apellido", usuario.getApellido());
+            session.setAttribute("direccion", usuario.getUbicacion());
+            session.setAttribute("cuidador", usuario.getCuidador().isAlta());
+            */
+            
+            UserDetails user = new User(usuario.getEmail(), usuario.getContrasenia(), permisos);
+
+            return user;
+        } else {
+            throw new UsernameNotFoundException("Correo o contraseña incorrectos");
+        }
+    }
+    
 
     @Transactional
     public void modificarUsuario(String id, String nombre, String apellido, String email,String contrasenia, String contrasenia2,
             Integer telefonoDeContacto, String localidad, String calleNumero) throws Exception {
+        
   
         validaciones(nombre, apellido, email,contrasenia, contrasenia2, telefonoDeContacto, calleNumero);
         Usuario usuario = usuarioRepo.buscarPorId(id);
-         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+         
         if (usuario != null) {
-            
             usuario.setNombre(nombre);
             usuario.setApellido(apellido);
             usuario.setEmail(email);
@@ -105,28 +136,6 @@ public class UsuarioServicio implements UserDetailsService{
         }
 
         return usuariosCuidadores;
-    }
-    
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepo.findByEmail(email);
-        if (usuario != null) {
-            List<GrantedAuthority> permisos = new ArrayList<>();
-
-            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + usuario.getRol());//ROLE_ADMIN O ROLE_USER
-            permisos.add(p1); //Un permiso solo agregado, puede haber mas.
-
-            //Esto me permite guardar el OBJETO USUARIO LOG, para luego ser utilizado
-            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-            HttpSession session = attr.getRequest().getSession(true);
-            session.setAttribute("usuariosession", usuario);
-
-            User user = new User(usuario.getEmail(), usuario.getContrasenia(), permisos);
-            return user;
-
-        } else {
-            return null;
-        }
     }
     
     private void validaciones(String nombre, String apellido, String email,String contrasenia, String contrasenia2, Integer telefonoDeContacto, String calleNumero)throws Exception{

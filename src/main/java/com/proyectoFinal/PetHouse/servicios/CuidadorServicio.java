@@ -1,9 +1,7 @@
 package com.proyectoFinal.PetHouse.servicios;
 
-import com.proyectoFinal.PetHouse.entidades.Comentario;
 import com.proyectoFinal.PetHouse.entidades.Cuidador;
 import com.proyectoFinal.PetHouse.repositorios.CuidadorRepositorio;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,9 +15,7 @@ public class CuidadorServicio {
     @Transactional
     public void crearCuidador(Cuidador cuidador){
         cuidadorRepo.save(cuidador);
-        // Agregar la relación con los comentarios
     }
-    
     
     @Transactional
     public void agregarDescripcionYTarifa(Cuidador cuidador, String descripcion, Integer tarifa) throws Exception {

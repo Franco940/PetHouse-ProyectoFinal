@@ -50,11 +50,9 @@ public class UsuarioControlador {
     @GetMapping("/modificar/{id}")
     public String modificar(@PathVariable String id, ModelMap modelo) {
         List<Usuario> cuidadores = userServ.filtrarUsuariosCuidadores();
-        List<Usuario> clientes = userServ.filtrarUsuariosClientes();
 
         // Falta crear el front para esto
         modelo.addAttribute("cuidador", cuidadores);
-        modelo.addAttribute("cliente", clientes);
 
         modelo.put("usuario", userServ.buscarUsuarioPorId(id));
 

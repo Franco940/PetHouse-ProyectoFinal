@@ -11,7 +11,7 @@
     <title>Pet House</title>
 </head>
 <body>
-    
+
      <!-- MENU -->
      <div class="derecha">
         <ul class="menu">
@@ -23,7 +23,10 @@
           <li> <a href="form-contacto.html">Contacto</a></li>
         </ul>
     </div>
-    
+
+    <p th:text="${session.nombre}"></p>
+    <a th:href="@{/logout}">LOGOUT</a>
+
       <div class="fondo">
         <div class="log">
             <img th:src="@{../static/img/LogoRecortado.jpg}" alt="logo-pethouse">
