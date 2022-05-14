@@ -67,8 +67,6 @@ public class CuidadorControlador {
                 Coordenadas usuarioCuidador = apiMapaControlador.buscarCoordenadas(usuario.getUbicacion());
 
                 Double distanciaEntreUbicaciones = saberDistanciaEntreLasUbicaciones(coordenadaUsuario, usuarioCuidador);
-
-                System.out.println(distanciaEntreUbicaciones);
                 
                 if(distanciaEntreUbicaciones <= Double.valueOf(distanciaFiltro)){
                     usuariosCumplenFiltro.add(usuario);
