@@ -205,107 +205,22 @@ background-color: var(--hovercolor);
 }
 /*barra lateral*/
 
-/*card cuidadores*/
-.perfil{
-    width: 300px;
+/*mapa*/
+.mapa{
     text-align: center;
-    border-radius: 8px;
-    overflow: hidden;
-    justify-content: center;
+    border-top: 50px ;
 }
-.card-header{
-    background-color: rgb(197, 165, 204);
-    padding: 60px 40px;
+.contenido .mapa #mapa {
+ 
+   border: 2px solid ;
+   width:1000px ;
+   left: 10%;
 }
-.imagen{
-    display: inline-block;
-    padding: 8px;
-    background: linear-gradient(130deg, #74b9ff, #e66767);
-    margin: auto;
-    border-radius: 50%;
-    background-size: 200% 200%;
-    animation: Animation 2s ease infinite;
-    -webkit-animation: Animation 2s ease infinite;
-    -moz-animation: Animation 2s ease infinite;
+.mapa a{
+    text-decoration: none;
+    font-size: 20px;
+    
 }
-@keyframes Animation{
-    25%{
-        background-position: left bottom;
-    }
-    50%{
-        background-position: right bottom;
-    }
-    75%{
-        background-position: right top;
-    }
-    100%{
-        background-position: left top;
-    }
-}
-.imagen img{
-    display: block;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-}
-.nombre{
-    color: white;
-    font-size: 28px;
-    font-weight: 600;
-    margin: 10px 0;
-
-
-}
-.descripcion{
-    font-size: 18px;
-    color: white;
-}
-.elementos{
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-}
-.elementos a{
-    color: white;
-    width: 56px;
-    font-size: 22px;
-    transition:  .3s linear;
-}
-.elementos a:hover{
-    color: rgb(233, 141, 108);
-}
- .contacto{
-    display: inline-block;
-    padding: 12px 30px 12px 12px;
-    color: violet;
-    border-radius: 6px;
-    margin-top: 16px;
-}
-.card-footer{
-    background: white;
-    padding: 60px 10px;
-}
-.numbers{
-    display: flex;
-    text-align: center;
-}
-.itemm{
-flex: 1;
-text-transform: uppercase;
-font-size: 13px;
-color: #e66767;
-}
-.itemm span{
-    display: block;
-    color: #02131f;
-    font-size: 30px;
-}
-.border{
-    width: 1px;
-    height: 50px;
-    background:lightslategrey;
-}
-/*card cuidadores*/
 
 
 /*Pie de pagina*/

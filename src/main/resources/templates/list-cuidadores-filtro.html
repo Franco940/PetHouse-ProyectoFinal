@@ -39,7 +39,7 @@
           <li> <a th:href="@{/}">Contacto</a></li>
       </ul>
   </div>
-
+<section>
   <!--menu lateral para el perfil-->
   <div id="sidemenu" class="menu-collapsed">
 
@@ -104,7 +104,7 @@
 
     </div>
   </div>
-
+</section>
   <main class="contenido">
     <a th:href="@{/cuidador/lista}">Sin filtro de distancia</a>
     <a th:href="@{/cuidador/filtro/1000/__${session.direccion}__}">Filtro por 1km</a>
@@ -146,8 +146,10 @@
         </tr>
       </tbody>
     </table>
+    <div class="mapa">
     <div id="mapa"></div>
     <a href="#top" th:attr="onclick='buscarCoordenadasUbicacion(\'' +no+ '\');'">Volver al inicio de la pagina</a>
+    </div>
   </main>
 
   <!-- pie de pagina -->
