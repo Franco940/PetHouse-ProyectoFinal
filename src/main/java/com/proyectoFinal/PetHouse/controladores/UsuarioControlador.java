@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/usuario")
@@ -36,11 +37,12 @@ public class UsuarioControlador {
     public String guardar(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email,
             @RequestParam String contrasenia,@RequestParam String contrasenia2, @RequestParam Integer telefonoDeContacto, 
-            @RequestParam String localidad, @RequestParam String calleNumero) {
+            @RequestParam String localidad, @RequestParam String calleNumero,
+            @RequestParam MultipartFile imagen) {
       
         try {
             userServ.registrarUsuario(nombre, apellido, email, contrasenia,
-             telefonoDeContacto,  localidad,  calleNumero, contrasenia2);
+             telefonoDeContacto, localidad,  calleNumero, contrasenia2, imagen);
             
             return "redirect:/usuario/login";
         } catch (Exception e) {
@@ -75,6 +77,7 @@ public class UsuarioControlador {
             session.setAttribute("direccion", usuario.getUbicacion());
             session.setAttribute("ROL", usuario.getRol());
             session.setAttribute("cuidador", usuario.getCuidador().isAlta());
+            session.setAttribute("fotoPerfil", usuario.getFotoDePerfil());
             
             return "redirect:/";
         }catch(Exception e){

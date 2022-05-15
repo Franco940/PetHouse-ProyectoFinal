@@ -51,9 +51,9 @@
       </div>
     </div>
     <div id="profile">
-      <div id="photo"><img src="/static/img/nn.jpg" alt=""></div>
+      <div id="photo"><img th:src="@{../static/fotosDePerfil/__${session.fotoPerfil}__}" alt="Foto de perfil del usuario"></div>
       <div id="name"><span>
-          <h4>Nombre Usuario</h4>
+          <h4 th:text="${session.nombre} + ' ' + ${session.apellido}">Nombre Usuario</h4>
         </span></div>
 
     </div>

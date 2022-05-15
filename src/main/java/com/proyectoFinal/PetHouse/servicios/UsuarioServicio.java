@@ -4,12 +4,16 @@ import com.proyectoFinal.PetHouse.entidades.Cuidador;
 import com.proyectoFinal.PetHouse.entidades.Usuario;
 import com.proyectoFinal.PetHouse.enums.Rol;
 import com.proyectoFinal.PetHouse.repositorios.UsuarioRepositorio;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UsuarioServicio{
@@ -25,7 +29,7 @@ public class UsuarioServicio{
 
     @Transactional
     public Usuario registrarUsuario(String nombre, String apellido, String email, String contrasenia,
-            Integer telefonoDeContacto, String localidad, String calleNumero, String contrasenia2) throws Exception {
+            Integer telefonoDeContacto, String localidad, String calleNumero, String contrasenia2, MultipartFile imagenDePerfil) throws Exception {
       
         Usuario usuario = new Usuario();
         
@@ -33,13 +37,20 @@ public class UsuarioServicio{
         
         cuidadorServ.crearCuidador(cuidador);
         
-        validacionesRegistro(nombre, apellido, email,contrasenia, contrasenia2, telefonoDeContacto, calleNumero);
+        validacionesRegistro(nombre, apellido, email, contrasenia, contrasenia2, 
+                telefonoDeContacto, calleNumero,imagenDePerfil);
+        
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setEmail(email);
         usuario.setContrasenia(encoder.encode(contrasenia2));
         usuario.setTelefonoDeContacto(telefonoDeContacto);
         usuario.setUbicacion(calleNumero + ", " + localidad + ", Buenos Aires, Argentina");
+        
+        // En la base de datos guardo el nombre de la imagen
+        // luego con el nombre guardado busco en el directorio la imagen guardada
+        usuario.setFotoDePerfil(guardarImagenLocalmente(imagenDePerfil));
+
         usuario.setRol(Rol.USER);
         
         
@@ -110,7 +121,8 @@ public class UsuarioServicio{
         return usuariosCuidadores;
     }
     
-    private void validacionesRegistro(String nombre, String apellido, String email,String contrasenia, String contrasenia2, Integer telefonoDeContacto, String calleNumero)throws Exception{
+    private void validacionesRegistro(String nombre, String apellido, String email,String contrasenia, 
+            String contrasenia2, Integer telefonoDeContacto, String calleNumero, MultipartFile imagenDePerfil)throws Exception{
       
         if(nombre == null || nombre.trim().isEmpty()){
             throw new Exception("El nombre no puede estar vacío");
@@ -132,7 +144,10 @@ public class UsuarioServicio{
         }
         if (calleNumero == null || calleNumero.trim().isEmpty()) {
             throw new Exception("La calle no puede estar vacía");
-        }       
+        }
+        if(imagenDePerfil == null || imagenDePerfil.isEmpty()){
+            throw new Exception("Debe de subir una imagen de perfil");
+        }
     }
     
     private void validarCamposLogin(String nombre, String contrasenia) throws Exception{
@@ -144,7 +159,9 @@ public class UsuarioServicio{
         }
     }
     
-    private void validarModificacion(String nombre, String apellido, String email,String contrasenia, String contrasenia2, Integer telefonoDeContacto, String calleNumero) throws Exception{
+    private void validarModificacion(String nombre, String apellido, String email,String contrasenia, String contrasenia2, 
+            Integer telefonoDeContacto, String calleNumero) throws Exception{
+        
         if (nombre == null || nombre.isEmpty()) {
             throw new Exception("Nombre no puede estar vacio");
         }   
@@ -166,5 +183,21 @@ public class UsuarioServicio{
         if (calleNumero == null || calleNumero.trim().isEmpty()) {
             throw new Exception("La calle no puede estar vacía");
         }   
+    }
+    
+    private String guardarImagenLocalmente(MultipartFile imagenDePerfil) throws Exception{
+        Path directorioImagenes = Paths.get("src//main//resources//static/fotosDePerfil");
+        String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
+        
+        try{
+            byte[] bytesDeLaImagen = imagenDePerfil.getBytes();
+            Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + imagenDePerfil.getOriginalFilename());
+            Files.write(rutaCompleta, bytesDeLaImagen);
+            
+            // Si se guarda bien la imagen, devuelvo el nombre para guardarlo en la base de datos
+            return imagenDePerfil.getOriginalFilename();
+        }catch(Exception e){
+            throw new Exception("Error -> Clase: UsuarioServicio, Método: guardarImagenLocalmente");
+        }
     }
 }
