@@ -101,6 +101,8 @@ body{
 
 input{
   background-color: #fbfbfb;
+  /* Con esto hago que el nombre del la foto de perfil se vea. Porque si se sube una imagen, al ser el texto blanco, no se nota si se subio o no*/
+  color: black;
   width: 408px;
   height: 40px;
   border-radius: 5px;
