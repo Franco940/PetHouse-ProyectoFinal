@@ -2,7 +2,6 @@ package com.proyectoFinal.PetHouse.controladores;
 
 import com.proyectoFinal.PetHouse.entidades.Usuario;
 import com.proyectoFinal.PetHouse.servicios.UsuarioServicio;
-import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -88,30 +87,40 @@ public class UsuarioControlador {
     }
 
     @GetMapping("/modificar/{id}")
-    public String modificar(@PathVariable String id, ModelMap modelo) {
-        List<Usuario> cuidadores = userServ.filtrarUsuariosCuidadores();
+    public String modificar(HttpSession session, @PathVariable String id, ModelMap modelo) {
+        if(session.getAttribute("ROL") !=  null){
+            Usuario usuario = userServ.buscarUsuarioPorId(id);
 
-        // Falta crear el front para esto
-        modelo.addAttribute("cuidador", cuidadores);
+            modelo.addAttribute("usuario", usuario);
 
-        modelo.put("usuario", userServ.buscarUsuarioPorId(id));
-
-        return "modificar-usuario";
+            return "form-modificarDatos";
+        }else{
+            return "redirect:/usuario/login";
+        }
     }
 
     @PostMapping("/modificar/{id}")
-    public String modificar(@PathVariable String id, @RequestParam String nombre, @RequestParam String apellido,
-            @RequestParam String email,
-            @RequestParam String contrasenia, @RequestParam String contrasenia2, @RequestParam Integer telefonoDeContacto,
-            @RequestParam String localidad, @RequestParam String calleNumero) {
+    public String modificar(ModelMap modelo, HttpSession session, @PathVariable String id, @RequestParam String nombre, @RequestParam String apellido,
+            @RequestParam String email, @RequestParam String contrasenia, @RequestParam String contrasenia2, 
+            @RequestParam Integer telefonoDeContacto, @RequestParam String localidad, @RequestParam String calleNumero,
+            @RequestParam MultipartFile imagenDePerfil) {
       
         try {
-            userServ.modificarUsuario(id, nombre, apellido, email, contrasenia, contrasenia2, telefonoDeContacto, localidad, calleNumero);
-
+            Usuario usuario = userServ.modificarUsuario(id, nombre, apellido, email, contrasenia, contrasenia2, 
+                    telefonoDeContacto, localidad, calleNumero, imagenDePerfil);
+            
+            // Cambio los atributos de la session para que se actualizen los datos cuando thymeleaf
+            // llama a la variable session
+            session.setAttribute("nombre", usuario.getNombre());
+            session.setAttribute("apellido", usuario.getApellido());
+            session.setAttribute("direccion", usuario.getUbicacion());
+            session.setAttribute("cuidador", usuario.getCuidador().isAlta());
+            session.setAttribute("fotoPerfil", usuario.getFotoDePerfil());
+            
+            return "redirect:/usuario/modificar/" + id;
         } catch (Exception e) {
-            // Hacer la lógica cuando manejemos errores
-        } finally {
-            return "modificar-usuario";
+            modelo.put("fallo", e.getMessage());
+            return "form-modificarDatos";
         }
     }
 }
