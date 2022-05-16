@@ -31,15 +31,14 @@ public class UsuarioServicio{
     public Usuario registrarUsuario(String nombre, String apellido, String email, String contrasenia,
             Integer telefonoDeContacto, String localidad, String calleNumero, String contrasenia2, MultipartFile imagenDePerfil) throws Exception {
       
+        validacionesRegistro(nombre, apellido, email, contrasenia, contrasenia2, 
+                telefonoDeContacto, calleNumero,imagenDePerfil);
+        
         Usuario usuario = new Usuario();
         
         Cuidador cuidador = new Cuidador();
         
         cuidadorServ.crearCuidador(cuidador);
-        
-        validacionesRegistro(nombre, apellido, email, contrasenia, contrasenia2, 
-                telefonoDeContacto, calleNumero,imagenDePerfil);
-        
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setEmail(email);
@@ -132,6 +131,9 @@ public class UsuarioServicio{
         }
         if (email == null || email.trim().isEmpty()) {
             throw new Exception("El email no puede estar vacío");
+        }
+        if(buscarPorEmail(email) != null){
+            throw new Exception("Ya hay alguien registrado con ese email");
         }
         if (contrasenia == null || contrasenia2 == null || contrasenia.isEmpty() || contrasenia2.isEmpty()) {
             throw new Exception("La contraseña no puede estar vacía");         
