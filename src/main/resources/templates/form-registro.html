@@ -24,7 +24,7 @@
         </div>
     </header>
 
-    <h1 class="center">Registro para usuario nuevo</h1>
+    <h1 class="center text-danger">Registro para usuario nuevo</h1>
 
     <form class="center" th:action="@{/usuario/registrar}" method="POST" enctype="multipart/form-data">
 
@@ -34,7 +34,7 @@
         </div>
         <!--------------------->
 
-        <dasdasdasd class="box">
+        <div class="box">
 
             </br><label for="imagen">Imagen de perfil</label>
             <input type="file" name="imagen" id="imagen"></br>
@@ -58,14 +58,10 @@
             <input type="number" name="telefonoDeContacto" placeholder="Telefono" id="telefonoDeContacto" required></br>
 
             </br>
-            <!--
-            <button type="button"><label for="avatar">Adjunta tu foto de perfil</label></button>
-            <input type="file" accept="jpg,.png" id="avatar" style="display:none">
-            </br>
-            -->
 
             <label for="localidad">Ingrese su localidad (solo Buenos Aires, Argentina)</label>
             <select name="localidad" id="">
+                <option value="">Seleccione un partido</option>
                 <option value="Adolfo Alsina">Adolfo Alsina</option>
                 <option value="Adolfo Gonzales Chaves">Adolfo Gonzales Chaves</option>
                 <option value="Alberti">Alberti</option>
@@ -206,9 +202,8 @@
             <input type="text" name="calleNumero">
 
             </br><button type="submit">Registrarse</button>
-
+        </div>
     </form>
-    </div>
 </body>
 
 </html>

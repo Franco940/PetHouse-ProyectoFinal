@@ -25,6 +25,7 @@
             <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/cuidador/lista}">Cuidadores</a></li>
             <li th:if="${session.ROL} == null"> <a th:href="@{/usuario/login}">Login</a></li>
             <li> <a th:href="@{/}">Contacto</a></li>
+            <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/usuario/modificar/__${session.idUsuario}__}">Editar cuenta</a></li>
             <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/logout}">Logout</a></li>
         </ul>
     </div>

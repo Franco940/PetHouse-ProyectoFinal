@@ -32,12 +32,13 @@
 
     <h1>Trabaja con nosotros</h1>
     <form th:action="@{/cuidador/ser-cuidador/__${session.idUsuario}__}" method="POST">
-      <!-- USERNAME INPUT -->
+
       <label for="username">descripcion</label>
       <textarea name="descripcion" rows="10" cols="40" placeholder="Contanos sobre vos!"></textarea>
-      <!-- PASSWORD INPUT -->
+
       <label for="username">tarifa</label>
       <input type="number" name="tarifa" placeholder="ingresa tu tarifa">
+      
       <div class="botoncito">
         <button type="submit">Enviar</button>
       </div>
@@ -45,3 +46,4 @@
     </form>
   </div>
 </body>
+</html>
