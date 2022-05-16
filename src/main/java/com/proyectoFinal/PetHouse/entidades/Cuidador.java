@@ -27,18 +27,15 @@ public class Cuidador {
     @OneToMany(mappedBy = "cuidador", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<Comentario> comentarios;
-
-    private String aniamlesAptoParaCuidar; // Con el .split podríamos acomodar los animales que puede cuidar
+    
     private Integer tarifa;
 
     public Cuidador() {
-        // Cambiar las cosas. Son todos valores de prueba
-
-        this.descripcion = "Me gusta cuidar mascotas";
-        this.trabajosRealizados = 170;
+        this.descripcion = null;
+        this.trabajosRealizados = 0;
         this.disponible = true;
-        this.puntajeTotal = 500;
-        this.alta = true; // Luego cambiarlo a false. Lo dejo en true para hacer las pruebas
+        this.puntajeTotal = 0;
+        this.alta = false;
         this.tarifa = 0;
     }
 
@@ -92,14 +89,6 @@ public class Cuidador {
 
     public void setComentarios(List<Comentario> comentarios) {
         this.comentarios = comentarios;
-    }
-
-    public String getAniamlesAptoParaCuidar() {
-        return aniamlesAptoParaCuidar;
-    }
-
-    public void setAniamlesAptoParaCuidar(String aniamlesAptoParaCuidar) {
-        this.aniamlesAptoParaCuidar = aniamlesAptoParaCuidar;
     }
 
     public Integer getTarifa() {

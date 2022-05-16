@@ -2,6 +2,7 @@ package com.proyectoFinal.PetHouse.controladores;
 
 import com.proyectoFinal.PetHouse.entidades.Coordenadas;
 import com.proyectoFinal.PetHouse.entidades.Usuario;
+import com.proyectoFinal.PetHouse.servicios.CuidadorServicio;
 import com.proyectoFinal.PetHouse.servicios.UsuarioServicio;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -22,7 +25,11 @@ public class CuidadorControlador {
     private UsuarioServicio userServ;
     
     @Autowired
+    private CuidadorServicio cuidadorServ;
+    
+    @Autowired
     private ApiMapaControlador apiMapaControlador;
+    
 
     @GetMapping("/lista")
     public String listarCuidadores(ModelMap modelo, HttpSession session) {
@@ -75,6 +82,33 @@ public class CuidadorControlador {
 
             modelo.addAttribute("usuariosCuidadores", usuariosCumplenFiltro);
             return "index-cuidadores-filtrados";
+        }else{
+            return "redirect:/usuario/login";
+        }
+    }
+    
+    @GetMapping("/ser-cuidador")
+    public String formCuidador(HttpSession session, ModelMap modelo) throws Exception{
+        
+        if(session.getAttribute("ROL") != null){
+            
+            return "form-cuidador";
+        }else{
+            return "redirect:/usuario/login";
+        }
+    }
+    
+    @PostMapping("/ser-cuidador/{id}")
+    public String recibirDatosSerCuidaodr(HttpSession session, ModelMap modelo, @PathVariable String id, @RequestParam String descripcion, 
+            @RequestParam Integer tarifa) throws Exception{
+        
+        if(session.getAttribute("ROL") != null){
+            Usuario usuario = userServ.buscarUsuarioPorId(id);
+            
+            cuidadorServ.agregarDescripcionYTarifa(usuario.getCuidador(), descripcion, tarifa);
+            
+            session.setAttribute("cuidador", usuario.getCuidador().isAlta());
+            return "redirect:/";
         }else{
             return "redirect:/usuario/login";
         }
