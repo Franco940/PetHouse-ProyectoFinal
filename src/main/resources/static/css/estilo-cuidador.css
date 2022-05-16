@@ -27,12 +27,14 @@ body{
         text-align: center;
 }
 .menu li {
-        display: inline-block;
-        text-align: right;
+    display: inline-block;
+    text-align: right;
+    padding:0px 15px; 
 }
-    
+
 .menu li a:hover{
-        background:#76D7C4;
+    background:#76D7C4;
+    transition:ease-in .4s; 
 }
 
 /*barra lateral*/
