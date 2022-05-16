@@ -1,44 +1,41 @@
 *{
     padding: 0;
     border: 0;
-    text-decoration: none;
+ 
 
 }
+
 body{
     font-family: Arial, Helvetica;
     background-color:whitesmoke;
     padding: 0%;
     border: 0;
-    margin-left: var(--width-collapsed);
 }
-/*Menu*/
 .menu{
-list-style: none;
-padding: 0;
-background-color:#5499C7;
+    list-style: none;
+    padding: 0;
+    background-color:#5499C7;
 }
 .derecha{
-    text-align: right;
+        text-align: right;
 }
 .menu li a{
-    text-decoration: none;
-    color: white;
-    padding: 20px;
-    display: block;
-    text-align: center;
- 
+        text-decoration: none;
+        color: white;
+        padding: 20px;
+        display: block;
+        text-align: center;
 }
 .menu li {
-    display: inline-block;
-    text-align: right;
+        display: inline-block;
+        text-align: right;
 }
-
+    
 .menu li a:hover{
-    background:#76D7C4;
+        background:#76D7C4;
 }
-/*Menu*/
 
-
+/*barra lateral*/
 /*barra lateral*/
 
 
@@ -60,7 +57,7 @@ background-color:#5499C7;
     position: fixed;
     height: 100%;
     left: 0;
-    top:0;
+    top: 0;
     
 }
 #sidemenu a{
@@ -205,29 +202,85 @@ background-color: var(--hovercolor);
 }
 /*barra lateral*/
 
-/*mapa*/
-.mapa{
+/*tarjetas*/
+.container{
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+.container{
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+}
+.card-section{
+    display: grid;
+    gap: 1.75rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+.card{
+    background-color:#90ccc0;
+    padding: 1.75rem;
+    border-radius: 1.75rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+.card{
+    justify-items: center;
+}
+.card .foto{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0 auto;
+   text-align: center;
+}
+.card .foto img{
+    width: 90%;
+    border-radius: 10px;
+   text-align: center;
+}
+.card .nombre-cuidador h2{
+    flex-basis: 100%;
+    padding: 5px;
+    color: white;
     text-align: center;
-    border-top: 50px ;
+    font-size: 23px;
 }
-.contenido .mapa #mapa {
- 
-   border: 2px solid ;
-   width:1000px ;
-   left: 10%;
+.card .card-descripcion p{
+    margin: 0;
+    color: white;
+    text-align: center;
 }
-.mapa a{
+.card a{
     text-decoration: none;
-    font-size: 20px;
-    
+    color: white;
+    text-align: center;
+    justify-content: center;
+    display: inline-block;
+    padding: 0.7rem;
+    border:1px solid transparent;
+    background-color:#5499C7;
+    border-radius: 1.75rem;
+    margin-top: 1.2rem;
+    transition: background-color 0.4s ease-in, color 0.4s ease-in;
 }
+.card a:hover{
+    background-color: transparent;
+    border-color:#5499C7;
+    color: white;
+}
+
+
+
+/*tarjetas de cuidadores*/
+
 
 
 /*Pie de pagina*/
 
 .pie-pagina{
 
-    margin-top: 200px;
+    margin-top: 300px;
     width: 100%;
     background-color: #042135;
 
@@ -241,15 +294,14 @@ background-color: var(--hovercolor);
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 50px;
     padding: 45px 0px;
- }
+}
  .pie-pagina .grupo-1 .box figure{
    width: 100%;
    height: 100%;
    display: flex;
    justify-content:center;
    align-items:center;
-  }
-
+}
  .pie-pagina .grupo-1 .box figure img{
      width: 250px;
   }
@@ -300,5 +352,5 @@ background-color: var(--hovercolor);
       grid-gap: 30px;
       padding: 35px 0px;
    }
-   
- }
+  }
+ 

@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 public class ApiMapaControlador {
     
     @RequestMapping(value = "cuidador/mapa/api/coordenadas", method = RequestMethod.POST)
-    public Coordenadas mostrarMapa(@RequestBody String lugar){
+    public Coordenadas buscarCoordenadas(@RequestBody String lugar){
         
         Coordenadas coordenadas = new Coordenadas();
         String key = "AIzaSyDNpEo_XpZMVD6IXr3yKTg_QnMscCAyjTg";
@@ -21,14 +21,14 @@ public class ApiMapaControlador {
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(url, String.class);
         
-        coordenadas.setLat(buscarCoordenadas(result, "lat"));
-        coordenadas.setLng(buscarCoordenadas(result, "lng"));
+        coordenadas.setLat(buscarCoordenadasEnString(result, "lat"));
+        coordenadas.setLng(buscarCoordenadasEnString(result, "lng"));
 
         return coordenadas;
     }
     
     
-    private String buscarCoordenadas(String informacion, String tipoCoordenada){
+    private String buscarCoordenadasEnString(String informacion, String tipoCoordenada){
         String coordenada = "";
         
         // Le sumio 7 para pararme en el primer valor de la coordenada

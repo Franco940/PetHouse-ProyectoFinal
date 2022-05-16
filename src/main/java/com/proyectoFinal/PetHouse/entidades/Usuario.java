@@ -24,22 +24,13 @@ public class Usuario {
     private String contrasenia;
     private Integer telefonoDeContacto;
     private String ubicacion;
+    private String fotoDePerfil;
     
     @Enumerated(EnumType.STRING)
     private Rol rol;
     
-    /*
-        Al hacer una tabla por cada entidad, necesitamos tenerlas relacionadas
-    para poder acceder a los atributos de usuario siendo un cliente o cuidador.
-    
-    Esto también permite que un cliente sea cuidador o un cuidador sea cliente
-    al mismo tiempo
-     */
     @OneToOne
     private Cuidador cuidador;
-
-    @OneToOne
-    private Cliente cliente;
 
     public Usuario() {
     }
@@ -104,12 +95,12 @@ public class Usuario {
         this.cuidador = cuidador;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public String getFotoDePerfil() {
+        return fotoDePerfil;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setFotoDePerfil(String fotoDePerfil) {
+        this.fotoDePerfil = fotoDePerfil;
     }
 
     public Rol getRol() {
