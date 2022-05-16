@@ -34,7 +34,7 @@ public class CuidadorControlador {
 
             modelo.addAttribute("usuariosCuidadores", usuariosCuidadores);
 
-            return "list-cuidador";
+            return "index-cuidadores";
             
         }else{
             return "redirect:/usuario/login";
@@ -74,7 +74,7 @@ public class CuidadorControlador {
             }
 
             modelo.addAttribute("usuariosCuidadores", usuariosCumplenFiltro);
-            return "list-cuidadores-filtro";
+            return "index-cuidadores-filtrados";
         }else{
             return "redirect:/usuario/login";
         }
