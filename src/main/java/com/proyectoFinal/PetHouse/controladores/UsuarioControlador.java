@@ -72,6 +72,7 @@ public class UsuarioControlador {
             session = attr.getRequest().getSession(true);
             
             // Atributos que va a guardar la sesión del usuario
+            session.setAttribute("idUsuario", usuario.getIdUsuario());
             session.setAttribute("nombre", usuario.getNombre());
             session.setAttribute("apellido", usuario.getApellido());
             session.setAttribute("direccion", usuario.getUbicacion());

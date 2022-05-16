@@ -25,10 +25,15 @@ public class CuidadorServicio {
         cuidador.setTarifa(tarifa);
         cuidador.setAlta(true);
         
-        cuidadorRepo.save(cuidador);
+        cuidadorRepo.actualizarDatos(cuidador.getIdCuidador(), cuidador.getDescripcion(), cuidador.getTarifa(), true);
     }
 
     private void validaciones(String descripcion, Integer tarifa) throws Exception {
-        
+        if(descripcion == null || descripcion.isEmpty()){
+            throw new Exception("La descripción no puede estar vacía");
+        }
+        if(tarifa == null || tarifa == 0){
+            throw new Exception("La tarifa no puede ser 0");
+        }
     }
 }
