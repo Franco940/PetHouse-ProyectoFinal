@@ -356,9 +356,10 @@ main{
     cursor: pointer;
     color:white;
     background-color:#5499C7;
-    
-    textarea{
-        background-color:window;
+
+}
+textarea{
+        background-color: window;
     }
 /*Pie de pagina*/
 
