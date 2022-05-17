@@ -31,6 +31,10 @@ public class Comentario {
         this.comentario = comentario;
     }
 
+    public Comentario() {
+       
+    }
+
     public String getIdComentario() {
         return idComentario;
     }
