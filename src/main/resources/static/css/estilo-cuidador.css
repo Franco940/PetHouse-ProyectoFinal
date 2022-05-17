@@ -206,7 +206,7 @@ background-color: var(--hovercolor);
 }
 /*barra lateral*/
 .filtros{
-    padding-left: 12rem;
+    padding-left: 2rem;
     display: flex;
     border-bottom: 50px;
    
@@ -236,6 +236,9 @@ background-color: var(--hovercolor);
     display: flex;
     align-items: center;
 
+}
+.container{
+    padding:50px;
 }
 .card-section{
     width:max-content;
