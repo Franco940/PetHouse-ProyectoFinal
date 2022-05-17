@@ -2,6 +2,7 @@ package com.proyectoFinal.PetHouse.servicios;
 
 import com.proyectoFinal.PetHouse.entidades.Cuidador;
 import com.proyectoFinal.PetHouse.repositorios.CuidadorRepositorio;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,10 +30,24 @@ public class CuidadorServicio {
     }
 
     @Transactional
-    public void puntaje(Cuidador cuidador, Integer trabajosRealizados, Integer puntajeTotal) {
+    public void guardarPuntajeYSumaTrabajo(Cuidador cuidador, Integer puntaje) throws Exception {
+        validarPuntaje(puntaje);
+        
         cuidador.setPuntajeTotal(cuidador.getPuntajeTotal() + puntaje);
-        cuidador.setTrabajosRealizados(cuidador.getTrabajosRealizados()+1);
-        cuidadorRepo.actualizarPuntaje(cuidador.getIdCuidador(),cuidador.getPuntajeTotal(),cuidador.getTrabajosRealizados());
+        cuidador.setTrabajosRealizados(cuidador.getTrabajosRealizados() + 1);
+        
+        cuidadorRepo.actualizarPuntajeYTrabajos(cuidador.getIdCuidador(), cuidador.getPuntajeTotal(), cuidador.getTrabajosRealizados());
+    }
+    
+    @Transactional(readOnly = true)
+    public Optional<Cuidador> buscarCuidador(String id){
+        return cuidadorRepo.findById(id);
+    }
+    
+    private void validarPuntaje(Integer puntaje) throws Exception{
+        if(puntaje == null || puntaje == 0){
+            throw new Exception("La puntuación no puede ser 0");
+        }
     }
 
     private void validaciones(String descripcion, Integer tarifa) throws Exception {

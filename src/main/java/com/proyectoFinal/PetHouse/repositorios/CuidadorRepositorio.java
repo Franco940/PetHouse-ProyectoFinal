@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository;
 public interface CuidadorRepositorio extends JpaRepository <Cuidador, String> {
 
     @Modifying 
-    @Query("UPDATE Cuidador AS c SET c.puntaje = :puntaje, c.trabajosRealizados = :suma1 WHERE c.idCuidador = :id")
-    public void actualizarPuntaje(@Param("id") String id,@Param("puntaje") String puntaje, (@Param num1) Integer numero);
+    @Query("UPDATE Cuidador AS c SET c.puntajeTotal = :puntaje, c.trabajosRealizados = :numero WHERE c.idCuidador = :id")
+    public void actualizarPuntajeYTrabajos(@Param("id") String id, @Param("puntaje") Integer puntaje, @Param ("numero") Integer numero);
     
     @Modifying
     @Query("UPDATE Cuidador AS c SET c.descripcion = :descripcion, c.tarifa = :tarifa, c.alta = :alta WHERE c.idCuidador = :id")

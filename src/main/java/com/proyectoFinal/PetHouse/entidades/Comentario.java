@@ -25,12 +25,6 @@ public class Comentario {
     
     private String comentario;
 
-    public Comentario(Cuidador cuidador, String idCliente, String comentario) {
-        this.cuidador = cuidador;
-        this.idCliente = idCliente;
-        this.comentario = comentario;
-    }
-
     public Comentario() {
        
     }
