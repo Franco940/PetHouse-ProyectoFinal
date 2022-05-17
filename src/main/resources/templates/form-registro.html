@@ -24,7 +24,6 @@
         </div>
     </header>
 
-    <h1 class="center text-danger">Registro para usuario nuevo</h1>
 
     <form class="center" th:action="@{/usuario/registrar}" method="POST" enctype="multipart/form-data">
 
@@ -35,9 +34,14 @@
         <!--------------------->
 
         <div class="box">
-
+            
+            <h1>Registro</h1>
+            <!-- 
             </br><label for="imagen">Imagen de perfil</label>
             <input type="file" name="imagen" id="imagen"></br>
+            -->
+            
+                  
 
             </br><label for="nombre">Ingrese su nombre</label>
             <input type="text" name="nombre" placeholder="Nombre" id="nombre"></br>
@@ -60,7 +64,7 @@
             </br>
 
             <label for="localidad">Ingrese su localidad (solo Buenos Aires, Argentina)</label>
-            <select name="localidad" id="">
+            <select name="localidad" id="localidad">
                 <option value="">Seleccione un partido</option>
                 <option value="Adolfo Alsina">Adolfo Alsina</option>
                 <option value="Adolfo Gonzales Chaves">Adolfo Gonzales Chaves</option>
@@ -199,7 +203,10 @@
             </select></br>
 
             </br><label for="calleNumero">Ingrese su direccion</label>
-            <input type="text" name="calleNumero">
+            <input type="text" name="calleNumero" id="calleNumero">
+            
+            </br><button type="button"><label for="avatar">Adjunta tu foto de perfil</label></button>
+            <input type="file" id="avatar" name="imagen" style="display:none">
 
             <label class="terms">
                 <input class="terminos" type="checkbox" name="terminos" id="terminos">

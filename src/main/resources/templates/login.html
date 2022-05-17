@@ -21,7 +21,6 @@
 
             <li> <a th:href="@{/}">Home</a></li>
             <li th:if="!${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/usuario/registrar}">Registro</a></li>
-            <li th:if="${session.ROL} == null"> <a th:href="@{/usuario/login}">Login</a></li>
             <li> <a th:href="@{/}">Contacto</a></li>
             <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/logout}">Logout</a></li>
         </ul>
@@ -51,6 +50,7 @@
 
             <a th:href="@{/usuario/registrar}">No tenes cuenta?</a>
         </form>
+
 
         <div th:if="${fallo}!=null" class="alert-danger alert" style=" margin-top: 50px; height: 4.5rem!important;"role="alert">
             <p th:text="${fallo}"></p>

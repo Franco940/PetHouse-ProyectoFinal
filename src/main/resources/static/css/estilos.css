@@ -25,13 +25,16 @@ background-color:#5499C7;
     text-align: center;
  
 }
+
 .menu li {
     display: inline-block;
     text-align: right;
+    padding:0px 15px; 
 }
 
 .menu li a:hover{
     background:#76D7C4;
+    transition:ease-in .4s; 
 }
 /*Menu*/
 .fondo{
