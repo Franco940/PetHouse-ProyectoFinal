@@ -12,9 +12,11 @@ body{
     border: 0;
 }
 .menu{
+    width: 100%;
     list-style: none;
     padding: 0;
     background-color:#5499C7;
+    
 }
 .derecha{
         text-align: right;
@@ -203,12 +205,40 @@ background-color: var(--hovercolor);
     width: 100px;
 }
 /*barra lateral*/
+.filtros{
+    padding-left: 12rem;
+    display: flex;
+    border-bottom: 50px;
+   
+
+}
+.filtros .fil{
+    margin-left: 50px;
+    text-decoration: none;
+    padding: 10px 40px;
+    text-align: center;
+    justify-content: center;
+    background-color:slateblue;
+    color: white;
+    border-radius: 20px;
+    transition: background-color 0.4s ease-in, color 0.4s ease-in;
+    
+}
+.filtros .fil:hover{
+    cursor: pointer;
+    color:white;
+    background-color:#5499C7;
+}
 
 /*tarjetas*/
 .container{
     min-height: 90vh;
     display: flex;
     align-items: center;
+
+}
+.card-section{
+    width:max-content;
 }
 .container{
     padding-left: 2rem;
@@ -221,12 +251,19 @@ background-color: var(--hovercolor);
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 }
 .card{
+   
     background-color:#90ccc0;
     padding: 1.75rem;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+    float:left;
     border-radius: 1.75rem;
     display: flex;
     flex-wrap: wrap;
+    overflow:hidden;
 }
+
 .card{
     justify-items: center;
 }

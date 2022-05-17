@@ -146,6 +146,18 @@
        cursor: pointer;
        background-color:violet;
    }
+   
+   #errorLogin{
+       align-content: center;
+       background-color: violet;
+       color: slateblue;
+       text-align: center;
+       width: max-content;
+       height: max-content;
+   }
+   
+  
+   
   
  
  

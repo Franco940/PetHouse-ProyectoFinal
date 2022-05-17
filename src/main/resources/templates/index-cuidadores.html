@@ -105,12 +105,12 @@
 
             </div>
     </section>
-
-    <a th:href="@{/cuidador/filtro/1000/__${session.direccion}__}">Filtro por 1km</a>
-    <a th:href="@{/cuidador/filtro/3000/__${session.direccion}__}">Filtro por 3km</a>
-    <a th:href="@{/cuidador/filtro/5000/__${session.direccion}__}">Filtro por 5km</a>
-    <a th:href="@{/cuidador/filtro/10000/__${session.direccion}__}">Filtro por 10km</a>
-
+    <div class="filtros">
+        <a th:href="@{/cuidador/filtro/1000/__${session.direccion}__}" class="fil">Filtro por 1km</a>
+        <a th:href="@{/cuidador/filtro/3000/__${session.direccion}__}" class="fil">Filtro por 3km</a>
+        <a th:href="@{/cuidador/filtro/5000/__${session.direccion}__}" class="fil">Filtro por 5km</a>
+        <a th:href="@{/cuidador/filtro/10000/__${session.direccion}__}" class="fil">Filtro por 10km</a>
+</div>
     <div class="container">
         <section th:each="usuario: ${usuariosCuidadores}" class="card-section">
             <div class="card">
