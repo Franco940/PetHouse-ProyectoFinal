@@ -31,12 +31,12 @@
   height: max-content;
   background: #5499c7;
   color: #ebf5fc;
-  top: 50%;
+  top: 59%;
   left: 50%;
   position: absolute;
   transform: translate(-50%, -50%);
   box-sizing: border-box;
-  padding: 70px 30px;
+  padding: 60px 10px;
   margin-top: 450px;
 }
 .box .avatar {
@@ -93,6 +93,8 @@ body{
 .center{
   text-align: center;
 }
+
+
 .formulario{
   text-align: center;
 }
@@ -161,6 +163,7 @@ span{
 }
 
 
+
 .aviso{
   font-size: 13px;  
   color: #0e0e0e;  
@@ -169,7 +172,7 @@ span{
 
 h1{
   font-size: 39px;  
-  text-align: letf; 
+  text-align: left; 
   padding-bottom: 20px; 
   color:white;
 }
@@ -288,3 +291,26 @@ text-align: center;
  }
  
 }
+
+.terms{
+  text-align: left;
+  margin-left: 20px;
+}
+
+.terminos{
+  width: 80px;
+  height: 10px;
+  margin-left: 20px;
+  margin-right: -20px;
+}
+
+
+.alert-danger {
+  align-content: center;
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+  width: fit-content;
+  margin-left: 550px;
+}
+

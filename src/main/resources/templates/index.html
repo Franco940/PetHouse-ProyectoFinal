@@ -7,6 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="../static/css/estilos.css" th:href="@{../static/css/estilos.css}" rel="stylesheet" />
     <link rel="icon" type="HTML/ico" href="../static/img/huella.ico" th:href="@{../static/img/huella.ico}">
+    <link href="../static/css/estilo-cuidador.css" th:href="@{../static/css/estilo-cuidador.css}" rel="stylesheet" />
+    
     
     <title>Pet House</title>
 </head>
@@ -20,13 +22,12 @@
             <li th:if="!${#strings.equals(session.ROL, 'USER')}"> <a href="/usuario/registrar">Registro</a></li>
 
             <!-- Hacer un form para completar los datos de cuidador-->
-            <li th:if="!${session.cuidador} and ${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/cuidador/ser-cuidador}">Ser cuidador</a></li>
+            
 
             <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/cuidador/lista}">Cuidadores</a></li>
             <li th:if="${session.ROL} == null"> <a th:href="@{/usuario/login}">Login</a></li>
             <li> <a th:href="@{/}">Contacto</a></li>
-            <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/usuario/modificar/__${session.idUsuario}__}">Editar cuenta</a></li>
-            <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/logout}">Logout</a></li>
+            
         </ul>
     </div>
 
@@ -39,7 +40,52 @@
         </div>
       </div>
 
-     
+      <section th:if="${#strings.equals(session.ROL, 'USER')}">
+        <div id="sidemenu" class="menu-collapsed">
+
+            <div id="header">
+                <div id="menu-btn">
+                    <div class="btn-hamburger"></div>
+                    <div class="btn-hamburger"></div>
+                    <div class="btn-hamburger"></div>
+                </div>
+            </div>
+            <div id="profile">
+                <div id="photo"><img th:src="@{../static/fotosDePerfil/__${session.fotoPerfil}__}" alt=""></div>
+                <div id="name"><span>
+                        <h4 th:text="${session.nombre} + ' ' + ${session.apellido}">Nombre Usuario</h4>
+                    </span></div>
+
+            </div>
+
+            <div id="menu-items">
+                <div class="item">
+                    <a  th:href="@{/usuario/modificar/__${session.idUsuario}__}">
+                        <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
+                        <div class="title"><span>Editar perfil</span></div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a  th:href="@{/cuidador/ser-cuidador}">
+                        <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
+                        <div class="title"><span>Ser cuidador</span></div>
+                    </a>
+                </div>
+                <div class="separador">
+
+                </div>
+                <div class="separador">
+
+                </div>
+                <div class="item">
+                    <a th:href="@{/logout}">
+                        <div class="icon"><img src="/static/img/cerrar.png" alt=""></div>
+                        <div class="title"><span>Cerrar sesión</span></div>
+                    </a>
+                </div>
+
+            </div>
+    </section>
    
     <!-- info de la pagina -->
     <header class="container">
@@ -137,5 +183,15 @@
      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
      -->
+     <script>
+        const btn = document.querySelector('#menu-btn');
+        const menu = document.querySelector('#sidemenu');
+        btn.addEventListener('click', e => {
+            menu.classList.toggle("menu-expanded");
+            menu.classList.toggle("menu-collapsed");
+
+            document.querySelector('body').classList.toggle('body-expanded');
+        });
+    </script>
 </body>
 </html>

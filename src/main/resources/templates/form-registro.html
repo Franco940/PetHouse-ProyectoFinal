@@ -29,7 +29,7 @@
     <form class="center" th:action="@{/usuario/registrar}" method="POST" enctype="multipart/form-data">
 
         <!-- Darle color :D -->
-        <div th:if="${fallo} != null" class="alert-danger">
+        <div th:if="${fallo} != null" class="alert-danger" style="padding: 0.3rem;">
             <p th:text="${fallo}"></p>
         </div>
         <!--------------------->
@@ -200,6 +200,11 @@
 
             </br><label for="calleNumero">Ingrese su direccion</label>
             <input type="text" name="calleNumero">
+
+            <label class="terms">
+                <input class="terminos" type="checkbox" name="terminos" id="terminos">
+                Acepto los Terminos y Condiciones.
+            </label>
 
             </br><button type="submit">Registrarse</button>
         </div>
