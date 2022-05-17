@@ -8,6 +8,7 @@
     
     <!-- Reemplazen los valores de la url del css si se va a usar otro archivo css para este html -->
     <link href="../../static/css/cuidador.css" th:href="@{../../static/css/cuidador.css}" rel="stylesheet" />
+    <link href="../../static/css/estilo-ccuidador.css" th:href="@{../../static/css/estilo-cuidador.css}" rel="stylesheet" />
 
     <link rel="icon" type="HTML/ico" href="../../static/img/huella.ico" th:href="@{../../static/img/huella.ico}">
     <title>Cuidadores</title>
@@ -20,12 +21,60 @@
                 <ul class="menu">
             
                 <li> <a href="/">Home</a></li>
-                <li> <a href="/usuario/registrar">Registro</a></li>
-                <li> <a href="a">Login</a></li>
                 <li> <a href="form-contacto.html">Contacto</a></li>
                 </ul>
             </div>
         </header>
+
+        <section th:if="${#strings.equals(session.ROL, 'USER')}">
+            <div id="sidemenu" class="menu-collapsed">
+    
+                <div id="header">
+                    <div id="menu-btn">
+                        <div class="btn-hamburger"></div>
+                        <div class="btn-hamburger"></div>
+                        <div class="btn-hamburger"></div>
+                    </div>
+                </div>
+                <div id="profile">
+                    <div id="photo"><img th:src="@{../../static/fotosDePerfil/__${session.fotoPerfil}__}" alt=""></div>
+                    <div id="name"><span>
+                            <h4 th:text="${session.nombre} + ' ' + ${session.apellido}">Nombre Usuario</h4>
+                        </span></div>
+    
+                </div>
+    
+                <div id="menu-items">
+                    <div class="item">
+                        <a  th:href="@{/usuario/modificar/__${session.idUsuario}__}">
+                            <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
+                            <div class="title"><span>Editar perfil</span></div>
+                        </a>
+                    </div>
+                    <div class="item" th:if="!${session.cuidador}">
+                        <a  th:href="@{/cuidador/ser-cuidador}">
+                            <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
+                            <div class="title"><span>Ser cuidador</span></div>
+                        </a>
+                    </div>
+                    <div class="item" th:if="${session.cuidador}">
+                        <a  th:href="@{/puntuar/ver-comentarios}">
+                            <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
+                            <div class="title"><span>Ver comentarios</span></div>
+                        </a>
+                    </div>
+                    <div class="separador">
+    
+                    </div>
+                    <div class="item">
+                        <a th:href="@{/logout}">
+                            <div class="icon"><img src="/static/img/cerrar.png" alt=""></div>
+                            <div class="title"><span>Cerrar sesión</span></div>
+                        </a>
+                    </div>
+    
+                </div>
+        </section>
 
         <main>
             <h2>Información detallada del cuidador</h2>

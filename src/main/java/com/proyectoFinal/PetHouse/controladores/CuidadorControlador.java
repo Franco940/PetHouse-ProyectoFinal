@@ -49,13 +49,17 @@ public class CuidadorControlador {
     }
     
     @GetMapping("/informacion/{id}")
-    public String contactoConCuidador(ModelMap modelo, @PathVariable String id){
-        Usuario usuarioCuidador = userServ.buscarUsuarioPorId(id);
+    public String contactoConCuidador(ModelMap modelo, HttpSession session, @PathVariable String id){
+        if(session.getAttribute("ROL") != null){
+            Usuario usuarioCuidador = userServ.buscarUsuarioPorId(id);
         
         
-        modelo.put("cuidador", usuarioCuidador);
-        
-        return "informacion-cuidador.html";
+            modelo.put("cuidador", usuarioCuidador);
+
+            return "informacion-cuidador.html";
+        }else{
+            return "redirect:/usuario/login";
+        }
     }
     
     
