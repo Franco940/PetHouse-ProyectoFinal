@@ -26,7 +26,7 @@
 
             <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/cuidador/lista}">Cuidadores</a></li>
             <li th:if="${session.ROL} == null"> <a th:href="@{/usuario/login}">Login</a></li>
-            <li> <a th:href="@{/}">Contacto</a></li>
+            <li> <a href="#footer">Contacto</a></li>
             
         </ul>
     </div>
@@ -147,7 +147,7 @@
  </header>
 
     <!-- pie de pagina -->
-       <footer class="pie-pagina">
+       <footer id="footer" class="pie-pagina">
            <div class="grupo-1">
                <div class="box">
                    <figure>
