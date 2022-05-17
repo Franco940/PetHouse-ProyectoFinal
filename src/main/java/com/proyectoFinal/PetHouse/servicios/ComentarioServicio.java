@@ -5,6 +5,7 @@ import com.proyectoFinal.PetHouse.entidades.Cuidador;
 import com.proyectoFinal.PetHouse.repositorios.ComentarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -13,7 +14,7 @@ public class ComentarioServicio {
     @Autowired
     private ComentarioRepositorio comentarioRepo;
     
-    
+    @Transactional
     public void crearComentario(String idCliente, Cuidador cuidador, String comentario) throws Exception{
         validarComentario(comentario);
         
