@@ -86,6 +86,10 @@
                 <p th:text="${usuarioCuidador.email}"></p>
                 <hr>
 
+                <p>Numero de telefono</p>
+                <p th:text="${usuarioCuidador.telefonoDeContacto}"></p>
+                <hr>
+
                 <p>Descripción</p>
                 <p th:text="${usuarioCuidador.cuidador.descripcion}"></p>
                 <hr>
@@ -113,8 +117,7 @@
                     <hr>
                 </div>
 
-                <a th:href="@{/cuidador/contactar/__${usuarioCuidador.idUsuario}__}" class="btn btn-success">CONTACTAR</a>
-                <a href="/cuidador/lista">Volver a la lista de cuidadores</a>
+                <a href="/cuidador/lista" class="btn btn-primary">Volver a la lista de cuidadores</a>
             </div>
         </main>
 
