@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div id="profile">
-                <div id="photo"><img th:src="@{../../../static/fotosDePerfil/__${session.fotoPerfil}__}" alt="Foto de perfil del usuario"></div>
+                <div id="photo"><img th:src="@{../../../static/fotosDePerfil/__${session.fotoPerfil}__}" alt=""></div>
                 <div id="name"><span>
                         <h4 th:text="${session.nombre} + ' ' + ${session.apellido}">Nombre Usuario</h4>
                     </span></div>
@@ -63,22 +63,26 @@
 
             <div id="menu-items">
                 <div class="item">
-                    <a th:href="@{/usuario/modificar/__${session.idUsuario}__}">
+                    <a  th:href="@{/usuario/modificar/__${session.idUsuario}__}">
                         <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
                         <div class="title"><span>Editar perfil</span></div>
                     </a>
                 </div>
-                <div class="item">
-                    <a th:href="@{/cuidador/ser-cuidador}">
+                <div class="item" th:if="!${session.cuidador}">
+                    <a  th:href="@{/cuidador/ser-cuidador}">
                         <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
                         <div class="title"><span>Ser cuidador</span></div>
                     </a>
                 </div>
-
+                <div class="item" th:if="${session.cuidador}">
+                    <a  th:href="@{/puntuar/ver-comentarios}">
+                        <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
+                        <div class="title"><span>Ver comentarios</span></div>
+                    </a>
+                </div>
                 <div class="separador">
 
                 </div>
-
                 <div class="item">
                     <a th:href="@{/logout}">
                         <div class="icon"><img src="/static/img/cerrar.png" alt=""></div>
