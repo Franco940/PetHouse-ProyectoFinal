@@ -79,6 +79,10 @@ public class UsuarioControlador {
             session.setAttribute("cuidador", usuario.getCuidador().isAlta());
             session.setAttribute("fotoPerfil", usuario.getFotoDePerfil());
             
+            if(usuario.getCuidador().isAlta()){
+                session.setAttribute("cuidadorID", usuario.getCuidador().getIdCuidador());
+            }
+            
             return "redirect:/";
         }catch(Exception e){
             modelo.put("fallo", e.getMessage());
@@ -90,9 +94,13 @@ public class UsuarioControlador {
     public String modificar(HttpSession session, @PathVariable String id, ModelMap modelo) {
         if(session.getAttribute("ROL") !=  null){
             Usuario usuario = userServ.buscarUsuarioPorId(id);
-
+            String direccion = usuario.getUbicacion().split(",")[0].trim();
+            String localidad = usuario.getUbicacion().split(",")[1].trim();
+            
             modelo.addAttribute("usuario", usuario);
-
+            modelo.put("localidad", localidad);
+            modelo.put("direccion", direccion);
+            
             return "form-modificarDatos";
         }else{
             return "redirect:/usuario/login";
@@ -114,12 +122,20 @@ public class UsuarioControlador {
             session.setAttribute("nombre", usuario.getNombre());
             session.setAttribute("apellido", usuario.getApellido());
             session.setAttribute("direccion", usuario.getUbicacion());
-            session.setAttribute("cuidador", usuario.getCuidador().isAlta());
             session.setAttribute("fotoPerfil", usuario.getFotoDePerfil());
             
             return "redirect:/usuario/modificar/" + id;
         } catch (Exception e) {
             modelo.put("fallo", e.getMessage());
+            
+            // Para recargar los datos al momento de recargar el html con el error
+            Usuario usuarioParaRecargarLaPagina = userServ.buscarUsuarioPorId(id);
+            String direccion = usuarioParaRecargarLaPagina.getUbicacion().split(",")[0].trim();
+            String localidad2 = usuarioParaRecargarLaPagina.getUbicacion().split(",")[1].trim();
+            
+            modelo.put("localidad", localidad2);
+            modelo.put("direccion", direccion);
+            modelo.put("usuario", usuarioParaRecargarLaPagina);
             return "form-modificarDatos";
         }
     }

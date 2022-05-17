@@ -108,6 +108,7 @@ public class CuidadorControlador {
             cuidadorServ.agregarDescripcionYTarifa(usuario.getCuidador(), descripcion, tarifa);
             
             session.setAttribute("cuidador", usuario.getCuidador().isAlta());
+            session.setAttribute("cuidadorID", usuario.getCuidador().getIdCuidador());
             return "redirect:/";
         }else{
             return "redirect:/usuario/login";

@@ -58,6 +58,7 @@ public class UsuarioServicio{
         return usuarioRepo.save(usuario);
     }
     
+    @Transactional(readOnly = true)
     public Usuario comprobarLogin(String email, String contraseniaPlana) throws Exception{
         validarCamposLogin(email, contraseniaPlana);
         
@@ -85,7 +86,7 @@ public class UsuarioServicio{
         return usuarioModificado;
     }
 
-    @Transactional
+    @Transactional(readOnly=true)
     public Usuario buscarUsuarioPorId(String id) {
         return usuarioRepo.buscarPorId(id);
     }
