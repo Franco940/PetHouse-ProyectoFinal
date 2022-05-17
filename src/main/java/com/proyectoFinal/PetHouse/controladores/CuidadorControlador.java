@@ -2,6 +2,7 @@ package com.proyectoFinal.PetHouse.controladores;
 
 import com.proyectoFinal.PetHouse.entidades.Coordenadas;
 import com.proyectoFinal.PetHouse.entidades.Usuario;
+import com.proyectoFinal.PetHouse.servicios.CuidadorServicio;
 import com.proyectoFinal.PetHouse.servicios.UsuarioServicio;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -22,7 +25,11 @@ public class CuidadorControlador {
     private UsuarioServicio userServ;
     
     @Autowired
+    private CuidadorServicio cuidadorServ;
+    
+    @Autowired
     private ApiMapaControlador apiMapaControlador;
+    
 
     @GetMapping("/lista")
     public String listarCuidadores(ModelMap modelo, HttpSession session) {
@@ -34,7 +41,7 @@ public class CuidadorControlador {
 
             modelo.addAttribute("usuariosCuidadores", usuariosCuidadores);
 
-            return "list-cuidador";
+            return "index-cuidadores";
             
         }else{
             return "redirect:/usuario/login";
@@ -42,13 +49,17 @@ public class CuidadorControlador {
     }
     
     @GetMapping("/informacion/{id}")
-    public String contactoConCuidador(ModelMap modelo, @PathVariable String id){
-        Usuario usuarioCuidador = userServ.buscarUsuarioPorId(id);
+    public String contactoConCuidador(ModelMap modelo, HttpSession session, @PathVariable String id){
+        if(session.getAttribute("ROL") != null){
+            Usuario usuarioCuidador = userServ.buscarUsuarioPorId(id);
         
         
-        modelo.put("cuidador", usuarioCuidador);
-        
-        return "informacion-cuidador.html";
+            modelo.put("cuidador", usuarioCuidador);
+
+            return "informacion-cuidador.html";
+        }else{
+            return "redirect:/usuario/login";
+        }
     }
     
     
@@ -74,7 +85,55 @@ public class CuidadorControlador {
             }
 
             modelo.addAttribute("usuariosCuidadores", usuariosCumplenFiltro);
-            return "list-cuidadores-filtro";
+            return "index-cuidadores-filtrados";
+        }else{
+            return "redirect:/usuario/login";
+        }
+    }
+    
+    @GetMapping("/ser-cuidador")
+    public String formCuidador(HttpSession session, ModelMap modelo) throws Exception{
+        
+        if(session.getAttribute("ROL") != null){
+            
+            return "form-cuidador";
+        }else{
+            return "redirect:/usuario/login";
+        }
+    }
+    
+    @PostMapping("/ser-cuidador/{id}")
+    public String recibirDatosSerCuidaodr(HttpSession session, ModelMap modelo, @PathVariable String id, @RequestParam String descripcion, 
+            @RequestParam Integer tarifa) throws Exception{
+        
+        if(session.getAttribute("ROL") != null){
+            Usuario usuario = userServ.buscarUsuarioPorId(id);
+            
+            cuidadorServ.agregarDescripcionYTarifa(usuario.getCuidador(), descripcion, tarifa);
+            
+            session.setAttribute("cuidador", true);
+            session.setAttribute("cuidadorID", usuario.getCuidador().getIdCuidador());
+            return "redirect:/";
+        }else{
+            return "redirect:/usuario/login";
+        }
+    }
+    
+    @GetMapping("/darDeBaja")
+    public String recibirDatosCuidador(HttpSession session, ModelMap modelo){
+        if(session.getAttribute("ROL") != null){
+            
+            Usuario usuario = userServ.buscarUsuarioPorId(session.getAttribute("idUsuario").toString());
+            
+            session.setAttribute("cuidador", false);
+            
+            String idCuidador = session.getAttribute("cuidadorID").toString();
+            
+            
+            cuidadorServ.darDebaja(idCuidador);
+            
+            return "redirect:/";
+            
         }else{
             return "redirect:/usuario/login";
         }

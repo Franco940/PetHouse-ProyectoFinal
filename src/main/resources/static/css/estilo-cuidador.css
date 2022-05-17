@@ -12,9 +12,11 @@ body{
     border: 0;
 }
 .menu{
+    width: 100%;
     list-style: none;
     padding: 0;
     background-color:#5499C7;
+    
 }
 .derecha{
         text-align: right;
@@ -27,12 +29,14 @@ body{
         text-align: center;
 }
 .menu li {
-        display: inline-block;
-        text-align: right;
+    display: inline-block;
+    text-align: right;
+    padding:0px 15px; 
 }
-    
+
 .menu li a:hover{
-        background:#76D7C4;
+    background:#76D7C4;
+    transition:ease-in .4s; 
 }
 
 /*barra lateral*/
@@ -201,12 +205,43 @@ background-color: var(--hovercolor);
     width: 100px;
 }
 /*barra lateral*/
+.filtros{
+    padding-left: 2rem;
+    display: flex;
+    border-bottom: 50px;
+   
+
+}
+.filtros .fil{
+    margin-left: 50px;
+    text-decoration: none;
+    padding: 10px 40px;
+    text-align: center;
+    justify-content: center;
+    background-color:slateblue;
+    color: white;
+    border-radius: 20px;
+    transition: background-color 0.4s ease-in, color 0.4s ease-in;
+    
+}
+.filtros .fil:hover{
+    cursor: pointer;
+    color:white;
+    background-color:#5499C7;
+}
 
 /*tarjetas*/
 .container{
     min-height: 90vh;
     display: flex;
     align-items: center;
+
+}
+.container{
+    padding:50px;
+}
+.card-section{
+    width:max-content;
 }
 .container{
     padding-left: 2rem;
@@ -219,12 +254,19 @@ background-color: var(--hovercolor);
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 }
 .card{
+   
     background-color:#90ccc0;
     padding: 1.75rem;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+    float:left;
     border-radius: 1.75rem;
     display: flex;
     flex-wrap: wrap;
+    overflow:hidden;
 }
+
 .card{
     justify-items: center;
 }
@@ -269,13 +311,56 @@ background-color: var(--hovercolor);
     border-color:#5499C7;
     color: white;
 }
+.boton a{
+    
+}
 
 
+/*calificar*/
+main{
+    justify-content:center;
+    text-align: center;
+    
+}
+.calificar{
+   margin-left: 25rem;
+    border: 1px solid #5499C7;
+    width: 500px;
+    height: 500px;
+}
+.calificar .table{
+    text-align: center;
+    justify-content: center;
+}
+.calificar h1{
+    color:#5499C7;
+}
+.calificar .calif{
+    text-align: center;
+    justify-content: center;
+}
+.calif button{
+    border:0px;
+    margin-left: 20px;
+    text-decoration: none;
+    padding: 10px 40px;
+    text-align: center;
+    justify-content: center;
+    background-color:rgb(147, 136, 223);
+    color: white;
+    border-radius: 15px;
+    transition: background-color 0.4s ease-in, color 0.4s ease-in;
+    
+}
+.calificar button:hover{
+    cursor: pointer;
+    color:white;
+    background-color:#5499C7;
 
-/*tarjetas de cuidadores*/
-
-
-
+}
+textarea{
+        background-color: window;
+    }
 /*Pie de pagina*/
 
 .pie-pagina{

@@ -31,15 +31,14 @@ public class UsuarioServicio{
     public Usuario registrarUsuario(String nombre, String apellido, String email, String contrasenia,
             Integer telefonoDeContacto, String localidad, String calleNumero, String contrasenia2, MultipartFile imagenDePerfil) throws Exception {
       
+        validacionesRegistro(nombre, apellido, email, contrasenia, contrasenia2, 
+                telefonoDeContacto, calleNumero,imagenDePerfil);
+        
         Usuario usuario = new Usuario();
         
         Cuidador cuidador = new Cuidador();
         
         cuidadorServ.crearCuidador(cuidador);
-        
-        validacionesRegistro(nombre, apellido, email, contrasenia, contrasenia2, 
-                telefonoDeContacto, calleNumero,imagenDePerfil);
-        
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setEmail(email);
@@ -59,6 +58,7 @@ public class UsuarioServicio{
         return usuarioRepo.save(usuario);
     }
     
+    @Transactional(readOnly = true)
     public Usuario comprobarLogin(String email, String contraseniaPlana) throws Exception{
         validarCamposLogin(email, contraseniaPlana);
         
@@ -72,26 +72,21 @@ public class UsuarioServicio{
     }
 
     @Transactional
-    public void modificarUsuario(String id, String nombre, String apellido, String email,String contrasenia, String contrasenia2,
-            Integer telefonoDeContacto, String localidad, String calleNumero) throws Exception {
+    public Usuario modificarUsuario(String id, String nombre, String apellido, String email, String contrasenia, String contrasenia2,
+            Integer telefono, String localidad, String calleNumero, MultipartFile imagenDePerfil) throws Exception {
         
-  
-        //validaciones(nombre, apellido, email,contrasenia, contrasenia2, telefonoDeContacto, calleNumero);
         Usuario usuario = usuarioRepo.buscarPorId(id);
-         
-        if (usuario != null) {
-            usuario.setNombre(nombre);
-            usuario.setApellido(apellido);
-            usuario.setEmail(email);
-            usuario.setContrasenia(encoder.encode(contrasenia));
-            usuario.setTelefonoDeContacto(telefonoDeContacto);
-            usuario.setUbicacion(calleNumero + ", " + localidad + ", Buenos Aires, Argentina");
-            usuario.setRol(usuario.getRol());
-            usuarioRepo.save(usuario);
-        }
+        Usuario usuarioModificado = modificarUsuario(usuario, nombre, apellido, email, contrasenia, contrasenia2, telefono, 
+                localidad, calleNumero, imagenDePerfil);
+
+        usuarioRepo.actualizar(usuarioModificado.getIdUsuario(), usuarioModificado.getNombre(), usuarioModificado.getApellido(), 
+                usuarioModificado.getEmail(), usuarioModificado.getContrasenia(), usuarioModificado.getTelefonoDeContacto(), 
+                usuarioModificado.getUbicacion(), usuarioModificado.getFotoDePerfil());
+        
+        return usuarioModificado;
     }
 
-    @Transactional
+    @Transactional(readOnly=true)
     public Usuario buscarUsuarioPorId(String id) {
         return usuarioRepo.buscarPorId(id);
     }
@@ -133,6 +128,9 @@ public class UsuarioServicio{
         if (email == null || email.trim().isEmpty()) {
             throw new Exception("El email no puede estar vacío");
         }
+        if(buscarPorEmail(email) != null){
+            throw new Exception("Ya hay alguien registrado con ese email");
+        }
         if (contrasenia == null || contrasenia2 == null || contrasenia.isEmpty() || contrasenia2.isEmpty()) {
             throw new Exception("La contraseña no puede estar vacía");         
         }
@@ -159,30 +157,69 @@ public class UsuarioServicio{
         }
     }
     
-    private void validarModificacion(String nombre, String apellido, String email,String contrasenia, String contrasenia2, 
-            Integer telefonoDeContacto, String calleNumero) throws Exception{
+    private Usuario modificarUsuario(Usuario usuario, String nombre, String apellido, String email,String contrasenia, String contrasenia2, 
+            Integer telefonoDeContacto, String localidad, String calleNumero, MultipartFile imagenDePerfil) throws Exception{
         
-        if (nombre == null || nombre.isEmpty()) {
-            throw new Exception("Nombre no puede estar vacio");
-        }   
-        if (apellido == null || apellido.isEmpty()) {
-            throw new Exception("Apellido no puede estar vacio");
+        Usuario usuarioAux = usuario;
+        String ubicacionAux = calleNumero + ", " + localidad + ", Buenos Aires, Argentina";
+        
+        if(!(nombre == null || nombre.isEmpty())){
+            if(!usuario.getNombre().equals(nombre)){
+                usuarioAux.setNombre(nombre);
+            }
+        }else{
+            throw new Exception("El nombre no puede estar vacío");
         }
-        if (telefonoDeContacto == null) {
-            throw new Exception("Nombre no puede estar vacio");
-        }       
-        if (email == null || email.isEmpty()) {
-            throw new Exception("Email no puede estar vacio");
+        
+        if(!(apellido == null || apellido.isEmpty())){
+            if(!usuario.getApellido().equals(apellido)){
+                usuarioAux.setApellido(apellido);
+            }
+        }else{
+            throw new Exception("El apellido no puede estar vacío");
         }
-        if (contrasenia == null || contrasenia2 == null || contrasenia.isEmpty() || contrasenia2.isEmpty()) {
-            throw new Exception("Las contraseñas no pueden estar vacias");
+        
+        if(!(email == null || email.isEmpty())){
+            if(!usuario.getEmail().equals(email)){
+                usuarioAux.setEmail(email);
+            }
+        }else{
+            throw new Exception("El email no puede estar vacío");
         }
-        if (!contrasenia.equals(contrasenia2)) {
-            throw new Exception("Las contraseñas no coinciden");
-        }    
-        if (calleNumero == null || calleNumero.trim().isEmpty()) {
-            throw new Exception("La calle no puede estar vacía");
-        }   
+        
+        if(!((contrasenia == null || contrasenia.isEmpty()) && (contrasenia2 == null || contrasenia2.isEmpty()))){
+            if(contrasenia.equals(contrasenia2)){
+                if(!encoder.matches(contrasenia, usuario.getContrasenia())){
+                    usuarioAux.setContrasenia(encoder.encode(contrasenia));
+                }
+            }else{
+                throw new Exception("Las contraseñas no coinciden");
+            }
+        }else{
+            throw new Exception("La contraseña no puede estar vacía");
+        }
+        
+        if(!(telefonoDeContacto == null || telefonoDeContacto == 0)){
+            if(!usuario.getTelefonoDeContacto().equals(telefonoDeContacto)){
+                usuarioAux.setTelefonoDeContacto(telefonoDeContacto);
+            }
+        }else{
+            throw new Exception("El numero no puede ser 0 o estar vacio");
+        }
+        
+        if(!((calleNumero == null || calleNumero.isEmpty()) && (localidad == null || localidad.isEmpty()))){
+            if(!usuario.getUbicacion().equals(ubicacionAux)){
+                usuarioAux.setUbicacion(ubicacionAux);
+            }
+        }else{
+            throw new Exception("La localidad y partido no pueden estar vacios");
+        }
+        
+        if(!imagenDePerfil.getOriginalFilename().isEmpty()){
+            usuarioAux.setFotoDePerfil(guardarImagenLocalmente(imagenDePerfil));
+        }
+        
+        return usuarioAux;
     }
     
     private String guardarImagenLocalmente(MultipartFile imagenDePerfil) throws Exception{

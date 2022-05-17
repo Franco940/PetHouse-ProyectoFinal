@@ -31,10 +31,12 @@ background-color:#5499C7;
 .menu li {
     display: inline-block;
     text-align: right;
+    padding:0px 15px; 
 }
 
 .menu li a:hover{
     background:#76D7C4;
+    transition:ease-in .4s; 
 }
 /*Menu*/
 
@@ -220,6 +222,58 @@ background-color: var(--hovercolor);
     text-decoration: none;
     font-size: 20px;
     
+}
+.center{
+    justify-content: center;
+    padding-left: 300px;
+}
+
+.fondo{
+  
+
+    opacity: 50%;
+   
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(/static/img/fondo123.jpg) no-repeat #000;
+    background-size: cover;
+    z-index: -1;
+    
+        
+        
+      
+    font-family: sans-serif;
+    height: 100vh;
+
+  }
+.infocuidador{
+    border-top: 50px;
+    width: 700px;
+    height: 800px;
+    background-color:#dce8f0; 
+    justify-content: center;
+    text-align: center;
+}
+
+.infocuidador a{
+    text-decoration: none;
+    padding: 10px 40px;
+    text-align: center;
+    justify-content: center;
+    background-color:slateblue;
+    color: white;
+    border-radius: 20px;
+    transition: background-color 0.4s ease-in, color 0.4s ease-in;
+}
+
+.infocuidador  a:hover{
+    cursor: pointer;
+    color:white;
+    background-color:#5499C7;
 }
 
 

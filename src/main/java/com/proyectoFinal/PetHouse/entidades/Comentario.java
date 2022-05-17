@@ -17,18 +17,18 @@ public class Comentario {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String idComentario;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cuidador_idCuidador")
     private Cuidador cuidador;
     
-    private String idCliente;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "usuario_idUsuario")
+    private Usuario usuario;
     
     private String comentario;
 
-    public Comentario(Cuidador cuidador, String idCliente, String comentario) {
-        this.cuidador = cuidador;
-        this.idCliente = idCliente;
-        this.comentario = comentario;
+    public Comentario() {
+   
     }
 
     public String getIdComentario() {
@@ -43,12 +43,12 @@ public class Comentario {
         this.cuidador = cuidador;
     }
 
-    public String getIdCliente() {
-        return idCliente;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public String getComentario() {
