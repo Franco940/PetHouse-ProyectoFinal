@@ -311,10 +311,46 @@ background-color: var(--hovercolor);
 
 
 
-/*tarjetas de cuidadores*/
-
-
-
+/*calificar*/
+main{
+    justify-content:center;
+    text-align: center;
+    
+}
+.calificar{
+   margin-left: 25rem;
+    border: 1px solid #5499C7;
+    width: 500px;
+    height: 500px;
+}
+.calificar h1{
+    color:#5499C7;
+}
+.calificar .calif{
+    text-align: center;
+    justify-content: center;
+}
+.calif button{
+    border:0px;
+    margin-left: 20px;
+    text-decoration: none;
+    padding: 10px 40px;
+    text-align: center;
+    justify-content: center;
+    background-color:rgb(147, 136, 223);
+    color: white;
+    border-radius: 15px;
+    transition: background-color 0.4s ease-in, color 0.4s ease-in;
+    
+}
+.calificar button:hover{
+    cursor: pointer;
+    color:white;
+    background-color:#5499C7;
+    
+    textarea{
+        background-color:window;
+    }
 /*Pie de pagina*/
 
 .pie-pagina{

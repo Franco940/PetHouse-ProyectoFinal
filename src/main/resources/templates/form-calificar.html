@@ -73,10 +73,11 @@
 
             </div>
     </section>
-
+    <main>
+    <div class="calificar">
     <h1>Calificando al cuidador</h1>
 
-    <form th:action="@{/puntuar/puntuando/}" method="POST">
+    <form th:action="@{/puntuar/puntuando/}" method="POST" class="calif">
         <input type="text" name="idCuidador" th:value="${cuidador}" hidden>
 
         <label for="puntaje">Selecione un puntaje para el cuidador</label>
@@ -90,9 +91,9 @@
 
         </br>
 
-        <label for="comentario">Por favor, deje un comentario sobre el cuidador</label>
         <textarea name="comentario" id="comentario" cols="30" rows="10"></textarea>
-
+        <br>
+        <label for="comentario">Por favor, deje un comentario sobre el cuidador</label>
         </br>
 
         <button type="submit" class="btn btn-success">Calificar</button>
@@ -102,7 +103,8 @@
         <p th:text="${respuesta}"></p>
     </div>
 
-
+    </div>
+        </main>
     <!-- pie de pagina -->
     <footer class="pie-pagina">
         <div class="grupo-1">
