@@ -8,7 +8,7 @@
     
     <!-- Reemplazen los valores de la url del css si se va a usar otro archivo css para este html -->
     <link href="../../static/css/cuidador.css" th:href="@{../../static/css/cuidador.css}" rel="stylesheet" />
-    <link href="../../static/css/estilo-ccuidador.css" th:href="@{../../static/css/estilo-cuidador.css}" rel="stylesheet" />
+    <link href="../../static/css/estilo-cuidador.css" th:href="@{../../static/css/estilo-cuidador.css}" rel="stylesheet" />
 
     <link rel="icon" type="HTML/ico" href="../../static/img/huella.ico" th:href="@{../../static/img/huella.ico}">
     <title>Cuidadores</title>
@@ -74,8 +74,9 @@
     
                 </div>
         </section>
-
-        <main>
+      <div class="fondo"></div>
+        <main class="center">
+        <div class="infocuidador">
             <h2>Información detallada del cuidador</h2>
             <div th:each="usuarioCuidador: ${cuidador}">
                 <p>Nombre y apellido</p>
@@ -117,8 +118,9 @@
                     <hr>
                 </div>
 
-                <a href="/cuidador/lista" class="btn btn-primary">Volver a la lista de cuidadores</a>
+                <a href="/cuidador/lista" class="btn btn-primary" class="fil">Volver a la lista de cuidadores</a>
             </div>
+        </div>
         </main>
 
  <!-- pie de pagina -->
