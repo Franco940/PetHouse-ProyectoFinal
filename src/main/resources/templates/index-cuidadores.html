@@ -29,10 +29,7 @@
 
                 <li> <a th:href="@{/}">Home</a></li>
 
-                <!-- Hacer un form para completar los datos de cuidador-->
-                <li th:if="!${session.cuidador} and ${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/}">Ser
-                        cuidador</a>
-                </li>
+                <!-- Hacer un form para completar los datos de cuidador-->             
 
                 <li th:if="${session.cuidador}"> <a th:href="@{/cuidador/lista}">Cuidadores</a></li>
                 <li th:if="${session.ROL} == null"> <a th:href="@{/login}">Login</a></li>
@@ -41,7 +38,7 @@
     </nav>
 
 
-    <section>
+    <section th:if="${#strings.equals(session.ROL, 'USER')}">
         <div id="sidemenu" class="menu-collapsed">
 
             <div id="header">
@@ -61,37 +58,19 @@
 
             <div id="menu-items">
                 <div class="item">
-                    <a href="#">
+                    <a  th:href="@{/usuario/modificar/__${session.idUsuario}__}">
                         <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
                         <div class="title"><span>Editar perfil</span></div>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="#">
+                    <a  th:href="@{/cuidador/ser-cuidador}">
                         <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
-                        <div class="title"><span>Ingresar como cuidador</span></div>
+                        <div class="title"><span>Ser cuidador</span></div>
                     </a>
                 </div>
                 <div class="separador">
 
-                </div>
-                <div class="item">
-                    <a href="#">
-                        <div class="icon"><img src="/static/img/agregar.png" alt=""></div>
-                        <div class="title"><span>Agregar mascota</span></div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#">
-                        <div class="icon"><img src="/static/img/editar.png" alt=""></div>
-                        <div class="title"><span>Editar mascotas</span></div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#">
-                        <div class="icon"><img src="/static/img/lista (1).png" alt=""></div>
-                        <div class="title"><span>Ver mascota</span></div>
-                    </a>
                 </div>
                 <div class="separador">
 
