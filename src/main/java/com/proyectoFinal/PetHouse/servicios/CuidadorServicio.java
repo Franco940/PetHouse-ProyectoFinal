@@ -30,10 +30,12 @@ public class CuidadorServicio {
     }
 
     @Transactional
-    public void guardarPuntajeYSumaTrabajo(Cuidador cuidador, Integer puntaje) throws Exception {
-        validarPuntaje(puntaje);
+    public void guardarPuntajeYSumaTrabajo(Cuidador cuidador, String puntaje) throws Exception {
+        Integer puntajeNumero = Integer.valueOf(puntaje);
         
-        cuidador.setPuntajeTotal(cuidador.getPuntajeTotal() + puntaje);
+        validarPuntaje(puntajeNumero);
+        
+        cuidador.setPuntajeTotal(cuidador.getPuntajeTotal() + puntajeNumero);
         cuidador.setTrabajosRealizados(cuidador.getTrabajosRealizados() + 1);
         
         cuidadorRepo.actualizarPuntajeYTrabajos(cuidador.getIdCuidador(), cuidador.getPuntajeTotal(), cuidador.getTrabajosRealizados());

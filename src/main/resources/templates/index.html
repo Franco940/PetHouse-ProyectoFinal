@@ -65,14 +65,17 @@
                         <div class="title"><span>Editar perfil</span></div>
                     </a>
                 </div>
-                <div class="item">
+                <div class="item" th:if="!${session.cuidador}">
                     <a  th:href="@{/cuidador/ser-cuidador}">
                         <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
                         <div class="title"><span>Ser cuidador</span></div>
                     </a>
                 </div>
-                <div class="separador">
-
+                <div class="item" th:if="${session.cuidador}">
+                    <a  th:href="@{/puntuar/ver-comentarios}">
+                        <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
+                        <div class="title"><span>Ver comentarios</span></div>
+                    </a>
                 </div>
                 <div class="separador">
 
