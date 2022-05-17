@@ -19,6 +19,10 @@ public interface CuidadorRepositorio extends JpaRepository <Cuidador, String> {
     @Query("UPDATE Cuidador AS c SET c.descripcion = :descripcion, c.tarifa = :tarifa, c.alta = :alta WHERE c.idCuidador = :id")
     public void actualizarDatos(@Param("id") String id, @Param("descripcion") String descripcion, @Param("tarifa") Integer tarifa, @Param("alta") boolean alta);
 
+    @Modifying
+    @Query("UPDATE Cuidador AS c SET c.alta = false WHERE c.idCuidador = :id")
+    public void darDebajaCuidador(@Param("id") String id);
+    
     @Query("SELECT x FROM Cuidador x where x.id = :id")
     public Cuidador buscarPorId(@Param("id") String id);
 }

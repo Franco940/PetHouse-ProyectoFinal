@@ -111,9 +111,29 @@ public class CuidadorControlador {
             
             cuidadorServ.agregarDescripcionYTarifa(usuario.getCuidador(), descripcion, tarifa);
             
-            session.setAttribute("cuidador", usuario.getCuidador().isAlta());
+            session.setAttribute("cuidador", true);
             session.setAttribute("cuidadorID", usuario.getCuidador().getIdCuidador());
             return "redirect:/";
+        }else{
+            return "redirect:/usuario/login";
+        }
+    }
+    
+    @GetMapping("/darDeBaja")
+    public String recibirDatosCuidador(HttpSession session, ModelMap modelo){
+        if(session.getAttribute("ROL") != null){
+            
+            Usuario usuario = userServ.buscarUsuarioPorId(session.getAttribute("idUsuario").toString());
+            
+            session.setAttribute("cuidador", false);
+            
+            String idCuidador = session.getAttribute("cuidadorID").toString();
+            
+            
+            cuidadorServ.darDebaja(idCuidador);
+            
+            return "redirect:/";
+            
         }else{
             return "redirect:/usuario/login";
         }

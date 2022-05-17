@@ -77,6 +77,12 @@
                         <div class="title"><span>Ver comentarios</span></div>
                     </a>
                 </div>
+                <div class="item" th:if="${session.cuidador}">
+                    <a  th:href="@{/cuidador/darDeBaja}">
+                        <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
+                        <div class="title"><span>Dar de baja ser cuidador</span></div>
+                    </a>
+                </div>
                 <div class="separador">
 
                 </div>

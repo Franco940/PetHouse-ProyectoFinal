@@ -46,6 +46,11 @@ public class CuidadorServicio {
         return cuidadorRepo.findById(id);
     }
     
+    @Transactional
+    public void darDebaja(String idCuidador){
+        cuidadorRepo.darDebajaCuidador(idCuidador);
+    }
+    
     private void validarPuntaje(Integer puntaje) throws Exception{
         if(puntaje == null || puntaje == 0){
             throw new Exception("La puntuación no puede ser 0");
