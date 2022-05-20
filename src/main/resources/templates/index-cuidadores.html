@@ -98,7 +98,7 @@
         <section th:each="usuario: ${usuariosCuidadores}" class="card-section">
             <div class="card">
                 <div class="foto">
-                    <img th:src="@{../static/fotosDePerfil/__${usuario.fotoDePerfil}__}" alt="Imagen de perfil del cuidador">
+                    <img th:src="@{../static/fotosDePerfil/__${usuario.fotoDePerfil}__}" alt="Imagen de perfil del cuidador" height="200px" width="700px" >
                 </div>
                 <div class="nombre-cuidador">
                     <h2 th:text="${usuario.nombre} + ' ' + ${usuario.apellido}">Nombre cuidador</h2>
