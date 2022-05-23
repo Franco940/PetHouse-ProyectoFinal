@@ -15,28 +15,29 @@
 <body>
 
      <!-- MENU -->
-    <div class="derecha">
-        <ul class="menu">
-
-            <li> <a th:href="@{/}">Home</a></li>
-            <li th:if="!${#strings.equals(session.ROL, 'USER')}"> <a href="/usuario/registrar">Registro</a></li>
-
-            <!-- Hacer un form para completar los datos de cuidador-->
-            
-
-            <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/cuidador/lista}">Cuidadores</a></li>
-            <li th:if="${session.ROL} == null"> <a th:href="@{/usuario/login}">Login</a></li>
-            <li> <a href="#footer">Contacto</a></li>
-            
-        </ul>
-    </div>
-
+    
       <div class="fondo">
-        <div class="log">
-            <img th:src="@{../static/img/LogoRecortado.jpg}" alt="logo-pethouse">
+        <div class="derecha">
+            <ul class="menu">
+    
+                <li> <a th:href="@{/}">Home</a></li>
+                <li th:if="!${#strings.equals(session.ROL, 'USER')}"> <a href="/usuario/registrar">Registro</a></li>
+    
+                <!-- Hacer un form para completar los datos de cuidador-->
+                
+    
+                <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/cuidador/lista}">Cuidadores</a></li>
+                <li th:if="${session.ROL} == null"> <a th:href="@{/usuario/login}">Login</a></li>
+                <li> <a href="#footer">Contacto</a></li>
+                
+            </ul>
         </div>
-        <div class="color">
-          <img th:src="@{../static/img/portada.png}" width="100%" height="100%" alt="fondo">
+        <div class="log">
+            <img th:src="@{../static/img/pet.png}" alt="logo-pethouse">
+        </div>
+        <div class="eslogan">
+            <h2>Encontrá el cuidador ideal <br>para tu mascota!</h2>
+          
         </div>
       </div>
 
@@ -120,7 +121,7 @@
               <p class="about-parrafo">Pactamos con cada uno de nuestros cuidadores un monto máximo por noche.</p>
            </div>
        </section>
-       
+    <div class="fondo2">
        <section class="galeria">
            <div class="contain">
                <h2 class="subtitle">Galeria</h2>
@@ -147,7 +148,7 @@
                </div>
            </div>
        </section>
-
+  </div>
        
    </main>
  </header>

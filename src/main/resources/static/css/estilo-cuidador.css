@@ -6,7 +6,7 @@
 }
 
 body{
-    font-family: Arial, Helvetica;
+    font-family:'Source Sans Pro', sans-serif;
     background-color:whitesmoke;
     padding: 0%;
     border: 0;
@@ -15,7 +15,7 @@ body{
     width: 100%;
     list-style: none;
     padding: 0;
-    background-color:#5499C7;
+    background:linear-gradient(45deg, #31e69a, #4190df);
     
 }
 .derecha{
@@ -56,7 +56,7 @@ body{
 }
 
 #sidemenu{
-    background-color: var(--background-color);
+    background:linear-gradient(45deg , #4190df , #4cf5af);
     color: white;
     position: fixed;
     height: 100%;
@@ -218,7 +218,7 @@ background-color: var(--hovercolor);
     padding: 10px 40px;
     text-align: center;
     justify-content: center;
-    background-color:slateblue;
+    background-color:rgba(84, 245, 138, 0.664);
     color: white;
     border-radius: 20px;
     transition: background-color 0.4s ease-in, color 0.4s ease-in;
@@ -317,14 +317,36 @@ background-color: var(--hovercolor);
 
 
 /*calificar*/
+.fondo{
+  
+
+    
+    opacity: 70%;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(/static/img/fondo123.jpg) no-repeat #000;
+    background-size: cover;
+    z-index: -1;
+    
+        
+        
+      
+    font-family:'Source Sans Pro', sans-serif;
+    height: 100vh;
+
+  }
 main{
     justify-content:center;
     text-align: center;
     
 }
 .calificar{
-   margin-left: 25rem;
-    border: 1px solid #5499C7;
+    margin-left: 25rem;
+    background-color:rgba(243, 230, 230, 0.822);
     width: 500px;
     height: 500px;
 }
@@ -333,7 +355,7 @@ main{
     justify-content: center;
 }
 .calificar h1{
-    color:#5499C7;
+    color:#000;
 }
 .calificar .calif{
     text-align: center;

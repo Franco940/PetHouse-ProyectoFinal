@@ -12,10 +12,10 @@ body{
     border: 0;
 }
 .menu{
-    list-style: none;
-    padding: 0;
-    background-color:#5499C7;
-}
+  list-style: none;
+  padding: 0;
+  background:linear-gradient(45deg, #4cf5af, #4190df);
+  }
 .derecha{
         text-align: right;
 }

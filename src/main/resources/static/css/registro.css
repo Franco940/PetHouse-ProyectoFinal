@@ -1,27 +1,23 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
 *{
   padding: 0%;
   border: 0;
 }
 
 .fondo{
-
-
-  opacity: 50%;
- 
-
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: url(/static/img/fondo123.jpg) no-repeat #000;
+  background: linear-gradient(45deg, #00fa92, #037ffc);
   background-size: cover;
-  z-index: -1;
+  
   
       
       
     
-  font-family: sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   height: 100vh;
 
 }
@@ -29,7 +25,6 @@
 .box {
   width: max-content;
   height: max-content;
-  background: #5499c7;
   color: #ebf5fc;
   top: 59%;
   left: 50%;
@@ -37,7 +32,7 @@
   transform: translate(-50%, -50%);
   box-sizing: border-box;
   padding: 60px 10px;
-  margin-top: 450px;
+  margin-top: 250px;
 }
 .box .avatar {
   width: 100px;
@@ -49,17 +44,17 @@
 }
 
 body{
-  font-family: Arial, Helvetica;
+  font-family: 'Source Sans Pro', sans-serif;
   background-color:whitesmoke;
   padding: 0%;
   border: 0;
 }
 /*Menu*/
 .menu{
-list-style: none;
-padding: 0;
-background-color:#5499C7;
-}
+  list-style: none;
+  padding: 0;
+  background:linear-gradient(45deg, #4cf5af, #4190df);
+  }
 .derecha{
   text-align: right;
 }
@@ -78,6 +73,7 @@ background-color:#5499C7;
 }
 
 .menu li a:hover{
+    cursor: pointer;
     background:#76D7C4;
     transition:ease-in .4s; 
 }
@@ -87,11 +83,18 @@ background-color:#5499C7;
 
 body{
   height: 100%;
-  font-family:Arial, Helvetica;
-  background-color:rgb(209, 204, 236);
+  font-family:'Source Sans Pro', sans-serif;
+  background-color:rgb(236, 211, 204);
 
 }
-
+.alert-danger{
+  justify-content: center;
+  text-align: center;
+  background-color: #a84d55;
+  border: 2px solid #d40a1a;
+  width: 100px;
+  height: 30px;
+}
 .center{
   text-align: center;
 }
@@ -110,7 +113,7 @@ input{
   border-radius: 5px;
   border-style: solid;
   border-width: 1px;
-  border-color:mediumslateblue;
+  border-color:#00fa92;
   margin-top: 10px;
   padding-left: 10px;
   margin-bottom: 20px;
@@ -141,18 +144,19 @@ button{
   padding-left: 5px;
   padding-right: 5px;   
   margin-bottom: 20px; 
+  font-size: 22px;
   margin-top: 10px;   
-  text-transform: uppercase;
-  color: white;
-  background-color:slateblue; 
-  border-color:slateblue; 
+  color: #037ffc;
+  background-color: fade(white, 20%); 
   border-style: solid; 
-  border-radius: 10px;  
+  border-radius: 20px;  
   width: 420px;   
   cursor: pointer;
+  transition: background-color 0.4s ease-in, color 0.4s ease-in;
 }
 button:hover{
-  background-color: violet;
+  background-color: #037ffc;
+  color: white;
 }
 
 button p{
@@ -161,7 +165,7 @@ button p{
 
 
 span{
-  color:mediumslateblue; 
+  color:#037ffc; 
 }
 
 
@@ -174,7 +178,7 @@ span{
 
 h1{
   font-size: 39px;  
-  text-align: left; 
+  text-align:center; 
   padding-bottom: 20px; 
   color:white;
 }
@@ -214,85 +218,7 @@ p{
   border: 1px solid #97d848;
 }
 /*formulario*/
-/*Pie de pagina*/
 
-.pie-pagina{
-
-  margin-top: 200px;
-  width: 100%;
-  background-color: #042135;
-
-  
-}
-.pie-pagina .grupo-1{
-  width: 100%;
-  max-width: 1200px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 50px;
-  padding: 45px 0px;
-}
-.pie-pagina .grupo-1 .box figure{
- width: 100%;
- height: 100%;
- display: flex;
- justify-content:center;
- align-items:center;
-}
-
-.pie-pagina .grupo-1 .box figure img{
-   width: 250px;
-}
-
-.pie-pagina .grupo-1 .box h2{
-   color: white;
-   margin-bottom: 25px;
-   font-size: 25px;
-}
-
-.pie-pagina .grupo-1 .box p{
-color: whitesmoke;
-margin-bottom: 10px;
-}
-.pie-pagina .grupo-1 .box  a{
-    text-decoration:none;
-    color: #97d848;
-}
-.pie-pagina .grupo-1 .box a b:hover{
-  color:rgb(252, 249, 97); 
-}
-.pie-pagina .grupo-1 .red-social a img{
-display: inline-block;
-width: 45px;
-height: 45px;
-line-height: 45px;
-margin-right: 10px;
-background-color: #329fe7;
-text-align: center;
-
-}
-
-.pie-pagina .grupo-2{
-   background-color:#02131f;
-   padding: 15px 10px;
-   text-align: center;
-   color: white;
-}
-.pie-pagina.grupo-2 small{
-   font-size: 15px;
-
-}
-
-@media screen and (max-width:800px){
-.pie-pagina .grupo-1{
-    width: 90%;
-    grid-template-columns: repeat(1, 1fr);
-    grid-gap: 30px;
-    padding: 35px 0px;
- }
- 
-}
 
 .terms{
   text-align: left;

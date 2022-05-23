@@ -7,9 +7,9 @@ PARA EL CORRECTO FUNCIONAMIENTO DEL MAPA*/
     width: 60%;
     /* The width is the width of the web page */
 
-    margin-left: 22%;
+    margin-left: 100px;
     border: 2px solid ;
-    width:1000px;
+    width:90%;
   }
 
 #goToTop {

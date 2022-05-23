@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
 *{
     padding: 0%;
     border: 0;
 }
 body{
-    font-family: Arial, Helvetica;
+    font-family: 'Source Sans Pro', sans-serif;
     background-color:whitesmoke;
     padding: 0%;
     border: 0;
@@ -12,13 +14,15 @@ body{
 .menu{
 list-style: none;
 padding: 0;
-background-color:#5499C7;
+background:linear-gradient(45deg, #4cf5af, #4190df);
 }
 .derecha{
     text-align: right;
 }
 .menu li a{
     text-decoration: none;
+    font-size: 20px;
+    font-family:'Source Sans Pro', sans-serif;
     color: white;
     padding: 20px;
     display: block;
@@ -37,49 +41,213 @@ background-color:#5499C7;
     transition:ease-in .4s; 
 }
 /*Menu*/
-.fondo{
-    position: relative;
-    color: #fff;
-    height: 500;
+.fondo1{
+    border: 0;
+    padding: 0%;
     width: 100%;
+    height: 650px;
+    background:linear-gradient(45deg, #00fa92, #037ffc);
 
 }
-.fondo{
-    width: 90%;
-    margin: 0 auto;
-    overflow: hidden;
-    padding: 10px 10px;   
-}
 
-.fondo .color img{
-    padding-top: 0px;
-    right: 0px;
-    width: 1200px;
-    height: 600%;
-    text-align: center;
+
+.fondo1 .eslogan h2{
+  font-family:'Courgette', cursive;
+  font-size: 50px;
+  color: white;
+  padding-left: 90px;
+  justify-content: center; 
+  align-items:center;
+  margin-top: 200px;
+  position: absolute;  
+ 
     
-    
 }
 
-.fondo .log img{
+.fondo1 .log img{
+    margin-top: 10px;
     position: absolute;
-    left: 40px;
-    right: 280px;
-    width: 280px;
+    right: 150px;
+    width: 40%;
     
 }
+:root{
+    --width: 300px;
+    --padding: 10px;
+    --background-color: #5499C7;
+    --hovercolor:#76D7C4;
+    --width-collapsed:50px;
+}
+.body-expanded{
+    margin-left:300px;
+}
+
+#sidemenu{
+    background:linear-gradient(45deg, #4190df,#4cf5af );
+    color: white;
+    position: fixed;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    
+}
+#sidemenu a{
+    color:white;
+    text-decoration: none;
+    font-family:'Source Sans Pro', sans-serif;
+
+
+}
+
+#sidemenu #header{
+    box-sizing: border-box;
+    border-bottom: solid 1px #76D7C4;
+}
+#sidemenu #header #title{
+    box-sizing: border-box;
+    overflow: hidden;
+}
+#sidemenu #header #title, #sidemenu  #header #menu-btn{
+    vertical-align: middle;
+}
+#sedemenu #header #menu-btn{
+    display: inline-block;
+}
+#sidemenu #header #menu-btn{
+    cursor: pointer;
+    padding: 10px;
+    width: 50px;
+    box-sizing: border-box;
+}
+#sidemenu #header #menu-btn:hover{
+background-color: #76D7C4;
+}
+#sidemenu #header #menu-btn .btn-hamburger{
+    background-color: white;
+    width: 100%;
+    height: 2px;
+    margin: 5px 0;
+}
+
+#sidemenu #profile{
+    border-bottom: solid 1px #76D7C4;
+    padding: 10px 0;
+    text-align: center;
+}
+#sedemenu #profile #photo{
+    box-sizing: border-box;
+    padding:10px;
+    margin: 0 auto;
+}
+#sidemenu #profile #photo img{
+    padding-left: 30px;
+    width: 60%;
+    border-radius: 50%;
+    justify-content: center;
+
+}
+#sidemenu #profile #photo, #sidemenu #profile #name{
+    font-size: 24px;
+    padding:10px 0;
+    overflow: hidden;
+}
+
+#sidemenu #menu-items{
+    overflow: hidden;
+}
+#sidemenu #menu-items .item{
+    width:300px;
+}
+#sidemenu #menu-items .item .icon{
+    display: inline-block;
+}
+#sidemenu #menu-items .item .icon,
+#sidemenu #menu-items .item .title{
+    font-size: 14px;
+    vertical-align: middle;
+    overflow: hidden;
+    display: inline-block;
+  
+}
+#sidemenu #menu-items .item a{
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+#sidemenu #menu-items .item a:hover{
+    background-color: #76D7C4;
+}
+#sidemenu #menu-items .item .icon{
+    box-sizing: border-box;
+    padding:10px;
+    width: 50px;
+}
+#sidemenu #menu-items .item .icon img{
+    width: 100%;
+}
+#sidemenu #menu-items .item .title {
+    padding:10px 0;
+    font-size: 20px;
+    color:white;
+   
+}
+#sidemenu #menu-items .separador{
+    height: 1px;
+    border-bottom: solid 1px #76D7C4;
+    margin: 15px 0;
+}
+.menu-expanded{
+    width:300px;
+    box-shadow: 0 0 10px rgb(0,0,0,0.5);
+    z-index: 1;
+}
+.menu-expanded #header #title{
+    display: inline-block;
+    width: calc(100% - 50px);
+    margin-right: -5px;
+    padding:10px;
+}
+.menu-expanded #header #title span{
+    width: calc(300px - 50px - 5px);
+    overflow: hidden;
+
+}
+.menu-expanded #profile #photo{
+    width: 200px;
+}
+.menu-expanded #profile #name{
+    width: 100%;
+}
+.menu-collapsed{
+    width: 50px;
+}
+.menu-collapsed #header #title{
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-collapsed #profile #name{
+    display: none;
+}
+.menu-collapsed .item{
+    width: 100px;
+}
+/*barra lateral*/
 
 
 .container{
-    width: 90%;
-    margin: 0 auto;
+    width: 100%;
     overflow: hidden;
     padding: 90px 0;
    
 }
 .subtitle{
-    color:#329fe7;
+    color:white;
     font-size: 2.5rem;
+    font-family: 'Courgette', cursive;
     margin-bottom: 35px;
 }
 .about{
@@ -102,8 +270,9 @@ background-color:#5499C7;
     max-width: 100%;
 }
 .about-text h2{
-    color:#329fe7;
+    color:#0893f0;;
     font-size: 2.0rem;
+    font-family: 'Courgette', cursive;
 }
 .about-parrafo{
     color:#042135;
@@ -113,9 +282,17 @@ background-color:#5499C7;
     
 }
 /*galeria*/
-.galeria{
-    background:#FFFFE0;
+.fondo2{
+    background:#6cf3bb;
     width: 100%;
+    height:700px;
+    border: 0;
+    padding: 0%;
+}
+.galeria{
+    background:#6cf3bb;
+    width: 100%;
+    height:700px;
     border: 0;
     padding: 0%;
 }
