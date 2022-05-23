@@ -2,15 +2,15 @@
 PARA EL CORRECTO FUNCIONAMIENTO DEL MAPA*/
 
 #mapa {
-    height: 500px;
-    /* The height is 400 pixels */
-    width: 60%;
-    /* The width is the width of the web page */
+  height: 500px;
+  /* The height is 400 pixels */
+  width: 60%;
+  /* The width is the width of the web page */
 
-    margin-left: 22%;
-    border: 2px solid ;
-    width:1000px;
-  }
+  margin-left: 100px;
+  border: 2px solid;
+  width: 90%;
+}
 
 #goToTop {
   margin-left: 43%;
