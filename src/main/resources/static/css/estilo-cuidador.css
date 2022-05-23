@@ -234,6 +234,7 @@ background-color: var(--hovercolor);
 .container{
     min-height: 90vh;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
 
 }

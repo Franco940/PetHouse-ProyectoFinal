@@ -22,6 +22,15 @@
 
 }
 
+.alert-danger{
+  justify-content: center;
+  text-align: center;
+  background: #a84d55;
+  border: 2px solid #d40a1a;
+  width: 100px;
+  height: 30px;
+}
+
 .box {
   width: max-content;
   height: max-content;
@@ -177,8 +186,13 @@ span{
 
 
 h1{
+  
   font-size: 39px;  
+<<<<<<< HEAD
   text-align:center; 
+=======
+  text-align: center; 
+>>>>>>> f214b84de9d4cac542a3a17418430a2b76f68245
   padding-bottom: 20px; 
   color:white;
 }
@@ -239,6 +253,7 @@ p{
   background-color: #f8d7da;
   border-color: #f5c2c7;
   width: fit-content;
-  margin-left: 550px;
+  margin-left: 44%;
+  margin-top: 11%;
 }
 
