@@ -1,168 +1,159 @@
-.fondo{
-   
+.fondo {
 
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:linear-gradient(45deg, #00fa92, #037ffc);
-    background-size: cover;
-    
-        
-        
-      
-    font-family: 'Source Sans Pro', sans-serif;
-    height: 100vh;
 
-  }
-  .menu{
-    list-style: none;
-    padding: 0;
-    background:linear-gradient(45deg, #4cf5af, #4190df);
-    }
-    .derecha{
-      text-align: right;
-    }
-    .menu li a{
-      text-decoration: none;
-      color: white;
-      padding: 20px;
-      display: block;
-      text-align: center;
-    
-    }
-    .menu li {
-        display: inline-block;
-        text-align: right;
-        padding:0px 15px; 
-    }
-    
-    .menu li a:hover{
-        cursor: pointer;
-        background:#76D7C4;
-        transition:ease-in .4s; 
-    }
-    /*Menu*/
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #00fa92, #037ffc);
+  background-size: cover;
+  font-family: 'Source Sans Pro', sans-serif;
+  height: 100vh;
+}
 
-  .login-box {
-    width: 320px;
-    height: 420px;
-    color: #ebf5fc;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    padding: 70px 30px;
-  }
-  
-  .login-box .avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    position: absolute;
-    top: -50px;
-    left: calc(50% - 50px);
-  }
-  
-  .login-box h1 {
-    margin: 0;
-    padding: 0 0 20px;
-    text-align: center;
-    font-size: 22px;
-  }
-  
-  .login-box label {
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    display: block;
-  }
-  
-  .login-box input {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .login-box input[type="text"], .login-box input[type="password"] {
-    background-color: #fbfbfb;
-    /* Con esto hago que el nombre del la foto de perfil se vea. Porque si se sube una imagen, al ser el texto blanco, no se nota si se subio o no*/
-    color: black;
-    height: 40px;
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 1px;
-    border-color:#00fa92;
-    margin-top: 10px;
-    padding-left: 10px;
-    margin-bottom: 20px;
-    color: rgb(73, 73, 73);
-    font-size: 16px;
-    
-    
-  }
-  
-  .login-box input[type="submit"] {
-    border: none;
-    outline: none;
-    height: 40px;
-    background: #5fb7f1;
-    color: #fff;
-    font-size: 18px;
-    border-radius: 20px;
-  }
-  
-  
-  
-  .login-box a{
-    text-decoration: none;
-    font-size: 20px;
-    line-height: 20px;
-    color:white;
-    
-  }
-  
-  .login-box a:hover {
-    color:white;
-    color: rgb(7, 7, 7);
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-   .botoncito {
-     text-align: center;
- 
-    
-   } 
-   .botoncito button{
-     color: #037ffc;
-     background-color: white;
-     font-size: 22px;
-     border-radius: 20px;
-     width: 200px;
-     height: 40px;
-     border:none;
-     text-align: center;
-     transition: background-color 0.4s ease-in, color 0.4s ease-in;
-   }
-   .botoncito button:hover{
-       cursor: pointer;
-       background-color:#037ffc;
-       color: white;
-   }
-   
-   #errorLogin{
-       align-content: center;
-       background-color: violet;
-       color: slateblue;
-       text-align: center;
-       width: max-content;
-       height: max-content;
-   }
-   
-  
-   
-  
- 
- 
+.menu {
+  list-style: none;
+  padding: 0;
+  background: linear-gradient(45deg, #4cf5af, #4190df);
+}
+
+.derecha {
+  text-align: right;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: white;
+  padding: 20px;
+  display: block;
+  text-align: center;
+
+}
+
+.menu li {
+  display: inline-block;
+  text-align: right;
+  padding: 0px 15px;
+}
+
+.menu li a:hover {
+  cursor: pointer;
+  background: #76D7C4;
+  transition: ease-in .4s;
+}
+
+/*Menu*/
+
+.login-box {
+  width: 320px;
+  height: 420px;
+  color: #ebf5fc;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  padding: 70px 30px;
+}
+
+.login-box .avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: -50px;
+  left: calc(50% - 50px);
+}
+
+.login-box h1 {
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 22px;
+}
+
+.login-box label {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  display: block;
+}
+
+.login-box input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+  background-color: #fbfbfb;
+  /* Con esto hago que el nombre del la foto de perfil se vea. Porque si se sube una imagen, al ser el texto blanco, no se nota si se subio o no*/
+  color: black;
+  height: 40px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #00fa92;
+  margin-top: 10px;
+  padding-left: 10px;
+  margin-bottom: 20px;
+  color: rgb(73, 73, 73);
+  font-size: 16px;
+}
+
+.login-box input[type="submit"] {
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #5fb7f1;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+.login-box a {
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 20px;
+  color: white;
+
+}
+
+.login-box a:hover {
+  color: white;
+  color: rgb(7, 7, 7);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.botoncito {
+  text-align: center;
+}
+
+.botoncito button {
+  color: #037ffc;
+  background-color: white;
+  font-size: 22px;
+  border-radius: 20px;
+  width: 200px;
+  height: 40px;
+  border: none;
+  text-align: center;
+  transition: background-color 0.4s ease-in, color 0.4s ease-in;
+}
+
+.botoncito button:hover {
+  cursor: pointer;
+  background-color: #037ffc;
+  color: white;
+}
+
+#errorLogin {
+  align-content: center;
+  background-color: violet;
+  color: slateblue;
+  text-align: center;
+  width: max-content;
+  height: max-content;
+}

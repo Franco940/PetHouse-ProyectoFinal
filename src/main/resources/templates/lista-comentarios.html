@@ -49,19 +49,19 @@
 
             <div id="menu-items">
                 <div class="item">
-                    <a  th:href="@{/usuario/modificar/__${session.idUsuario}__}">
+                    <a th:href="@{/usuario/modificar/__${session.idUsuario}__}">
                         <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
                         <div class="title"><span>Editar perfil</span></div>
                     </a>
                 </div>
                 <div class="item" th:if="!${session.cuidador}">
-                    <a  th:href="@{/cuidador/ser-cuidador}">
+                    <a th:href="@{/cuidador/ser-cuidador}">
                         <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
                         <div class="title"><span>Ser cuidador</span></div>
                     </a>
                 </div>
                 <div class="item" th:if="${session.cuidador}">
-                    <a  th:href="@{/puntuar/ver-comentarios}">
+                    <a th:href="@{/puntuar/ver-comentarios}">
                         <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
                         <div class="title"><span>Ver comentarios</span></div>
                     </a>
@@ -79,23 +79,23 @@
             </div>
     </section>
     <div class="calificar">
-    <h1>Comentarios recibidos</h1>
+        <h1>Comentarios recibidos</h1>
 
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Quien</th>
-            <th scope="col">Comentario</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="comentario: ${comentarios}">
-            <th scope="row" th:text="${comentario.usuario.nombre} + ' ' + ${comentario.usuario.apellido}"></th>
-            <th scope="row" th:text="${comentario.comentario}"></th>
-          </tr>
-        </tbody>
-      </table>
-</div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Quien</th>
+                    <th scope="col">Comentario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="comentario: ${comentarios}">
+                    <th scope="row" th:text="${comentario.usuario.nombre} + ' ' + ${comentario.usuario.apellido}"></th>
+                    <th scope="row" th:text="${comentario.comentario}"></th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <!-- pie de pagina -->
     <footer class="pie-pagina">

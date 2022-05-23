@@ -62,19 +62,19 @@
 
             <div id="menu-items">
                 <div class="item">
-                    <a  th:href="@{/usuario/modificar/__${session.idUsuario}__}">
+                    <a th:href="@{/usuario/modificar/__${session.idUsuario}__}">
                         <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
                         <div class="title"><span>Editar perfil</span></div>
                     </a>
                 </div>
                 <div class="item" th:if="!${session.cuidador}">
-                    <a  th:href="@{/cuidador/ser-cuidador}">
+                    <a th:href="@{/cuidador/ser-cuidador}">
                         <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
                         <div class="title"><span>Ser cuidador</span></div>
                     </a>
                 </div>
                 <div class="item" th:if="${session.cuidador}">
-                    <a  th:href="@{/puntuar/ver-comentarios}">
+                    <a th:href="@{/puntuar/ver-comentarios}">
                         <div class="icon"><img src="/static/img/usuario.png" alt=""></div>
                         <div class="title"><span>Ver comentarios</span></div>
                     </a>
@@ -91,18 +91,18 @@
 
             </div>
     </section>
-    
-   <div class="filtros">
-       
-      <a th:href="@{/cuidador/lista}" class="fil">Sin filtro</a>
-      <a th:href="@{/cuidador/filtro/1000/__${session.direccion}__}" class="fil">Filtro por 1km</a>
-      <a th:href="@{/cuidador/filtro/3000/__${session.direccion}__}" class="fil">Filtro por 3km</a>
-      <a th:href="@{/cuidador/filtro/5000/__${session.direccion}__}" class="fil">Filtro por 5km</a>
-      <a th:href="@{/cuidador/filtro/7000/__${session.direccion}__}" class="fil">Filtro por 7km</a>
-      <a th:href="@{/cuidador/filtro/9000/__${session.direccion}__}" class="fil">Filtro por 9km</a>
-      <a th:href="@{/cuidador/filtro/10000/__${session.direccion}__}" class="fil">Filtro por 11km</a>
-  </div>
-    
+
+    <div class="filtros">
+
+        <a th:href="@{/cuidador/lista}" class="fil">Sin filtro</a>
+        <a th:href="@{/cuidador/filtro/1000/__${session.direccion}__}" class="fil">Filtro por 1km</a>
+        <a th:href="@{/cuidador/filtro/3000/__${session.direccion}__}" class="fil">Filtro por 3km</a>
+        <a th:href="@{/cuidador/filtro/5000/__${session.direccion}__}" class="fil">Filtro por 5km</a>
+        <a th:href="@{/cuidador/filtro/7000/__${session.direccion}__}" class="fil">Filtro por 7km</a>
+        <a th:href="@{/cuidador/filtro/9000/__${session.direccion}__}" class="fil">Filtro por 9km</a>
+        <a th:href="@{/cuidador/filtro/10000/__${session.direccion}__}" class="fil">Filtro por 11km</a>
+    </div>
+
     <div class="container">
         <section th:each="usuario: ${usuariosCuidadores}" class="card-section">
             <div class="card">
@@ -125,7 +125,8 @@
                     <a href="#mapa" th:attr="onclick='buscarCoordenadasUbicacion(\'' + ${usuario.ubicacion} + '\');'"
                         class="btn btn-success">Ver ubicacion</a>
 
-                       <a th:href="@{/puntuar/puntuando/__${usuario.cuidador.idCuidador}__/false}" class="btn btn-primary">Calificar</a>
+                    <a th:href="@{/puntuar/puntuando/__${usuario.cuidador.idCuidador}__/false}"
+                        class="btn btn-primary">Calificar</a>
                 </div>
             </div>
         </section>
@@ -139,7 +140,7 @@
 
     <!-- pie de pagina -->
     <footer class="pie-pagina">
-       
+
     </footer>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

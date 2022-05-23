@@ -16,17 +16,19 @@
 
 <body>
     <!-- MENU -->
-    <div class="derecha">
-        <ul class="menu">
 
-            <li> <a th:href="@{/}">Home</a></li>
-            <li th:if="!${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/usuario/registrar}">Registro</a></li>
-            <li> <a th:href="@{/}">Contacto</a></li>
-            <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/logout}">Logout</a></li>
-        </ul>
+    <div class="fondo">
+        <div class="derecha">
+            <ul class="menu">
+
+                <li> <a th:href="@{/}">Home</a></li>
+                <li th:if="!${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/usuario/registrar}">Registro</a>
+                </li>
+                <li> <a th:href="@{/}">Contacto</a></li>
+                <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </div>
     </div>
-
-    <div class="fondo"></div>
 
     <div class="login-box">
         <img src="/static/img/nn.jpg" class="avatar" alt="Avatar Image">
@@ -46,13 +48,14 @@
 
             <br>
             <a href="/templates/recuperar-contraseniaa.html">Olvidaste tu contraseña?</a><br>
-           
+
 
             <a th:href="@{/usuario/registrar}">No tenes cuenta?</a>
         </form>
 
 
-        <div th:if="${fallo}!=null" class="alert-danger alert" style=" margin-top: 50px; height: 4.5rem!important;"role="alert">
+        <div th:if="${fallo}!=null" class="alert-danger alert" style=" margin-top: 50px; height: 4.5rem!important;"
+            role="alert">
             <p th:text="${fallo}"></p>
         </div>
     </div>
@@ -61,7 +64,7 @@
 
 
 
-    
+
 </body>
 
 </html>

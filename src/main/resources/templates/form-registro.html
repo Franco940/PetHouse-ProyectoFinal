@@ -13,15 +13,16 @@
 </head>
 
 <body>
-    <div class="fondo"></div>
-    <header class="todo">
-        <div class="derecha">
-            <ul class="menu">
-                <li> <a th:href="@{/}">Home</a></li>
-                <li> <a th:href="@{/usuario/login}">Login</a></li>
-            </ul>
+    <div class="fondo">
+        <div class="todo">
+            <div class="derecha">
+                <ul class="menu">
+                    <li> <a th:href="@{/}">Home</a></li>
+                    <li> <a th:href="@{/usuario/login}">Login</a></li>
+                </ul>
+            </div>
         </div>
-    </header>
+    </div>
 
 
     <form class="center" th:action="@{/usuario/registrar}" method="POST" enctype="multipart/form-data">
@@ -33,14 +34,14 @@
         <!--------------------->
 
         <div class="box">
-            
+
             <h1>Registro</h1>
             <!-- 
             </br><label for="imagen">Imagen de perfil</label>
             <input type="file" name="imagen" id="imagen"></br>
             -->
-            
-                  
+
+
 
             </br><label for="nombre">Ingrese su nombre</label>
             <input type="text" name="nombre" placeholder="Nombre" id="nombre"></br>
@@ -204,7 +205,7 @@
 
             </br><label for="calleNumero">Ingrese su direccion</label>
             <input type="text" name="calleNumero" id="calleNumero">
-            
+
             </br><button type="button"><label for="avatar">Adjunta tu foto de perfil</label></button>
             <input type="file" id="avatar" name="imagen" style="display:none">
 
