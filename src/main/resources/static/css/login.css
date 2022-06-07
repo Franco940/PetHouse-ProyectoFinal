@@ -25,6 +25,7 @@
 .menu li a {
   text-decoration: none;
   color: white;
+  font-size: 20px;
   padding: 20px;
   display: block;
   text-align: center;

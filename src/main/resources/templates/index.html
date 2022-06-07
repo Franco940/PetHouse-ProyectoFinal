@@ -19,22 +19,20 @@
 
     <!-- MENU -->
 
-    <div class="fondo1">
+     <div class="fondo1">
+     
         <div class="derecha">
             <ul class="menu">
 
                 <li> <a th:href="@{/}">Home</a></li>
                 <li th:if="!${#strings.equals(session.ROL, 'USER')}"> <a href="/usuario/registrar">Registro</a></li>
-
-                <!-- Hacer un form para completar los datos de cuidador-->
-
-
                 <li th:if="${#strings.equals(session.ROL, 'USER')}"> <a th:href="@{/cuidador/lista}">Cuidadores</a></li>
                 <li th:if="${session.ROL} == null"> <a th:href="@{/usuario/login}">Login</a></li>
                 <li> <a href="#footer">Contacto</a></li>
 
             </ul>
         </div>
+            
         <div class="log">
             <img th:src="@{../static/img/pet.png}" alt="logo-pethouse">
         </div>
@@ -42,7 +40,26 @@
             <h2>Encontrá el cuidador ideal <br>para tu mascota!</h2>
 
         </div>
-    </div>
+           <div class="fondo-animado">
+            <span class="uno delay-1"></span>
+            <span class="dos"></span>
+            <span class="tres delay-5"></span>
+            <span class="cuatro delay-1"></span>
+
+            <span class="uno delay-3"></span>
+            <span class="dos delay-7"></span>
+            <span class="tres delay-5"></span>
+            <span class="cuatro delay-4"></span>
+
+            <span class="uno delay-2"></span>
+            <span class="dos delay-3"></span>
+            <span class="tres delay-7"></span>
+            <span class="cuatro delay-3"></span>
+
+        </div>
+        </div>
+
+
 
     <section th:if="${#strings.equals(session.ROL, 'USER')}">
         <div id="sidemenu" class="menu-collapsed">

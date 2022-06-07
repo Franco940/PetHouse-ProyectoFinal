@@ -11,7 +11,7 @@ body {
     background-color: whitesmoke;
     padding: 0%;
     border: 0;
-    margin-left: var(--width-collapsed);
+   
 }
 
 /*Menu*/
@@ -52,13 +52,6 @@ body {
 
 /*barra lateral*/
 
-:root {
-    --width: 300px;
-    --padding: 10px;
-    --background-color: #5499C7;
-    --hovercolor: #76D7C4;
-    --width-collapsed: 50px;
-}
 
 .body-expanded {
     margin-left: 300px;
